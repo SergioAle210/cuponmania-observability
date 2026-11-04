@@ -12,7 +12,7 @@ Actúa como coordinador técnico del repositorio `cuponmania-observability` y or
 
 ## 1. Leer documentación y definir contrato
 
-1. Lee `AGENTS.md`, `instructions.md`, `docs/sources/aclaraciones-fase-3.md` y, cuando corresponda, los materiales de las Fases 1 y 2 incluidos en `docs/sources/`.
+1. Lee `AGENTS.md`, `docs/fase-3/instructions.md`, `docs/sources/aclaraciones-fase-3.md` y, cuando corresponda, los materiales de las Fases 1 y 2 incluidos en `docs/sources/`.
 2. Inspecciona el repositorio antes de crear archivos. Conserva los `README.md`, `LICENSE` y cualquier trabajo existente. No sobrescribas archivos del equipo sin necesidad.
 3. Crea `docs/contracts.md` con los ocho endpoints, métodos HTTP, ejemplos de entrada y salida, categorías, identificadores y formato de logs. No confundas estos endpoints de simulación de operaciones del servicio con endpoints de creación de tickets de Jira.
 4. Mantén la relación con los componentes de la Fase 2 y la nomenclatura de CupónManía. Los servicios de la API serán simulados y utilizarán únicamente datos ficticios.

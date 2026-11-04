@@ -6,7 +6,7 @@ Se supone que ya tienes un repositorio `cuponmania-observability` en VS Code. Co
 
 Extrae el contenido de `cuponmania-phase3-actualizado.zip` **directamente dentro** de la carpeta de tu repositorio. No crees una carpeta anidada `cuponmania-observability/cuponmania-observability/`.
 
-En el explorador de VS Code deberían aparecer `AGENTS.md`, `instructions.md`, `PROMPT_CODEX.md`, `GUIA_FASE3.md`, `docs/`, `assets/brand/`, `.codex/` y las carpetas vacías `api/`, `traffic/`, `tests/integration/` y `logs/`. Los archivos de infraestructura aún no estarán creados: el equipo los elaborará.
+En el explorador de VS Code deberían aparecer `AGENTS.md`, `docs/fase-3/instructions.md`, `docs/fase-3/PROMPT_CODEX.md`, `docs/fase-3/GUIA_FASE3.md`, `docs/`, `assets/brand/`, `.codex/` y las carpetas vacías `api/`, `traffic/`, `tests/integration/` y `logs/`. Los archivos de infraestructura aún no estarán creados: el equipo los elaborará.
 
 ## 2. Python y entorno local (sin Docker)
 
@@ -30,7 +30,7 @@ Si tienes Codex CLI instalado:
 codex
 ```
 
-Lee o pega el contenido de `PROMPT_CODEX.md`. Si utilizas la extensión de Codex en VS Code, abre el repositorio y copia allí el prompt. Los tres subagentes están definidos en `.codex/agents/`; la configuración limita la concurrencia a tres.
+Lee o pega el contenido de `docs/fase-3/PROMPT_CODEX.md`. Si utilizas la extensión de Codex en VS Code, abre el repositorio y copia allí el prompt. Los tres subagentes están definidos en `.codex/agents/`; la configuración limita la concurrencia a tres.
 
 **No instalar ni activar ninguna skill de diseño UI.** Tampoco se requiere React, Next.js, Vite o un frontend.
 

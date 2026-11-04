@@ -4,7 +4,7 @@ Implementación FastAPI sin base de datos ni integraciones externas. Las ocho ru
 
 ## Ejecución local sin Docker
 
-Desde la raíz del repositorio, con el entorno `.venv` preparado según [SETUP.md](../SETUP.md):
+Desde la raíz del repositorio, con el entorno `.venv` preparado según [SETUP.md](fase-3/SETUP.md):
 
 ```powershell
 $env:API_LOG_PATH = 'logs/api.log'

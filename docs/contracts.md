@@ -1,6 +1,6 @@
 # Contrato de API y generador — CupónManía Fase 3
 
-Contrato v1 fijado por el coordinador antes del desarrollo paralelo. Fuente del catálogo: sección 3 de `docs/sources/fase-1.md`; componentes de Fase 2 según `instructions.md`, sección 4.2. Todas las operaciones son ficticias, sin estado transaccional, pagos, cuentas ni tickets Jira reales.
+Contrato v1 fijado por el coordinador antes del desarrollo paralelo. Fuente del catálogo: sección 3 de `docs/sources/fase-1.md`; componentes de Fase 2 según `docs/fase-3/instructions.md`, sección 4.2. Todas las operaciones son ficticias, sin estado transaccional, pagos, cuentas ni tickets Jira reales.
 
 ## Endpoints
 

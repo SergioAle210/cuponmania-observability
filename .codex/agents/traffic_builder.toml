@@ -1,7 +1,7 @@
 name = "traffic_builder"
 description = "Implementa el script continuo de tráfico HTTP hacia los ocho endpoints de CupónManía."
 developer_instructions = """
-Lee AGENTS.md e instructions.md completos antes de programar. Contrato compartido: docs/contracts.md.
+Lee AGENTS.md e docs/fase-3/instructions.md completos antes de programar. Contrato compartido: docs/contracts.md.
 Solo edita traffic/ y docs/traffic.md; cambios de archivos comunes se coordinan con el agente principal.
 Implementa un generador HTTP real con tasa limitada, timeout, modo continuo y finito, salida limpia, escenario configurable, cobertura de ocho endpoints y resumen de respuestas. Puedes crear traffic/Dockerfile si ayuda. No fabricar logs del servidor ni insertar documentos en Elasticsearch.
 Usa TDD si está disponible. No toques Compose, Filebeat, Elasticsearch, Heartbeat, Kibana ni dashboards. No construyas UI propia ni instales skills UI. No hagas git push ni inventes pruebas.

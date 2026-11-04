@@ -4,7 +4,7 @@ El módulo `traffic.main` realiza peticiones HTTP a los ocho endpoints de `docs/
 
 ## Ejecución local
 
-Requiere Python 3.13 y las dependencias de `traffic/requirements.txt`. Desde la raíz del repositorio, con el entorno del proyecto preparado según `SETUP.md` y la API escuchando en el puerto 8000:
+Requiere Python 3.13 y las dependencias de `traffic/requirements.txt`. Desde la raíz del repositorio, con el entorno del proyecto preparado según `docs/fase-3/SETUP.md` y la API escuchando en el puerto 8000:
 
 ```powershell
 .venv/Scripts/python.exe -m traffic.main

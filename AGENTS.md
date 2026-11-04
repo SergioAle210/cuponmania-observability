@@ -1,6 +1,6 @@
 # Instrucciones de Codex para CupónManía Fase 3
 
-Lee `instructions.md` completo, luego `docs/sources/aclaraciones-fase-3.md`. Consulta los documentos de Fase 1 y Fase 2 cuando necesites verificar el catálogo o la relación con Jira. La decisión de esta fase está cerrada: **no existe una API propia disponible; construir API simulada**. No buscar claves, repositorios privados ni integraciones reales.
+Lee `docs/fase-3/instructions.md` completo, luego `docs/sources/aclaraciones-fase-3.md`. Consulta los documentos de Fase 1 y Fase 2 cuando necesites verificar el catálogo o la relación con Jira. La decisión de esta fase está cerrada: **no existe una API propia disponible; construir API simulada**. No buscar claves, repositorios privados ni integraciones reales.
 
 ## Qué puedes implementar
 

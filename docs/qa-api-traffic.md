@@ -57,7 +57,7 @@ Comando del generador registrado en los metadatos (el puerto fue asignado para e
 .venv/Scripts/python.exe -m traffic.main --base-url http://127.0.0.1:51146 --count 64 --rate 4 --concurrency 1 --mode sequential --seed 20261103 --scenario normal
 ```
 
-La API usó `API_SEED=20261103`, `API_SCENARIO=normal`, probabilidades `0.90/0.05/0.05`, latencias configuradas **80–350 ms** y `API_LOG_PATH` apuntando a `evidencias/api-local.log`. Los pasos para repetir el flujo con otro archivo están en `SETUP.md`; la API añade líneas si el archivo ya existe.
+La API usó `API_SEED=20261103`, `API_SCENARIO=normal`, probabilidades `0.90/0.05/0.05`, latencias configuradas **80–350 ms** y `API_LOG_PATH` apuntando a `evidencias/api-local.log`. Los pasos para repetir el flujo con otro archivo están en `docs/fase-3/SETUP.md`; la API añade líneas si el archivo ya existe.
 
 | Clase | Probabilidad configurada | Conteo observado | Porcentaje observado |
 | --- | ---: | ---: | ---: |
@@ -108,4 +108,4 @@ La implementación local de API/tráfico está verificada dentro del alcance des
 | `docs/contracts.md`, `docs/api.md`, `docs/traffic.md`, `docs/qa-api-traffic.md` | Contrato, uso y resultados reproducibles |
 | `evidencias/api-local.log`, `evidencias/generador-local.json`, `evidencias/ejecucion-local.json`, `evidencias/pruebas-locales.txt` | Eventos auténticos, resumen, trazabilidad y pruebas ejecutadas |
 
-Se actualizaron `SETUP.md` (ejecución local e interfaces para el equipo), `.gitignore` (caché local) y `docs/uso-de-ia.md` (asistencia recibida). `.venv` y `.uv-cache` son archivos locales ignorados; no forman parte del código entregable. `README.md`, `LICENSE` y los documentos fuente se conservaron. No se crearon ni editaron Compose, configuración ELK/Heartbeat, dashboard o UI propia.
+Se actualizaron `docs/fase-3/SETUP.md` (ejecución local e interfaces para el equipo), `.gitignore` (caché local) y `docs/uso-de-ia.md` (asistencia recibida). `.venv` y `.uv-cache` son archivos locales ignorados; no forman parte del código entregable. `README.md`, `LICENSE` y los documentos fuente se conservaron. No se crearon ni editaron Compose, configuración ELK/Heartbeat, dashboard o UI propia.
