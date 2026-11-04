@@ -1,0 +1,61 @@
+{
+  "started_at_utc": "2026-11-04T04:41:13.581784+00:00",
+  "finished_at_utc": "2026-11-04T04:41:33.489554+00:00",
+  "python_version": "3.13.5",
+  "server": "uvicorn.Server(api.main:app), un worker, TCP loopback, cierre should_exit",
+  "generator_command": [
+    "C:\\UVG\\cuponmania-observability\\.venv\\Scripts\\python.exe",
+    "-m",
+    "traffic.main",
+    "--base-url",
+    "http://127.0.0.1:51146",
+    "--count",
+    "64",
+    "--rate",
+    "4",
+    "--concurrency",
+    "1",
+    "--mode",
+    "sequential",
+    "--seed",
+    "20261103",
+    "--scenario",
+    "normal"
+  ],
+  "api_environment": {
+    "API_LOG_PATH": "C:\\UVG\\cuponmania-observability\\evidencias\\api-local.log",
+    "API_SEED": "20261103",
+    "API_SCENARIO": "normal",
+    "API_SUCCESS_RATE": "0.90",
+    "API_CLIENT_ERROR_RATE": "0.05",
+    "API_SERVER_ERROR_RATE": "0.05",
+    "API_LATENCY_MIN_MS": "80",
+    "API_LATENCY_MAX_MS": "350"
+  },
+  "log_path": "evidencias/api-local.log",
+  "log_records": 64,
+  "sha256": "150cec1f98537db63064872fc398112723a5b0184f1ed2b7a06eb795d516057e",
+  "observed_status_counts": {
+    "200": 27,
+    "201": 30,
+    "400": 4,
+    "503": 3
+  },
+  "observed_endpoint_counts": {
+    "/api/v1/accounts/recovery": 8,
+    "/api/v1/coupons/issue": 8,
+    "/api/v1/coupons/redeem": 8,
+    "/api/v1/merchants": 8,
+    "/api/v1/platform/status": 8,
+    "/api/v1/promotions": 8,
+    "/api/v1/purchases": 8,
+    "/api/v1/refunds": 8
+  },
+  "configured_probabilities": {
+    "2xx": 0.9,
+    "4xx": 0.05,
+    "5xx": 0.05
+  },
+  "verification": "64 eventos autenticos; conteos coinciden con stdout del generador; IDs unicos; duracion positiva; API detenida",
+  "docker_executed": false
+}
