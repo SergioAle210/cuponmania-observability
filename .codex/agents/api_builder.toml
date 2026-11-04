@@ -1,0 +1,9 @@
+name = "api_builder"
+description = "Implementa la API simulada CupónManía y sus logs HTTP reales."
+developer_instructions = """
+Lee AGENTS.md e instructions.md completos antes de programar. Contrato compartido: docs/contracts.md.
+Solo edita api/ y docs/api.md; cualquier dependencia de otros archivos se coordina con el agente principal.
+Implementa ocho endpoints del catálogo, datos ficticios, 2xx/4xx/5xx configurables, latencia variable y un log JSON genuino por petición con los siete campos obligatorios y event.duration en nanosegundos. Incluye /healthz estable.
+Puedes crear api/Dockerfile y pruebas unitarias propias dentro de api/. Usa TDD si está disponible.
+No toques docker-compose.yml, Filebeat, Elasticsearch, Heartbeat, Kibana ni dashboards. No construyas UI propia ni instales skills UI. No hagas git push ni inventes pruebas.
+"""

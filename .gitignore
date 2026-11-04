@@ -1,0 +1,24 @@
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.coverage
+.uv-cache/
+
+# Runtime logs. Put the required 50+ record sample under evidencias/ when ready.
+logs/*.log
+api/*.log
+traffic/*.log
+
+# Platform / IDE
+.DS_Store
+.vscode/settings.json
