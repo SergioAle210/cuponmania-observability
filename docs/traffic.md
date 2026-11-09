@@ -97,3 +97,40 @@ No se ejecutó ningún comando Docker ni se construyeron imágenes o contenedore
 - Persistencia de logs de la API, recolección con Filebeat, almacenamiento en Elasticsearch, Heartbeat y visualizaciones de Kibana, todos pendientes y a cargo del equipo.
 
 Referencia de implementación: cliente [AsyncClient de HTTPX](https://www.python-httpx.org/async/), [timeouts](https://www.python-httpx.org/advanced/timeouts/) y desactivación de [variables de entorno/proxies](https://www.python-httpx.org/environment_variables/).
+
+## Destino real: API de preproducción (opcional)
+
+`--target real` envía tráfico a la API real de CupónManía en preproducción, **https://api-preprod.cuponmania.com.gt**, en lugar de la API simulada. Es opcional: el destino por defecto sigue siendo `local` y la decisión de la fase (API simulada) no cambia hasta que el equipo lo decida. Esa API escribe sus logs en formato ECS en CloudWatch (log group `/aws/lambda/cuponmania-api-preprod`), con los siete campos de la guía más `cuponmania.catalog_id`, `cuponmania.component` y `http.request.id`. La referencia de campos está en el repositorio de la API, `docs/infrastructure/logging.md`. Cómo llegan esos logs a Elasticsearch es trabajo del equipo.
+
+```bash
+.venv/bin/python -m traffic.main --target real --rate 1 --concurrency 1 --duration 300 --seed 42
+```
+
+Límites propios del destino real:
+
+| Regla | Valor |
+| --- | --- |
+| URL | Solo `https://api-preprod.cuponmania.com.gt` (producción y cualquier otro host se rechazan; sin credenciales, puerto, ruta ni query) |
+| Tasa | ≤ 2 peticiones por segundo (la API limita a 300 por minuto por IP y corre como una sola instancia) |
+| Concurrencia | ≤ 2 |
+| Escenario | Solo `normal`; `qr-degraded` existe únicamente en la API simulada |
+| Datos | Nunca crea datos: lecturas públicas y salud, más las operaciones del catálogo **sin sesión**, que la API rechaza con 401 (o 400 por validación) antes de escribir nada y registra igualmente |
+| Cabeceras | `User-Agent: cuponmania-observability-traffic/1.0 (UVG CC3047 Fase 3)` y un `X-Request-Id` UUID por petición, que la API reutiliza como `http.request.id` en su log |
+
+Rutas de un ciclo (cada ciclo visita una vez cada una; `{id}` es un UUID ficticio y `{code}` un código ficticio `DEMO-nnnnnn`, que la API oculta en sus logs como `[REDACTED]`):
+
+| Catálogo | Componente | Ruta | Respuesta esperada |
+| --- | --- | --- | --- |
+| INC-01 | Compras y pagos | `POST /api/v1/me/checkout` | 401 |
+| INC-02 | QR y canje | `POST /api/v1/me/sales/{id}/confirm-payment` | 401 |
+| INC-03 | QR y canje | `GET /api/v1/redemptions/{code}` | 401 |
+| INC-03 | QR y canje | `POST /api/v1/redemptions/{code}/redeem` | 401 |
+| INC-04 | Plataforma | `GET /health`, `GET /health/ready` | 200 (503 si la base no responde) |
+| SR-01 | Comercios | `POST /api/v1/businesses` | 401 |
+| SR-02 | Promociones | `PATCH /api/v1/coupons/{id}` | 401 |
+| SR-03 | Cuentas y accesos | `POST /api/v1/account-recovery/request` (cuerpo vacío) | 400 |
+| SR-04 | Reembolsos | `POST /api/v1/refunds` | 401 |
+| — | — | `GET /api/v1/coupons`, `GET /api/v1/coupon-categories` | 200 |
+
+A diferencia de la API simulada, los códigos no salen de un perfil probabilístico: son las respuestas reales de la API (200 en lecturas y salud, 401/400 en el catálogo sin sesión y 429 si se supera algún límite). Un 5xx solo aparece si la plataforma falla de verdad. El resumen indica `"target": "real"` y cuenta las peticiones por plantilla de ruta.
+
