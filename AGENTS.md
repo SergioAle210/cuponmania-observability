@@ -1,6 +1,6 @@
 # Instrucciones de Codex para CupónManía Fase 3
 
-Lee `docs/fase-3/instructions.md` completo, luego `docs/sources/aclaraciones-fase-3.md`. Consulta los documentos de Fase 1 y Fase 2 cuando necesites verificar el catálogo o la relación con Jira. La decisión de esta fase está cerrada: **no existe una API propia disponible; construir API simulada**. No buscar claves, repositorios privados ni integraciones reales.
+Lee `docs/fase-3/instructions.md` completo, luego `docs/sources/aclaraciones-fase-3.md`. Consulta los documentos de Fase 1 y Fase 2 cuando necesites verificar el catálogo o la relación con Jira. Decisión del equipo (2026-11-09), que sustituye a la anterior: **se usa la API real de CupónManía en preproducción** (`https://api-preprod.cuponmania.com.gt`, logs ECS en CloudWatch). La API simulada se conserva como alternativa local y para pruebas. El generador apunta a la API real con `--target real` (ver `docs/traffic.md`); no usar credenciales de clientes ni crear datos reales.
 
 ## Qué puedes implementar
 

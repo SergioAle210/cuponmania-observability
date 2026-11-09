@@ -62,7 +62,7 @@ La Fase 3 vale 20 puntos netos según el PDF. Se exige demostrar un sistema oper
 
 ### 3.1 Origen de los logs y vía elegida
 
-La aclaración permite API propia o API simulada. **Decisión confirmada para este repositorio: API SIMULADA.** El equipo no dispone del código ni de documentación de una API propia de CupónManía. No se debe buscarla ni depender de credenciales o servicios externos.
+La aclaración permite API propia o API simulada. **Decisión vigente del equipo (2026-11-09): API REAL en preproducción** (`https://api-preprod.cuponmania.com.gt`). Sus logs ECS están en CloudWatch, log group `/aws/lambda/cuponmania-api-preprod`, con los siete campos obligatorios, `cuponmania.catalog_id`, `cuponmania.component` y `http.request.id`; la referencia de campos está en el repositorio de la API, `docs/infrastructure/logging.md`. La decisión anterior (API simulada) se conserva como alternativa local: el código de `api/` sigue disponible.
 
 La API simulada debe:
 
