@@ -1,0 +1,49 @@
+# Filebeat: logs ECS de la API real de CupónManía en preproducción.
+#
+# La API (AWS Lambda) escribe una línea JSON ECS 8.11 por petición en CloudWatch Logs; Filebeat la
+# lee con las credenciales del perfil AWS de solo lectura (AWS_PROFILE, por defecto
+# cuponmania-preprod: permiso LecturaLogsPreprod de IAM Identity Center) y la envía a Elasticsearch.
+# Referencia de campos: Cuponmania-api, docs/infrastructure/logging.md.
+
+filebeat.inputs:
+  - type: aws-cloudwatch
+    id: cuponmania-api-preprod
+    log_group_name: /aws/lambda/cuponmania-api-preprod
+    region_name: us-east-1
+    credential_profile_name: ${AWS_PROFILE:cuponmania-preprod}
+    # Primera ejecución: todo lo retenido (14 días). Luego continúa desde el último punto
+    # registrado en el volumen filebeatdata.
+    start_position: beginning
+    scan_frequency: 30s
+    # CloudWatch puede tardar en exponer eventos recientes; se relee con este margen.
+    latency: 1m
+
+processors:
+  # La línea de la API es JSON ECS con claves con punto ("log.level"); se decodifica a la raíz.
+  - decode_json_fields:
+      fields: ["message"]
+      target: ""
+      overwrite_keys: true
+      expand_keys: true
+      add_error_key: true
+  # Las líneas de plataforma de Lambda (START/END/REPORT) no son JSON: se descartan.
+  - drop_event:
+      when:
+        not:
+          equals:
+            service.name: cuponmania-api
+  - add_fields:
+      target: labels
+      fields:
+        environment: preprod
+        source: cloudwatch
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+
+# Plantilla e índice por defecto de Filebeat (data stream filebeat-<versión>): sus mapeos ECS dan
+# tipo numérico a http.response.status_code y event.duration, y fecha a @timestamp.
+setup.template.enabled: true
+
+logging.level: info
+logging.metrics.enabled: false

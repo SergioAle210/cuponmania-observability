@@ -1,0 +1,60 @@
+# Heartbeat: disponibilidad de CupónManía.
+#
+# - API real de preproducción: proceso (/health, que también confirma la base de datos),
+#   disponibilidad para tráfico (/health/ready) y una ruta pública de negocio (catálogo de cupones).
+# - API simulada local (servicio api-simulada del compose): permite la prueba controlada de
+#   caída y recuperación (docker compose stop/start api-simulada) sin tocar preproducción.
+# La API de preprod corre con concurrencia reservada 1 (una sola instancia de Lambda): dos peticiones
+# simultáneas hacen que Lambda rechace la segunda con 429 antes de llegar a la API. Por eso los
+# monitores de preprod van escalonados en segundos distintos (cron de 7 campos, con segundos) y nunca
+# disparan a la vez.
+
+heartbeat.monitors:
+  - type: http
+    id: api-preprod-health
+    name: API preprod · /health
+    schedule: "0,30 * * * * * *"
+    urls: ["https://api-preprod.cuponmania.com.gt/health"]
+    timeout: 10s
+    check.response:
+      status: [200]
+      json:
+        - description: proceso y base de datos arriba
+          condition:
+            equals:
+              status: ok
+              db: ok
+    tags: [preprod, plataforma]
+
+  - type: http
+    id: api-preprod-ready
+    name: API preprod · /health/ready
+    schedule: "10 * * * * * *"
+    urls: ["https://api-preprod.cuponmania.com.gt/health/ready"]
+    timeout: 10s
+    check.response.status: [200]
+    tags: [preprod, plataforma]
+
+  - type: http
+    id: api-preprod-catalogo
+    name: API preprod · catálogo de cupones
+    schedule: "20 * * * * * *"
+    urls: ["https://api-preprod.cuponmania.com.gt/api/v1/coupons?limit=1&offset=0"]
+    timeout: 10s
+    check.response.status: [200]
+    tags: [preprod, negocio]
+
+  - type: http
+    id: api-simulada-health
+    name: API simulada local · /healthz
+    schedule: "@every 15s"
+    urls: ["http://api-simulada:8000/healthz"]
+    timeout: 5s
+    check.response.status: [200]
+    tags: [local, simulada]
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+
+logging.level: info
+logging.metrics.enabled: false

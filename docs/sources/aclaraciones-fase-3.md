@@ -22,3 +22,15 @@ En ambas vías, el tráfico hacia la API se produce mediante un script que ejecu
 ## Uso de inteligencia artificial
 
 Se permite el uso de asistentes de inteligencia artificial para construir la API simulada y el generador de tráfico, con la condición de declarar en un apartado final del informe técnico para qué se utilizaron. La configuración del stack ELK, el diseño del dashboard y la interpretación de los resultados deben ser propios.
+
+## Ampliación del uso de IA (aprobación verbal)
+
+Registro hecho el 2026-11-10 a pedido de Joaquín Puente. No es texto del profesor: el catedrático aprobó **en persona** que el equipo use un asistente de IA también para:
+
+- el `docker-compose.yml` del stack (Elasticsearch, Kibana, Filebeat y Heartbeat);
+- la configuración de Filebeat y de Heartbeat (`filebeat.yml`, `heartbeat.yml`);
+- la configuración de Elasticsearch y de Kibana, las visualizaciones y el dashboard;
+- el análisis de resultados del informe.
+
+La aprobación fue comunicada al equipo el 2026-11-09 y no existe constancia escrita. El texto original de la sección anterior se conserva sin cambios como historia. Si el catedrático la confirma por escrito, se adjunta aquí. Cada pieza hecha con IA se declara en `docs/uso-de-ia.md` y en el apartado final del informe; el análisis se basa solo en datos realmente observados.
+

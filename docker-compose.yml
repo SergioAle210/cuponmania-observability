@@ -1,0 +1,95 @@
+# CupónManía · Fase 3 — stack de observabilidad local.
+#
+# Elasticsearch + Kibana + Filebeat + Heartbeat (versión única ELASTIC_VERSION), más la API simulada
+# como servicio auxiliar para la prueba controlada de caída/recuperación de Heartbeat.
+#   - Filebeat lee los logs ECS de la API real de preproducción desde CloudWatch
+#     (/aws/lambda/cuponmania-api-preprod) con el perfil AWS de solo lectura del equipo.
+#   - Heartbeat vigila la API real y la API simulada.
+#   - kibana-setup importa una sola vez las data views, visualizaciones y el dashboard.
+# Laboratorio local: seguridad de Elastic desactivada y puertos publicados solo en 127.0.0.1.
+# Uso: docs/elk.md.
+
+name: cuponmania-observability
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION:-9.5.5}
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: -Xms1g -Xmx1g
+    ports:
+      - "127.0.0.1:9200:9200"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:9200/_cluster/health?wait_for_status=yellow&timeout=5s || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:${ELASTIC_VERSION:-9.5.5}
+    environment:
+      ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+      SERVER_PUBLICBASEURL: http://localhost:5601
+      TELEMETRY_OPTIN: "false"
+      TELEMETRY_ALLOWCHANGINGOPTINSTATUS: "false"
+      SECURITY_SHOWINSECURECLUSTERWARNING: "false"
+    ports:
+      - "127.0.0.1:5601:5601"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:5601/api/status | grep -q '\"level\":\"available\"' || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 60
+
+  kibana-setup:
+    image: curlimages/curl:8.11.1
+    depends_on:
+      kibana:
+        condition: service_healthy
+    volumes:
+      - ./elk/kibana:/setup:ro
+    entrypoint: ["sh", "/setup/import.sh"]
+    restart: "no"
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:${ELASTIC_VERSION:-9.5.5}
+    user: root
+    command: ["filebeat", "-e", "--strict.perms=false"]
+    environment:
+      AWS_PROFILE: ${AWS_PROFILE:-cuponmania-preprod}
+      AWS_REGION: us-east-1
+    volumes:
+      - ./elk/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - ${AWS_CONFIG_DIR:-~/.aws}:/root/.aws:ro
+      - filebeatdata:/usr/share/filebeat/data
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    restart: unless-stopped
+
+  heartbeat:
+    image: docker.elastic.co/beats/heartbeat:${ELASTIC_VERSION:-9.5.5}
+    command: ["heartbeat", "-e", "--strict.perms=false"]
+    volumes:
+      - ./elk/heartbeat/heartbeat.yml:/usr/share/heartbeat/heartbeat.yml:ro
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    restart: unless-stopped
+
+  api-simulada:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    # Sin puerto publicado: Heartbeat la alcanza por la red del compose.
+    restart: unless-stopped
+
+volumes:
+  esdata:
+  filebeatdata:

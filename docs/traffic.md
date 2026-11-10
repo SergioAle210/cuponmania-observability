@@ -100,7 +100,7 @@ Referencia de implementación: cliente [AsyncClient de HTTPX](https://www.python
 
 ## Destino real: API de preproducción (opcional)
 
-`--target real` envía tráfico a la API real de CupónManía en preproducción, **https://api-preprod.cuponmania.com.gt**, en lugar de la API simulada. El equipo decidió (2026-11-09) usar la API real para la fase; el destino por defecto del comando sigue siendo `local` para que una ejecución sin argumentos nunca salga de la máquina. Esa API escribe sus logs en formato ECS en CloudWatch (log group `/aws/lambda/cuponmania-api-preprod`), con los siete campos de la guía más `cuponmania.catalog_id`, `cuponmania.component` y `http.request.id`. La referencia de campos está en el repositorio de la API, `docs/infrastructure/logging.md`. Cómo llegan esos logs a Elasticsearch es trabajo del equipo.
+`--target real` envía tráfico a la API real de CupónManía en preproducción, **https://api-preprod.cuponmania.com.gt**, en lugar de la API simulada. El equipo decidió (2026-11-09) usar la API real para la fase; el destino por defecto del comando sigue siendo `local` para que una ejecución sin argumentos nunca salga de la máquina. Esa API escribe sus logs en formato ECS en CloudWatch (log group `/aws/lambda/cuponmania-api-preprod`), con los siete campos de la guía más `cuponmania.catalog_id`, `cuponmania.component` y `http.request.id`. La referencia de campos está en el repositorio de la API, `docs/infrastructure/logging.md`. Cómo llegan esos logs a Elasticsearch: `docs/elk.md`.
 
 ```bash
 .venv/bin/python -m traffic.main --target real --rate 1 --concurrency 1 --duration 300 --seed 42

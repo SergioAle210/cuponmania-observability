@@ -79,15 +79,16 @@ Un script realizará continuamente peticiones HTTP auténticas contra los ocho e
 
 ### 3.3 Uso de inteligencia artificial y reparto de autoría
 
-La aclaración permite usar IA para construir **la API simulada y el generador de tráfico**, siempre que el informe declare en un apartado final para qué se utilizó. La **configuración del stack ELK y Heartbeat, el diseño del dashboard de Kibana y la interpretación de resultados deben ser propios del equipo**.
+La aclaración escrita permite usar IA para construir **la API simulada y el generador de tráfico**, y reserva al equipo la configuración del stack ELK y Heartbeat, el diseño del dashboard y la interpretación de resultados.
+
+**Ampliación vigente (aprobación verbal del catedrático, comunicada el 2026-11-09):** el asistente también puede construir el `docker-compose.yml`, `filebeat.yml`, `heartbeat.yml`, la configuración de Elasticsearch y Kibana, las visualizaciones y el dashboard, y redactar el análisis del informe. Ver `docs/sources/aclaraciones-fase-3.md`, sección *Ampliación del uso de IA*.
 
 Por tanto:
 
-- Codex y sus subagentes pueden desarrollar API, instrumentación de logs, generador de peticiones, pruebas de esos programas, Dockerfiles de esos dos programas y documentación técnica de su comportamiento.
-- Codex **no** debe generar ni editar `docker-compose.yml`, `filebeat.yml`, `heartbeat.yml`, `kibana.yml`, `logstash.conf`, pipelines/configuración Elasticsearch, dashboards exportados o scripts que produzcan estas configuraciones indirectamente.
-- El equipo hará y verificará su propia configuración. El instructivo `docs/pasos-kibana-equipo.md` sirve como orientación para operar la herramienta, **no es un dashboard creado por IA**.
-- Codex tampoco redactará resultados de observaciones que aún no existan ni inventará datos o capturas. Se registrará la asistencia de IA en `docs/uso-de-ia.md`.
-- No usar ninguna skill de UI para este proyecto: **no hay interfaz propia que desarrollar**.
+- Toda pieza hecha con IA se declara en `docs/uso-de-ia.md` y en el apartado final del informe.
+- No se redactan resultados de observaciones que no existan ni se inventan datos o capturas.
+- El equipo ejecuta, revisa y debe poder explicar cada configuración entregada.
+- No usar ninguna skill de UI para este proyecto: **no hay interfaz propia que desarrollar**; la interfaz es Kibana.
 
 ## 4. Continuidad con Fases 1 y 2
 

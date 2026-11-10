@@ -9,9 +9,13 @@ Lee `docs/fase-3/instructions.md` completo, luego `docs/sources/aclaraciones-fas
 - Pruebas, documentación reproducible y, si es útil, Dockerfiles individuales para API y generador.
 - Muestra `.log` producida de verdad al ejecutar el código, nunca inventada.
 
-## Qué NO puedes implementar
+## Stack ELK, dashboard y análisis
 
-La aclaración académica reserva al equipo: configuración de Elasticsearch, Filebeat/Logstash, Kibana y Heartbeat, `docker-compose.yml`, `heartbeat.yml`, diseño real del dashboard y análisis de resultados. No editar esos archivos, no generar plantillas completas ni scripts que los produzcan. Puedes documentar interfaces necesarias para que el equipo realice conexiones; evita hacer ese trabajo por ellos.
+La regla original reservaba al equipo la configuración de Elasticsearch, Filebeat, Kibana y Heartbeat, el `docker-compose.yml`, el dashboard y el análisis. **El catedrático amplió en persona esa autorización** (comunicada el 2026-11-09, registrada en `docs/sources/aclaraciones-fase-3.md`, sección *Ampliación del uso de IA*): el asistente puede construir esas piezas y redactar el análisis. Condiciones:
+
+- Declarar cada pieza en `docs/uso-de-ia.md` y en el apartado final del informe.
+- El análisis usa solo datos realmente observados en Elasticsearch/Kibana; nunca cifras, capturas o resultados inventados.
+- El equipo revisa, ejecuta y puede explicar cada configuración antes de entregarla.
 
 No crear frontend (React, Next.js, HTML) ni dashboard UI alternativo. Toda la visualización se realizará en Kibana. **No activar ni invocar una skill de diseño UI.** No crear tickets reales en Jira desde tráfico simulado.
 
@@ -26,4 +30,4 @@ El principal debe permitir que API y tráfico se desarrollen de manera paralela 
 
 ## Calidad, seguridad y honestidad
 
-Usar pruebas (TDD si la skill está disponible), operaciones ficticias, límites de tasa, tiempo real medido, `event.duration` en nanosegundos y logs reales sin secretos. No hacer instalaciones globales, commits ni pushes sin autorización. Registrar la asistencia de IA en `docs/uso-de-ia.md`. No afirmar que ELK, Heartbeat o el dashboard ya funcionan antes de que el equipo los valide.
+Usar pruebas (TDD si la skill está disponible), operaciones ficticias, límites de tasa, tiempo real medido, `event.duration` en nanosegundos y logs reales sin secretos. No hacer instalaciones globales, commits ni pushes sin autorización. Registrar la asistencia de IA en `docs/uso-de-ia.md`. No afirmar que ELK, Heartbeat o el dashboard funcionan sin haberlos ejecutado y comprobado.

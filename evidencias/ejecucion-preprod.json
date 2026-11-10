@@ -1,0 +1,52 @@
+{
+  "api": "https://api-preprod.cuponmania.com.gt",
+  "log_group": "/aws/lambda/cuponmania-api-preprod",
+  "export": "aws logs filter-log-events --log-group-name /aws/lambda/cuponmania-api-preprod --start-time <inicio> --end-time <fin> --filter-pattern '{ $.event.kind = \"event\" }'",
+  "window_utc": [
+    "2026-11-10T15:47:53Z",
+    "2026-11-10T16:07:53Z"
+  ],
+  "lines": 1274,
+  "sha256": "886263ed5fd1dd8e38e2f0becefd5237c2c345594d26540c02ef281132c7c41b",
+  "content": "Líneas de acceso tal como la API las escribió en CloudWatch, sin edición, ordenadas por tiempo: tráfico del generador más los chequeos de Heartbeat del mismo periodo.",
+  "generator": {
+    "command": ".venv/bin/python -m traffic.main --target real --rate 1 --concurrency 1 --duration 1200 --seed 42",
+    "summary": {
+      "attempted": 1196,
+      "cancelled": 0,
+      "completed": 1196,
+      "configured_rate": 1.0,
+      "duration_ns": 1200000826178,
+      "duration_seconds": 1200.000826178,
+      "endpoint_counts": {
+        "/api/v1/account-recovery/request": 99,
+        "/api/v1/businesses": 100,
+        "/api/v1/coupon-categories": 100,
+        "/api/v1/coupons": 99,
+        "/api/v1/coupons/{id}": 100,
+        "/api/v1/me/checkout": 100,
+        "/api/v1/me/sales/{id}/confirm-payment": 100,
+        "/api/v1/redemptions/{code}": 99,
+        "/api/v1/redemptions/{code}/redeem": 100,
+        "/api/v1/refunds": 99,
+        "/health": 100,
+        "/health/ready": 100
+      },
+      "scenario": "normal",
+      "status_counts": {
+        "200": 399,
+        "400": 10,
+        "401": 697,
+        "429": 90
+      },
+      "stop_reason": "duration",
+      "target": "real",
+      "transport_error_counts": {},
+      "transport_errors": 0
+    }
+  },
+  "heartbeat_outage_test_utc": {
+    "api_simulada_stopped": "2026-11-10T15:48:00Z",
+    "api_simulada_started": "2026-11-10T15:49:10Z"
+  }
+}
