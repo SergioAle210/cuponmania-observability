@@ -27,6 +27,9 @@ services:
       interval: 10s
       timeout: 10s
       retries: 30
+    # Sin esto, tras reiniciar Docker o el equipo los Beats (unless-stopped) vuelven a arrancar
+    # pero Elasticsearch y Kibana quedan detenidos y Filebeat/Heartbeat pierden sus eventos.
+    restart: unless-stopped
 
   kibana:
     image: docker.elastic.co/kibana/kibana:${ELASTIC_VERSION:-9.5.5}
@@ -46,6 +49,7 @@ services:
       interval: 10s
       timeout: 10s
       retries: 60
+    restart: unless-stopped
 
   kibana-setup:
     image: curlimages/curl:8.11.1
