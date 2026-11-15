@@ -1,4 +1,6 @@
-# Contrato de API y generador — CupónManía Fase 3
+# Contrato de API simulada y generador local — CupónManía Fase 3
+
+> Este contrato describe la API **simulada** y el modo local del generador. Para la fuente principal de la Fase 3 (API real de preproducción y sus rutas), ver `docs/traffic.md` y `docs/elk.md`. Las indicaciones de integración futura que se conservaron abajo reflejan el alcance de la primera iteración, anterior al stack actual.
 
 Contrato v1 fijado por el coordinador antes del desarrollo paralelo. Fuente del catálogo: sección 3 de `docs/sources/fase-1.md`; componentes de Fase 2 según `docs/fase-3/instructions.md`, sección 4.2. Todas las operaciones son ficticias, sin estado transaccional, pagos, cuentas ni tickets Jira reales.
 
@@ -77,8 +79,8 @@ Solo destinos HTTP locales `localhost`, IP loopback o nombre exacto `api` para l
 
 ## Dockerfiles e integración prevista
 
-Ambos Dockerfiles usan contexto de construcción raíz del repositorio, imagen oficial Python 3.13 slim, dependencias fijadas y usuario no root UID/GID 10001. API escucha `0.0.0.0:8000` y usa `API_LOG_PATH=/app/logs/api.log`; preparar directorio con permisos del usuario. Generador acepta argumentos CLI mediante ENTRYPOINT en forma exec. No crear Compose ni configuración de observabilidad. No ejecutar ningún comando Docker; documentar validación pendiente de imágenes, red, permisos, persistencia y señales.
+Ambos Dockerfiles usan contexto de construcción raíz del repositorio, imagen oficial Python 3.13 slim, dependencias fijadas y usuario no root UID/GID 10001. API escucha `0.0.0.0:8000` y usa `API_LOG_PATH=/app/logs/api.log`; el directorio se prepara para ese usuario. El generador acepta argumentos CLI mediante ENTRYPOINT en forma exec. El Compose actual usa la API simulada como servicio auxiliar `api-simulada` para Heartbeat; los logs principales provienen de preproducción por CloudWatch y Filebeat. La ejecución histórica del stack consta en `docs/uso-de-ia.md`.
 
 ## Propiedad de archivos
 
-Coordinador: este contrato, configuración de pruebas/dependencias compartidas, SETUP y bitácora de IA, evidencia final. `api_builder`: `api/` y `docs/api.md`. `traffic_builder`: `traffic/` y `docs/traffic.md`. `api_qa`: `tests/integration/` y `docs/qa-api-traffic.md`, tras completar ambos módulos. Cambios de contrato se coordinan antes de modificarlo. Sin UI, infraestructura ELK/Heartbeat, análisis de monitoreo, commits ni pushes.
+Reparto histórico de la primera iteración: coordinador para este contrato y archivos compartidos; `api_builder` para `api/` y `docs/api.md`; `traffic_builder` para `traffic/` y `docs/traffic.md`; `api_qa` para `tests/integration/` y `docs/qa-api-traffic.md`. La autorización posterior amplió el alcance a ELK, Heartbeat, Kibana y análisis; ver `docs/sources/aclaraciones-fase-3.md`. No hay UI propia.

@@ -1,6 +1,8 @@
 # Cómo configurar Kibana - Guía de trabajo del equipo
 
-Esta es una guía de navegación y verificación. **No sustituye el trabajo propio de configuración ELK, dashboard e interpretación exigido al equipo.** Utiliza la documentación oficial correspondiente a la versión instalada. Los menús pueden variar ligeramente entre versiones.
+> **Guía manual de referencia de la primera iteración.** El stack y el dashboard ya están configurados en `docker-compose.yml` y `elk/kibana/saved-objects.ndjson`; se documentó una ejecución real el 2026-11-10. Usar `docs/elk.md` para ejecutar la configuración actual y `docs/informe-fase-3.md` para revisar las evidencias. Los pasos siguientes sirven para inspeccionar o recrear manualmente las vistas.
+
+Esta es una guía de navegación y verificación. El equipo debe revisar y poder explicar la configuración y la interpretación antes de entregar. Utiliza la documentación oficial correspondiente a la versión instalada. Los menús pueden variar ligeramente entre versiones.
 
 ## Paso 1. Elegir versiones y levantar los contenedores
 

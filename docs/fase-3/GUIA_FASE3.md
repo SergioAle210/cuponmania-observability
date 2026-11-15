@@ -1,15 +1,22 @@
-# CupónManía Observability - Guía del repositorio
+# CupónManía Observability — guía del repositorio
 
-Este paquete prepara la Fase 3 sin desarrollar todavía ELK ni el dashboard de Kibana. **El repositorio Git que ya existe debe conservar `README.md` y `LICENSE`.**
+Este repositorio contiene la implementación de la Fase 3: generador de tráfico, API simulada para pruebas, configuración local de Elasticsearch, Kibana, Filebeat y Heartbeat, objetos de Kibana, evidencias e informe técnico en borrador. La fuente principal de logs es la API **real de preproducción** de CupónManía; la decisión del equipo se registró el 2026-11-09.
 
-Leer en orden:
+## Lectura recomendada
 
-1. `docs/fase-3/instructions.md`: instrucciones de Fase 3 y continuidad con Fases 1 y 2.
-2. `docs/fase-3/SETUP.md`: cómo colocar los archivos e iniciar Codex.
-3. `docs/fase-3/PROMPT_CODEX.md`: prompt para construir API simulada y tráfico con tres subagentes.
-4. `docs/pasos-kibana-equipo.md`: guía para que el equipo configure Kibana, sin entregar configuración de infraestructura lista.
-5. `docs/trabajo-del-equipo.md` y `docs/uso-de-ia.md`: controles de evidencias y autoría.
+1. `docs/fase-3/instructions.md` y `docs/sources/aclaraciones-fase-3.md`: requisitos y autorización vigente.
+2. `docs/elk.md`: arquitectura, requisitos y ejecución del stack.
+3. `docs/traffic.md`: generador en modo local y `--target real`.
+4. `docs/informe-fase-3.md`: resultados observados y límites de la evidencia.
+5. `docs/uso-de-ia.md`: registro de asistencia de IA.
 
-La API y el generador son una etapa; falta el trabajo del equipo: `docker-compose.yml`, `filebeat.yml`, `heartbeat.yml`, monitor, dashboard de seis gráficas e informe final con evidencias.
+`docs/fase-3/PROMPT_CODEX.md` conserva el encargo original de la primera iteración como antecedente histórico. Su prohibición de construir ELK y su decisión de usar solo una API simulada fueron sustituidas por la decisión y la ampliación de autorización posteriores. `docs/pasos-kibana-equipo.md` conserva los pasos manuales de Kibana como referencia; los objetos de Kibana ya están en `elk/kibana/saved-objects.ndjson`.
 
-No utilizar la skill de UI ni crear un sitio web; la visualización completa se realiza con Kibana. Los logos existentes son referencias de marca/documentación.
+## Estado documentado
+
+- La API simulada, el generador y las pruebas locales se desarrollaron; `evidencias/api-local.log` conserva 64 eventos genuinos.
+- La configuración del stack y el dashboard están en el repositorio. La bitácora `docs/uso-de-ia.md` documenta una ejecución del 2026-11-10 con ingesta de CloudWatch, cuatro monitores Heartbeat, importación de Kibana y captura del dashboard.
+- `evidencias/api-preprod.log` conserva 1274 eventos de acceso de la API real. Su hash coincide con `evidencias/ejecucion-preprod.json`.
+- El informe técnico sigue siendo un borrador sujeto a revisión del equipo. La ejecución histórica no acredita que los servicios estén activos actualmente ni sustituye la revisión antes de entregar.
+
+La visualización se realiza únicamente en Kibana; no hay frontend propio. Los logotipos de `assets/brand/` son referencias de marca y documentación.

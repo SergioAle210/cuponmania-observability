@@ -1,5 +1,7 @@
 # Verificación local de API y tráfico
 
+> Este documento registra la **primera iteración local del 2026-11-03**. Las frases sobre Docker y ELK pendientes describen ese momento, anterior a la ejecución del stack del 2026-11-10. Para el estado actual, ver `docs/elk.md`, `docs/informe-fase-3.md` y `docs/uso-de-ia.md`.
+
 Realizada el **3 de noviembre de 2026, Guatemala**, con Python **3.13.5** del entorno `.venv`, pytest **9.2.0**, FastAPI **0.162.0**, Uvicorn **0.54.0** y httpx **0.28.1**. API y generador fueron implementados en paralelo después de fijar `docs/contracts.md`; `api_qa` trabajó cuando ambos módulos quedaron listos. No se utilizó Docker.
 
 ## Pruebas realmente ejecutadas
@@ -82,7 +84,7 @@ Get-FileHash evidencias/api-local.log -Algorithm SHA256
 
 El coordinador comprobó además 64 IDs únicos de evento y petición, duración positiva y coincidencia exacta de los conteos del archivo con el stdout del generador. La muestra y sus metadatos no demuestran ingesta ni disponibilidad en ELK.
 
-## Pendiente: validación con Docker
+## Alcance de esta verificación local
 
 Los Dockerfiles se prepararon y revisaron como texto; **no se instaló Docker, no se invocó ningún comando Docker, no se descargaron/construyeron imágenes ni se ejecutaron contenedores**.
 
@@ -94,7 +96,7 @@ Los Dockerfiles se prepararon y revisaron como texto; **no se instaló Docker, n
 - [ ] Configuración y evidencia up/down de Heartbeat.
 - [ ] Seis visualizaciones y captura completa de Kibana, interpretación del equipo e informe final con declaración de IA.
 
-La implementación local de API/tráfico está verificada dentro del alcance descrito. **La Fase 3 no está terminada**: infraestructura, dashboard, análisis y evidencias del stack siguen a cargo del equipo.
+La implementación local de API/tráfico quedó verificada dentro del alcance descrito. La infraestructura, el dashboard, el análisis y las evidencias del stack se desarrollaron en una iteración posterior, documentada en `docs/uso-de-ia.md`; el equipo todavía debe revisar la entrega final.
 
 ## Inventario de entregables de esta iteración
 
@@ -108,4 +110,4 @@ La implementación local de API/tráfico está verificada dentro del alcance des
 | `docs/contracts.md`, `docs/api.md`, `docs/traffic.md`, `docs/qa-api-traffic.md` | Contrato, uso y resultados reproducibles |
 | `evidencias/api-local.log`, `evidencias/generador-local.json`, `evidencias/ejecucion-local.json`, `evidencias/pruebas-locales.txt` | Eventos auténticos, resumen, trazabilidad y pruebas ejecutadas |
 
-Se actualizaron `docs/fase-3/SETUP.md` (ejecución local e interfaces para el equipo), `.gitignore` (caché local) y `docs/uso-de-ia.md` (asistencia recibida). `.venv` y `.uv-cache` son archivos locales ignorados; no forman parte del código entregable. `README.md`, `LICENSE` y los documentos fuente se conservaron. No se crearon ni editaron Compose, configuración ELK/Heartbeat, dashboard o UI propia.
+En esta primera iteración se actualizaron `docs/fase-3/SETUP.md`, `.gitignore` y `docs/uso-de-ia.md`. `.venv` y `.uv-cache` son archivos locales ignorados; no forman parte del código entregable. Compose, la configuración ELK/Heartbeat y el dashboard se agregaron después, en la iteración del 2026-11-10.
