@@ -176,17 +176,17 @@ Permitir una semilla y un modo secuencial determinista para pruebas reproducible
 
 Probar: ocho rutas, tipos de respuesta, validación del perfil probabilístico, variación de tiempos, esquema JSON con siete campos, duración, códigos correctos, componente/ID correcto, apagado del generador, manejo de fallas y cobertura de todos los endpoints.
 
-Para la muestra exigida, **ejecutar realmente** API y generador hasta registrar al menos 50 eventos `.log`; proporcionar instrucciones repetibles, no datos inventados. El equipo verificará por separado la llegada a Elasticsearch, Heartbeat y el dashboard.
+La muestra local `evidencias/api-local.log` conserva 64 eventos reales. La ejecución de preproducción conserva 1274 eventos en `evidencias/api-preprod.log`. La llegada a Elasticsearch, Heartbeat y el dashboard se documentó por separado en `docs/uso-de-ia.md` y `docs/informe-fase-3.md`.
 
-## 6. Trabajo del equipo (configuración ELK y Kibana)
+## 6. Configuración ELK y Kibana: estado actual
 
-El equipo construirá `docker-compose.yml` y los archivos de recolección, Heartbeat y configuración necesarios, probará redes/volúmenes/permisos y la persistencia de datos. Se recomienda fijar la misma versión del stack para Elasticsearch, Kibana, Filebeat y Heartbeat; mantener contraseñas en variables locales fuera del repositorio y evitar exponer servicios en Internet.
+El repositorio contiene `docker-compose.yml`, `elk/filebeat/filebeat.yml`, `elk/heartbeat/heartbeat.yml` y objetos de Kibana. Los cuatro componentes Elastic usan la versión 9.5.5 por defecto. La bitácora documenta una ejecución local del stack el 2026-11-10, con ingesta de CloudWatch, Heartbeat y captura del dashboard. El equipo debe revisar la configuración y repetir la verificación en el entorno de entrega.
 
-El equipo decidirá y documentará la definición del error rate (por ejemplo, solo 5xx o 4xx+5xx), el denominador apropiado y la exclusión de `/healthz` del tráfico de negocio. Debe comprobar que `monitor.status` proviene de Heartbeat y que la disponibilidad del proceso no demuestra que una compra/canje se complete correctamente.
+El dashboard define el error rate del servicio como 5xx sobre peticiones de negocio y muestra 4xx por separado. Excluye las rutas de salud de la API real (`/health` y `/health/ready`, INC-04) del tráfico de negocio. `monitor.status` procede de Heartbeat; la disponibilidad del proceso no demuestra que una compra o un canje se complete correctamente.
 
-**Guía de navegación de Kibana para estudiantes:** `docs/pasos-kibana-equipo.md`. No contiene archivos de configuración listos, paneles creados automáticamente, datos inventados ni interpretación de resultados.
+**Guía manual de navegación:** `docs/pasos-kibana-equipo.md`. La configuración reproducible actual está en `docs/elk.md` y `elk/kibana/saved-objects.ndjson`.
 
-Para evidencias, capturar logs de 50+ registros, ingestión real, estado up/down de Heartbeat y dashboard con sus seis métricas. Elaborar interpretación propia y el informe técnico final con apartado de uso de IA.
+Las evidencias y el borrador del informe están en `evidencias/` y `docs/informe-fase-3.md`. El equipo revisa los resultados y completa la entrega con la declaración de IA.
 
 ## 7. Subagentes y archivos autorizados
 
@@ -198,20 +198,20 @@ El coordinador lee estos documentos y define el contrato de ocho endpoints/logs 
 | `traffic_builder` | Generador de tráfico y sus pruebas | `traffic/`, `docs/traffic.md` |
 | `api_qa` | Pruebas integradas de API y generador | `tests/integration/`, `docs/qa-api-traffic.md` |
 
-El coordinador puede editar contratos y documentación técnica de API/generador, pero no la infraestructura y dashboard reservados al equipo. Dividir responsabilidades antes de trabajar en paralelo para evitar conflictos. No afirmar subagentes usados si no estaban disponibles.
+Este reparto documenta la primera iteración; la ampliación de autorización posterior permitió construir también infraestructura, dashboard y análisis. Ver `docs/uso-de-ia.md` para la autoría registrada.
 
-## 8. Lista de aceptación (pendiente de ejecución)
+## 8. Lista de aceptación y revisión
 
-- [ ] API simulada con ocho endpoints funcionales y escenarios documentados.
-- [ ] Script continuo de peticiones HTTP entregado y probado.
-- [ ] Logs JSON producidos por el código con los siete campos mínimos; muestra real de 50+ eventos.
-- [ ] Dockerfiles de API/generador si corresponde, creados y probados.
-- [ ] `docker-compose.yml` del equipo con Elasticsearch, Kibana, Filebeat y Heartbeat; si se incluyen API/generador, deben estar conectados al mismo entorno.
-- [ ] Recolección real de logs de API hasta Elasticsearch verificada.
-- [ ] `heartbeat.yml` del equipo funcional y evidencias de disponibilidad.
-- [ ] Dashboard construido por el equipo en Kibana con **seis** visualizaciones y captura completa.
-- [ ] Informe de arquitectura, configuración, resultados, endpoints, proporciones, generador y evidencia.
-- [ ] Apartado final de uso de IA honesto.
+- [x] API simulada con ocho endpoints funcionales y escenarios documentados.
+- [x] Script continuo de peticiones HTTP entregado y probado en modo local y real.
+- [x] Logs JSON producidos por código; muestras auténticas de 64 y 1274 eventos.
+- [x] Dockerfiles creados; la API simulada se utilizó como servicio auxiliar en la ejecución del stack documentada.
+- [x] `docker-compose.yml` con Elasticsearch, Kibana, Filebeat y Heartbeat.
+- [x] Recolección desde CloudWatch hasta Elasticsearch documentada el 2026-11-10.
+- [x] Heartbeat con cuatro monitores y evidencia de caída y recuperación local.
+- [x] Dashboard de Kibana con ocho visualizaciones y captura completa.
+- [ ] Revisión final del equipo del informe, las ventanas de evidencia y la configuración en el entorno de entrega.
+- [ ] Completar la declaración final de IA en la entrega; el registro detallado ya está en `docs/uso-de-ia.md`.
 
 ## 9. Referencias técnicas de consulta
 

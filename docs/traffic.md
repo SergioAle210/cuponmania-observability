@@ -1,5 +1,7 @@
 # Generador continuo de tráfico de CupónManía
 
+La vía elegida para la Fase 3 es `--target real`, hacia la API de preproducción. El modo local permanece como alternativa de prueba; por seguridad es el valor predeterminado del CLI. Las secciones de ejecución local describen ese modo, y la sección «Destino real» describe el flujo principal.
+
 El módulo `traffic.main` realiza peticiones HTTP a los ocho endpoints de `docs/contracts.md`, con datos ficticios que comienzan por `demo-`. No crea tickets Jira, no escribe el archivo de logs de la API y no envía documentos a Elasticsearch. Solo la API produce los eventos que recolectará el equipo.
 
 ## Ejecución local
@@ -28,7 +30,8 @@ La opción `--scenario` envía `X-Simulation-Scenario` a la API. El generador no
 
 | Opción | Valor por defecto | Restricción / comportamiento |
 | --- | --- | --- |
-| `--base-url` | `API_BASE_URL` o `http://127.0.0.1:8000` | HTTP a `localhost`, IP loopback o nombre exacto `api` |
+| `--target` | `local` | `local` para la API simulada; `real` para preproducción (vía elegida para la Fase 3) |
+| `--base-url` | `API_BASE_URL` o la URL predeterminada del destino | En `local`, HTTP a `localhost`, IP loopback o `api`; en `real`, solo HTTPS a `api-preprod.cuponmania.com.gt` |
 | `--rate` | `2` | Peticiones por segundo; finito, >0 y ≤20 |
 | `--concurrency` | `2` | Máximo de peticiones simultáneas, entero entre 1 y 16 |
 | `--timeout` | `5` | Segundos máximos por petición, finito, >0 y ≤60 |
@@ -79,26 +82,26 @@ Las pruebas unitarias usan transporte controlado de HTTPX y eventos asyncio. Com
 
 Ejecución local realizada el 3 de noviembre de 2026 (Guatemala), Python 3.13.5 y pytest 9.2.0: **54 passed in 1.94s**. El primer intento dentro del aislamiento de la herramienta quedó bloqueado al crear `socketpair` del event loop de Windows; se detuvo ese intento y se ejecutó el mismo comando con permisos para las pruebas locales, obteniendo el resultado indicado. No se utilizó Docker. La prueba SIGINT invoca el callback instalado; la comprobación del proceso CLI y TCP real corresponde a la integración.
 
-## Integración prevista
+## Integración local opcional
 
 `traffic/Dockerfile` está preparado con contexto de construcción en la raíz del repositorio, base oficial `python:3.13-slim`, dependencia directa fijada y usuario no root UID/GID 10001. El entrypoint exec es `python -m traffic.main`, permitiendo pasar las opciones anteriores. El servicio no expone puertos ni necesita un volumen. Su stdout lleva el resumen propio.
 
-El equipo deberá definir un servicio `api` que escuche en el puerto interno 8000 y proporcionar `API_BASE_URL=http://api:8000` al generador dentro de la misma red. El valor por defecto sigue siendo loopback, por seguridad: sin esa variable, loopback dentro del contenedor apuntaría al propio generador. La API debe ser la única escritora de su archivo de logs y la persistencia/recolección corresponden al equipo.
+El Dockerfile del generador permite conectarlo a una API simulada en una red Compose mediante `API_BASE_URL=http://api:8000` si se crea un servicio con ese nombre. El Compose actual solo incluye `api-simulada` para Heartbeat y ejecuta el generador de preproducción por separado. El valor predeterminado del modo local sigue siendo loopback por seguridad.
 
-## Pendiente: validación con Docker
+## Alcance de la validación con Docker
 
-No se ejecutó ningún comando Docker ni se construyeron imágenes o contenedores. Después de instalar Docker, el equipo verificará:
+La bitácora documenta la ejecución del stack con Docker el 2026-11-10. No registra la construcción ni ejecución de `traffic/Dockerfile`; el tráfico real se generó con Python fuera de Compose. Si se decide usar el contenedor del generador local, habrá que verificar:
 
 - Construcción de la imagen usando `traffic/Dockerfile` y contexto raíz; instalación reproducible de dependencias en Linux.
 - Ejecución con UID/GID 10001 y paso de argumentos al entrypoint.
 - Resolución del servicio `api`, conectividad al puerto 8000 y `API_BASE_URL` dentro de la red que configure el equipo.
 - Continuidad del generador ante caída y recuperación del contenedor API.
 - Cierre mediante SIGTERM y margen de apagado suficiente para drenar `--timeout`; stdout con resumen final.
-- Persistencia de logs de la API, recolección con Filebeat, almacenamiento en Elasticsearch, Heartbeat y visualizaciones de Kibana, todos pendientes y a cargo del equipo.
+- Su relación con la API simulada y el destino deseado. La recolección principal ya documentada usa CloudWatch, Filebeat, Elasticsearch, Heartbeat y Kibana.
 
 Referencia de implementación: cliente [AsyncClient de HTTPX](https://www.python-httpx.org/async/), [timeouts](https://www.python-httpx.org/advanced/timeouts/) y desactivación de [variables de entorno/proxies](https://www.python-httpx.org/environment_variables/).
 
-## Destino real: API de preproducción (opcional)
+## Destino real: API de preproducción (vía elegida)
 
 `--target real` envía tráfico a la API real de CupónManía en preproducción, **https://api-preprod.cuponmania.com.gt**, en lugar de la API simulada. El equipo decidió (2026-11-09) usar la API real para la fase; el destino por defecto del comando sigue siendo `local` para que una ejecución sin argumentos nunca salga de la máquina. Esa API escribe sus logs en formato ECS en CloudWatch (log group `/aws/lambda/cuponmania-api-preprod`), con los siete campos de la guía más `cuponmania.catalog_id`, `cuponmania.component` y `http.request.id`. La referencia de campos está en el repositorio de la API, `docs/infrastructure/logging.md`. Cómo llegan esos logs a Elasticsearch: `docs/elk.md`.
 
@@ -133,4 +136,3 @@ Rutas de un ciclo (cada ciclo visita una vez cada una; `{id}` es un UUID fictici
 | — | — | `GET /api/v1/coupons`, `GET /api/v1/coupon-categories` | 200 |
 
 A diferencia de la API simulada, los códigos no salen de un perfil probabilístico: son las respuestas reales de la API (200 en lecturas y salud, 401/400 en el catálogo sin sesión y 429 si se supera algún límite). Un 5xx solo aparece si la plataforma falla de verdad. El resumen indica `"target": "real"` y cuenta las peticiones por plantilla de ruta.
-

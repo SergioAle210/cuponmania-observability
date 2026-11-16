@@ -1,6 +1,6 @@
 # Informe técnico — Fase 3: monitoreo de CupónManía con ELK
 
-> **Borrador para revisión del equipo.** Las cifras salen de una ejecución real del 2026-11-10 (ventana 15:47:53–16:07:53 UTC; 09:47–10:07 hora de Guatemala) y de las consultas a Elasticsearch descritas en cada sección. El equipo debe revisarlo, completarlo y poder explicar cada parte antes de entregarlo.
+> **Borrador para revisión del equipo.** Las cifras de tráfico y latencia se cotejaron con los 1274 eventos exportados de CloudWatch del 2026-11-10 (ventana 15:47:53–16:07:53 UTC; 09:47:53–10:07:53 hora de Guatemala). La captura de Kibana usa un intervalo más amplio. El equipo debe revisar y poder explicar el informe antes de entregarlo.
 
 ## 1. Vía elegida y arquitectura
 
@@ -46,19 +46,19 @@ Generador (traffic/) ──HTTPS──► Cloudflare ─► CloudFront ─► AW
 ## 3. Evidencias
 
 - `evidencias/api-preprod.log`: **1274 líneas** de acceso exportadas tal cual de CloudWatch para la ventana de la ejecución (generador y Heartbeat). El SHA-256 y el comando de exportación están en `evidencias/ejecucion-preprod.json`.
-- `evidencias/capturas/dashboard-kibana.png`: el dashboard completo sobre la misma ventana.
+- `evidencias/capturas/dashboard-kibana.png`: el dashboard completo. El selector de tiempo visible abarca aproximadamente **09:40–10:15, hora de Guatemala** (15:40–16:15 UTC), unos 35 minutos. Incluye la ejecución de 20 minutos y eventos anteriores y posteriores; sus conteos no tienen por qué coincidir con los de la exportación de 20 minutos.
 - Objetos de Kibana reproducibles: `elk/kibana/saved-objects.ndjson`, que se importan solos al levantar el compose.
 
 ## 4. Resultados observados
 
-Fuente: Elasticsearch, eventos de acceso de `cuponmania-api` entre 15:47:53 y 16:07:53 UTC.
+Fuente para los conteos y la latencia siguientes: `evidencias/api-preprod.log`, exportación de eventos de acceso de `cuponmania-api` entre 15:47:53 y 16:07:53 UTC. El archivo contiene 1274 eventos: 1014 de negocio y 260 de `/health` o `/health/ready`. La captura de Kibana y las cifras de Heartbeat tienen ventanas distintas, indicadas por separado.
 
-**Tráfico de negocio**, que excluye `/health` y `/health/ready` (INC-04): **1015 peticiones**.
+**Tráfico de negocio**, que excluye `/health` y `/health/ready` (INC-04): **1014 peticiones**.
 
 | Código | Peticiones | Proporción |
 | --- | ---: | ---: |
 | 401 | 697 | 68.7 % |
-| 200 | 219 | 21.6 % |
+| 200 | 218 | 21.5 % |
 | 429 | 89 | 8.8 % |
 | 400 | 10 | 1.0 % |
 | 5xx | 0 | 0 % |

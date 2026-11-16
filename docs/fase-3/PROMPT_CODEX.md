@@ -1,5 +1,7 @@
 # Prompt para Codex - CupónManía Fase 3 (API simulada y generador)
 
+> **Documento histórico de la primera iteración (2026-11-03).** No usar como instrucciones vigentes: la decisión de trabajar solo con la API simulada, la prohibición de desarrollar ELK/Kibana y la indicación de no ejecutar Docker quedaron sustituidas por `AGENTS.md` y `docs/sources/aclaraciones-fase-3.md`. Consultar `docs/fase-3/GUIA_FASE3.md` para el estado actual.
+
 Actúa como coordinador técnico del repositorio `cuponmania-observability` y organiza el trabajo mediante subagentes cuando estén disponibles.
 
 ## Contexto y restricciones importantes

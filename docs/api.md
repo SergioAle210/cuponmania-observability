@@ -71,17 +71,17 @@ Se verifican las ocho rutas en 2xx/400/503, metadatos/códigos/IDs, tipos y zona
 
 Los primeros intentos en el sandbox se bloquearon creando sockets internos de asyncio. Al ejecutar fuera del sandbox, el directorio temporal predeterminado de pytest produjo un error de permisos; el comando exitoso anterior usó una ruta temporal dentro del proyecto. Esos intentos no se cuentan como pruebas aprobadas. La integración TCP con generador y su resultado final se documentan en [qa-api-traffic.md](qa-api-traffic.md).
 
-## Pendiente: validación con Docker
+## Integración con el stack actual
 
-`api/Dockerfile` está preparado y revisado como texto, **no construido ni ejecutado**. Parte de `python:3.13-slim`, fija versiones directas en `api/requirements.txt`, usa UID/GID 10001 y ejecuta Uvicorn como proceso principal sin shell. La etiqueta base puede actualizarse; el equipo decidirá el digest al validar las imágenes. El contexto previsto es la raíz del repositorio.
+`api/Dockerfile` parte de `python:3.13-slim`, fija versiones directas en `api/requirements.txt`, usa UID/GID 10001 y ejecuta Uvicorn como proceso principal sin shell. El contexto de construcción es la raíz del repositorio. El Compose actual construye la imagen y usa la API simulada como servicio auxiliar `api-simulada` para la prueba de caída de Heartbeat. La ejecución del 2026-11-10 está documentada en `docs/uso-de-ia.md`.
 
-Interfaces para la configuración propia del equipo:
+Interfaces de la API simulada:
 
-- Servicio sugerido `api`, puerto interno TCP 8000; escucha `0.0.0.0` en el contenedor.
+- Servicio actual `api-simulada`, puerto interno TCP 8000; escucha `0.0.0.0` en el contenedor.
 - Log en `/app/logs/api.log` mediante `API_LOG_PATH`; directorio creado con propietario 10001:10001.
 - El volumen montado debe permitir escritura a ese UID/GID y lectura al recolector; los permisos incluidos en la imagen no garantizan los del volumen montado.
-- Montar el mismo contenido de logs en solo lectura para Filebeat según la configuración que escriba el equipo.
-- Generador en la misma red: `API_BASE_URL=http://api:8000`; no requiere credenciales.
+- El Compose actual no monta el archivo local de la API simulada en Filebeat: Filebeat lee CloudWatch de la API real.
+- El generador se ejecuta por separado con `--target real`; para pruebas locales fuera de Compose usa la URL de la API simulada.
 - Salud de proceso disponible en `GET /healthz`; no demuestra disponibilidad funcional de compra/canje.
 
-Después de instalar Docker, el equipo debe construir la imagen, comprobar instalación de dependencias y arranque sin root, acceso a puerto 8000 desde otro contenedor, parada con señales, escritura y persistencia de volumen tras reiniciar, y comportamiento ante permisos incorrectos. También quedan pendientes Filebeat, Elasticsearch, Heartbeat, las seis visualizaciones y las evidencias de Kibana. No se creó configuración de esos componentes ni se ejecutó ningún comando Docker.
+La evidencia del stack y del dashboard está en `docs/elk.md`, `docs/informe-fase-3.md` y `evidencias/`. La persistencia de un volumen de logs local y el Dockerfile del generador no forman parte del flujo principal de preproducción y no tienen una verificación registrada. La revisión de una instalación nueva corresponde al equipo antes de entregar.

@@ -1,31 +1,22 @@
-# Trabajo propio del equipo - Fase 3
+# Trabajo y revisión del equipo — Fase 3
 
-Este archivo registra lo que el equipo debe decidir, construir y verificar directamente.
+La configuración de ELK, Heartbeat, Kibana y el análisis ya se preparó con asistencia de IA bajo la ampliación de autorización registrada en `docs/sources/aclaraciones-fase-3.md`. Este documento registra el estado de las piezas y la revisión que corresponde al equipo antes de entregar. Las comprobaciones históricas constan en `docs/uso-de-ia.md` y `docs/informe-fase-3.md`.
 
-## Infraestructura
+| Pieza | Estado en el repositorio |
+| --- | --- |
+| Elasticsearch, Kibana, Filebeat y Heartbeat | Configurados en `docker-compose.yml`, con versión 9.5.5 por defecto; ejecución local documentada el 2026-11-10. |
+| Ingesta de logs reales | `elk/filebeat/filebeat.yml` lee CloudWatch de preproducción; se documentó llegada a Elasticsearch con campos tipados. |
+| Heartbeat | `elk/heartbeat/heartbeat.yml` contiene cuatro monitores; se documentó una caída y recuperación controladas de la API simulada. |
+| Dashboard | `elk/kibana/saved-objects.ndjson` contiene dos vistas de datos, ocho visualizaciones y un dashboard; hay captura en `evidencias/capturas/dashboard-kibana.png`. |
+| Logs auténticos | `evidencias/api-local.log` tiene 64 líneas y `evidencias/api-preprod.log` 1274; sus hashes coinciden con los metadatos de ejecución. |
+| Informe | `docs/informe-fase-3.md` es un borrador basado en la ejecución del 2026-11-10. |
 
-- [ ] Elegir y documentar versiones compatibles para Elasticsearch, Kibana, Filebeat y Heartbeat.
-- [ ] Elaborar `docker-compose.yml` con los cuatro servicios exigidos y los servicios auxiliares de API/generador, si se utilizan en Docker.
-- [ ] Elaborar la configuración Filebeat/Logstash que recolecta los `.log` reales de la API y los envía automáticamente a Elasticsearch.
-- [ ] Elaborar `heartbeat.yml` y verificar up/down con una caída y recuperación controladas.
-- [ ] Garantizar que la persistencia, redes, credenciales y volúmenes funcionan sin exponer secretos.
+## Revisión antes de entregar
 
-## Kibana y métricas
+- [ ] Revisar y poder explicar Compose, credenciales temporales de lectura, recolección, mapeos, monitores y filtros del dashboard.
+- [ ] Repetir el arranque desde una copia limpia si la entrega exige reproducibilidad en otro equipo; comprobar permisos, persistencia, importación e ingesta actual.
+- [ ] Confirmar en Kibana los siete campos exigidos, la conversión de `event.duration` de ns a ms y el estado up/down de Heartbeat.
+- [ ] Revisar el informe, la captura y sus ventanas temporales; conservar las cifras según los intervalos indicados.
+- [ ] Completar la declaración final de IA y reunir la entrega en el formato solicitado por el curso.
 
-- [ ] Crear la data view sobre el índice real de logs de API.
-- [ ] Validar en Discover los siete campos obligatorios con los tipos adecuados.
-- [ ] Crear la data view o fuente de datos Heartbeat.
-- [ ] Diseñar las seis visualizaciones requeridas y guardar un dashboard completo.
-- [ ] Definir error rate y tratamiento de 4xx/5xx, excluir salud del tráfico de negocio.
-- [ ] Verificar conversión correcta de `event.duration` a ms.
-- [ ] Capturar evidencia del dashboard y su actualización ante tráfico real.
-
-## Informe y entrega
-
-- [ ] Muestra de al menos 50 líneas `.log` generadas automáticamente.
-- [ ] Arquitectura, configuración, endpoints, proporciones y funcionamiento del generador.
-- [ ] Análisis **propio** de los resultados observados, sin cifras inventadas.
-- [ ] Declaración de asistencia de IA al final del informe.
-- [ ] Prueba desde una copia limpia y comandos reproducibles.
-
-Guía de navegación: `docs/pasos-kibana-equipo.md`.
+Guías de ejecución: `docs/elk.md` y `docs/fase-3/SETUP.md`.
