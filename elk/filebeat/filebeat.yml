@@ -13,9 +13,9 @@ filebeat.inputs:
     credential_profile_name: ${AWS_PROFILE:cuponmania-preprod}
     # Primera ejecución: todo lo retenido (14 días). Luego continúa desde el último punto
     # registrado en el volumen filebeatdata.
-    start_position: beginning
+    start_position: lastSync
     scan_frequency: 30s
-    # CloudWatch puede tardar en exponer eventos recientes; se relee con este margen.
+    # CloudWatch puede tardar en exponer eventos recientes; se consulta con este desfase.
     latency: 1m
 
 processors:
