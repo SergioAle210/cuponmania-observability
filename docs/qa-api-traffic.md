@@ -1,5 +1,29 @@
 # Verificación de API, tráfico y stack de observabilidad
 
+## Merge y validación local opcional — 2026-11-16
+
+La solución acordada conserva `curlimages/curl:8.11.1` y el `import.sh` del compañero, incluido el ajuste `defaultRoute` hacia `/app/dashboards#/view/cuponmania-salud-api`. **Compose no ejecuta el validador Python.** El script curl comprueba errores HTTP/transporte; un HTTP 200 con `success=false` o errores parciales puede no provocar un fallo del servicio. Por tanto, su código 0 y su mensaje de importación no sustituyen la revisión del JSON: `success=true`, ausencia de errores y confirmación individual de todos los objetos.
+
+`elk/kibana/import_objects.py` se conserva como utilidad **opcional desde el entorno local**, sin depender de la imagen `python:3.13-slim` para `kibana-setup`. Obtiene el conjunto esperado del archivo NDJSON, exige un archivo no vacío sin duplicados y valida cantidad e identificadores de la respuesta. El export actual contiene **12 objetos únicos: dos vistas de datos, nueve visualizaciones Lens y un dashboard**. Los resultados históricos con once objetos, conservados más abajo, corresponden al export anterior.
+
+Se adaptaron y ejecutaron las pruebas del validador opcional:
+
+```powershell
+.venv/Scripts/python.exe -m pytest tests/integration/test_kibana_import.py -q --basetemp=.pytest-tmp-kibana-import-merge
+```
+
+Resultado real: **11 passed in 2.45s**, salida **0**. Incluye la importación del archivo actual de doce objetos contra un servidor HTTP controlado y exportaciones de uno y trece objetos para comprobar el conteo dinámico. Conserva las regresiones de HTTP 200 con fallos parciales, IDs faltantes/duplicados/ajenos, conexión rechazada y rechazo de un archivo vacío o duplicado antes de enviar HTTP. Estas pruebas no afirman que curl valide semánticamente el JSON ni que los objetos se hayan desplegado en Kibana.
+
+El coordinador ejecutó además la suite completa: **152 passed, 1 warning in 29.33s**, salida **0**. Su salida está en [`evidencias/2026-11-16-integracion/pruebas.txt`](../evidencias/2026-11-16-integracion/pruebas.txt), revisada por `api_qa`. La advertencia sigue siendo la deprecación de httpx en Starlette `TestClient`; no hubo pruebas fallidas.
+
+**No se arrancó Docker ni se ejecutó una importación contra Kibana real en esta revisión.** Cuando el stack esté activo, la comprobación opcional siguiente vuelve a importar con `overwrite=true` y valida el resultado; no configura `defaultRoute`, que sigue a cargo del script curl:
+
+```powershell
+.venv/Scripts/python.exe elk/kibana/import_objects.py --url http://127.0.0.1:5601
+```
+
+Quedan pendientes en el stack actual la importación de los doce objetos, la aplicación de `defaultRoute` y la revisión visual de los nueve paneles. No se añadieron imágenes, paquetes jq, servicios ni un parser JSON en shell.
+
 ## Caída, persistencia e ingesta — 2026-11-15
 
 El coordinador ejecutó el ensayo entre **23:47 y 23:55 del 15 de noviembre de 2026, Guatemala** (16 de noviembre, 05:47–05:55 UTC). `api_qa` revisó los JSON, comparó independientemente las exportaciones comprimidas y examinó ambas capturas. No se modificó código de aplicación ni se borraron volúmenes o registros para obtener estos resultados.

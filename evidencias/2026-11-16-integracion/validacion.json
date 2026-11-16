@@ -1,0 +1,65 @@
+{
+  "at_guatemala": "2026-11-16T07:50:09.146761-06:00",
+  "remote_commit": "ed9d4fc60b8f62cd80f5691ef47f34360d8199f4",
+  "checks": {
+    "compose": {
+      "command": [
+        "C:/Users/sergi/AppData/Local/Programs/DockerDesktop/resources/bin/docker.exe",
+        "compose",
+        "config",
+        "--quiet"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "shell_syntax": {
+      "command": [
+        "C:/Program Files/Git/bin/bash.exe",
+        "-n",
+        "elk/kibana/import.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "docker_daemon": {
+      "command": [
+        "C:/Users/sergi/AppData/Local/Programs/DockerDesktop/resources/bin/docker.exe",
+        "info",
+        "--format",
+        "{{.ServerVersion}}"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified."
+    }
+  },
+  "saved_objects": {
+    "count": 12,
+    "unique": 12,
+    "types": {
+      "index-pattern": 2,
+      "lens": 9,
+      "dashboard": 1
+    },
+    "panels": 9,
+    "missing_references": []
+  },
+  "matches_origin_main_ignoring_line_endings": {
+    "docker-compose.yml": true,
+    "elk/kibana/import.sh": true,
+    "elk/kibana/saved-objects.ndjson": true
+  },
+  "shell_has_LF_only": true,
+  "runtime_validation": {
+    "performed": false,
+    "scope": "No se inició Docker ni se importó o inspeccionó el dashboard actualizado en esta revisión."
+  },
+  "pytest": {
+    "command": ".venv/Scripts/python.exe -m pytest -q --basetemp=.pytest-tmp-merge-20261116 --tb=short",
+    "exit_code": 0,
+    "result": "152 passed, 1 warning in 29.33s",
+    "output": "pruebas.txt"
+  }
+}

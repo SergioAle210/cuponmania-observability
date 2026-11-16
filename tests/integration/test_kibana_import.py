@@ -1,4 +1,8 @@
-"""Regresiones del importador: HTTP local controlado, sin Kibana ni Docker."""
+"""Validador Python opcional: HTTP local controlado, sin Kibana ni Docker.
+
+Compose utiliza curl y no ejecuta esta utilidad. Estas pruebas no atribuyen
+validación semántica del JSON al servicio kibana-setup.
+"""
 
 from contextlib import contextmanager
 from copy import deepcopy
@@ -22,7 +26,7 @@ OBJECTS_PATH = Path(__file__).resolve().parents[2] / "elk/kibana/saved-objects.n
 def expected_objects():
     rows = [json.loads(line) for line in OBJECTS_PATH.read_text(encoding="utf-8").splitlines() if line.strip()]
     expected = {(row["type"], row["id"]) for row in rows}
-    assert len(rows) == len(expected) == 11
+    assert rows and len(rows) == len(expected)
     return expected
 
 
@@ -90,6 +94,24 @@ def test_cli_imports_all_objects_and_sends_valid_multipart(expected_objects, cap
     assert parts[0].get_payload(decode=True) == OBJECTS_PATH.read_bytes()
 
 
+@pytest.mark.parametrize("object_count", [1, 13])
+def test_optional_cli_adapts_to_changed_export_size(tmp_path, capsys, object_count):
+    """Adding/removing objects must not require changing a hardcoded count."""
+    rows = [{"type": "index-pattern", "id": f"qa-view-{i}",
+             "attributes": {"title": f"qa-events-{i}-*"}, "references": []}
+            for i in range(object_count)]
+    path = tmp_path / "changed-export.ndjson"
+    path.write_text("\n".join(json.dumps(row) for row in rows) + "\n", encoding="utf-8")
+    expected = {(row["type"], row["id"]) for row in rows}
+    response = confirmed_result(expected)
+    with local_import_endpoint(response) as (url, received):
+        exit_code = importer.main(["--url", url, "--file", str(path)])
+    captured = capsys.readouterr()
+    assert exit_code == 0 and captured.err == ""
+    assert len(received) == 1
+    assert json.loads(captured.out) == response
+
+
 @pytest.mark.parametrize("failure", ["success_false", "partial_errors"])
 def test_http_200_does_not_hide_failed_or_partial_import(expected_objects, capsys, failure):
     response = confirmed_result(expected_objects)
@@ -115,7 +137,7 @@ def test_success_count_alone_cannot_confirm_missing_or_wrong_objects(expected_ob
         response["successResults"][-1] = deepcopy(response["successResults"][0])
     else:
         response["successResults"][-1]["id"] = "unexpected-object"
-    assert response["successCount"] == 11
+    assert response["successCount"] == len(expected_objects)
     with pytest.raises(ValueError):
         importer.validate_response(response, expected_objects)
 
@@ -132,10 +154,14 @@ def test_connection_refused_returns_exit_one_without_success_output(capsys):
     assert "Importación de Kibana fallida" in captured.err
 
 
-def test_duplicate_source_objects_fail_before_any_http_request(tmp_path, expected_objects, capsys):
+@pytest.mark.parametrize("invalid_source", ["duplicate", "empty"])
+def test_invalid_source_fails_before_any_http_request(tmp_path, expected_objects, capsys, invalid_source):
     content = OBJECTS_PATH.read_bytes().splitlines()
-    content[-1] = content[0]
-    invalid_path = tmp_path / "duplicate.ndjson"
+    if invalid_source == "duplicate":
+        content[-1] = content[0]
+    else:
+        content = []
+    invalid_path = tmp_path / "invalid.ndjson"
     invalid_path.write_bytes(b"\n".join(content) + b"\n")
     with local_import_endpoint(confirmed_result(expected_objects)) as (url, received):
         exit_code = importer.main(["--url", url, "--file", str(invalid_path)])
@@ -143,4 +169,4 @@ def test_duplicate_source_objects_fail_before_any_http_request(tmp_path, expecte
     assert exit_code == 1
     assert not received
     assert captured.out == ""
-    assert "11 objetos únicos" in captured.err
+    assert "Importación de Kibana fallida" in captured.err

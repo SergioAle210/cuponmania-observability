@@ -146,6 +146,8 @@ Al finalizar, Elasticsearch y Kibana estaban saludables, Filebeat y Heartbeat ac
 
 ## 7. Uso de inteligencia artificial
 
+**Actualización de integración del 16 de noviembre:** se incorporó la versión del equipo con nueve paneles y 12 objetos, p95, exclusión de `OPTIONS`, error rate por hora y latencia de Heartbeat. A solicitud del usuario, `kibana-setup` vuelve al script curl del equipo; el importador Python validado queda como herramienta local opcional. Las cifras y capturas anteriores conservan sus ventanas y la versión de ocho paneles que se comprobó entonces. Docker estaba apagado durante esta integración; queda pendiente comprobar aquí los nueve paneles con el importador curl. La resolución del merge y la adaptación de pruebas se realizaron con asistencia de Codex y `api_qa`, registradas en `docs/uso-de-ia.md`.
+
 Ver `docs/uso-de-ia.md`.
 
 - La API simulada, el generador, la instrumentación de la API real y el stack ELK se construyeron con asistencia de IA. Lo mismo vale para el compose, Filebeat, Heartbeat, Kibana y el dashboard, bajo la ampliación aprobada en persona por el catedrático, registrada en `docs/sources/aclaraciones-fase-3.md`.

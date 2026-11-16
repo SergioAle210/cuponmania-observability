@@ -1,4 +1,4 @@
-"""Importa los 11 objetos de Kibana y falla ante errores parciales (stdlib)."""
+"""Importación local opcional con validación JSON; Compose utiliza import.sh y curl."""
 
 import argparse
 import json
@@ -12,8 +12,8 @@ def read_objects(path: Path) -> tuple[bytes, set[tuple[str, str]]]:
     content = path.read_bytes()
     objects = [json.loads(line) for line in content.splitlines() if line.strip()]
     expected = {(item["type"], item["id"]) for item in objects}
-    if len(objects) != 11 or len(expected) != 11:
-        raise ValueError("Se requieren exactamente 11 objetos únicos")
+    if not objects or len(expected) != len(objects):
+        raise ValueError("Se requiere un archivo no vacío con objetos únicos")
     return content, expected
 
 
