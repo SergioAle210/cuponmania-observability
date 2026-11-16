@@ -17,7 +17,7 @@ API real (AWS Lambda, preprod) ──stdout ECS──► CloudWatch Logs /aws/la
 | `docker-compose.yml` | Los cuatro servicios exigidos, la API simulada (para la prueba de caída controlada) y `kibana-setup`, que importa los objetos de Kibana |
 | `elk/filebeat/filebeat.yml` | Entrada `aws-cloudwatch`; decodifica el JSON ECS de cada línea y descarta las líneas de plataforma de Lambda |
 | `elk/heartbeat/heartbeat.yml` | Cuatro monitores HTTP |
-| `elk/kibana/saved-objects.ndjson` | Data views (con campos calculados), 8 visualizaciones Lens y el dashboard |
+| `elk/kibana/saved-objects.ndjson` | Data views (con campos calculados), 9 visualizaciones Lens y el dashboard |
 
 ## Requisitos
 
@@ -95,11 +95,12 @@ Cambio en la API desde la verificación anterior: desde el 2026-11-15 la Lambda 
 
 ## Definiciones del dashboard
 
-- **Tráfico de negocio:** eventos de acceso (`event.kind: event`) de `cuponmania-api`, sin las rutas de salud (`cuponmania.catalog_id: INC-04`, que son `/health` y `/health/ready`; las consulta Heartbeat).
-- **Tiempo de respuesta:** promedio de `event.duration` (nanosegundos), mostrado en milisegundos.
-- **Error rate:** proporción de peticiones de negocio con código 5xx (falla del servicio). Los 4xx (error del cliente: sin sesión, datos inválidos) se grafican aparte y no cuentan como error del servicio.
+- **Tráfico de negocio:** eventos de acceso (`event.kind: event`) de `cuponmania-api`, sin las rutas de salud (`cuponmania.catalog_id: INC-04`, que son `/health` y `/health/ready`; las consulta Heartbeat) y sin las peticiones `OPTIONS`. Las `OPTIONS` son preflights de CORS que hace el navegador antes de llamar a la API: siempre responden 204, no son peticiones de negocio y, si se cuentan, inflan el tráfico y bajan el error rate. Este criterio aplica a los seis paneles de la API.
+- **Tiempo de respuesta:** promedio y percentil 95 de `event.duration` (nanosegundos), mostrados en milisegundos. El promedio esconde las peticiones lentas; el p95 es el tiempo que no supera el 95 % de las peticiones.
+- **Error rate:** proporción de peticiones de negocio con código 5xx (falla del servicio). Los 4xx (error del cliente: sin sesión, datos inválidos) se grafican aparte y no cuentan como error del servicio. La gráfica agrupa por hora: con intervalos cortos y poco tráfico, una sola respuesta de error se veía como 100 %. Aun por hora, una hora con muy pocas peticiones puede mostrar un porcentaje alto; conviene leerla junto al panel de tráfico.
 - **Top endpoints:** método + plantilla de ruta (`http.route`), para que las rutas con identificadores no se dispersen; una petición sin ruta conocida se muestra con su `url.path`.
 - **Estado del sistema:** último `monitor.status` de cada monitor de Heartbeat y su historia up/down.
+- **Tiempo de respuesta de los monitores:** promedio de `monitor.duration.us` de cada monitor de Heartbeat, en milisegundos. Complementa el estado up/down con la rapidez con que responde cada objetivo.
 
 ## Seguridad del laboratorio
 
