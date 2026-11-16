@@ -1,0 +1,10 @@
+{
+  "started_at": "2026-11-16T05:47:44.477+00:00",
+  "fixed_window": {
+    "gte": "2026-11-10T00:00:00Z",
+    "lt": "2026-11-16T05:42:44.477401+00:00"
+  },
+  "outage_seconds_requested": 45,
+  "target": "api-simulada only",
+  "persistence_scope": "Elasticsearch data, Kibana objects and Filebeat registry volume; no API log volume exists in Compose."
+}

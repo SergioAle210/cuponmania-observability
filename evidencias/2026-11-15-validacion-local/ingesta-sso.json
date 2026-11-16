@@ -1,0 +1,400 @@
+{
+  "checked_at_utc": "2026-11-16T05:40:56.592561+00:00",
+  "checked_at_guatemala": "2026-11-15T23:40:56.592561-06:00",
+  "aws_checks": {
+    "profile": "cuponmania-preprod",
+    "role": "LecturaLogsPreprod",
+    "sts_get_caller_identity_exit": 0,
+    "filter_log_events_exit": 0,
+    "filter_log_events_returned_count": 1
+  },
+  "source": "Filebeat aws-cloudwatch /aws/lambda/cuponmania-api-preprod",
+  "all_documents": {
+    "count": 10321,
+    "_shards": {
+      "total": 1,
+      "successful": 1,
+      "skipped": 0,
+      "failed": 0
+    }
+  },
+  "access_request": {
+    "size": 2,
+    "track_total_hits": true,
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "term": {
+              "event.kind": "event"
+            }
+          },
+          {
+            "term": {
+              "service.name": "cuponmania-api"
+            }
+          }
+        ]
+      }
+    },
+    "_source": [
+      "@timestamp",
+      "http.request.method",
+      "http.response.status_code",
+      "event.duration",
+      "url.path",
+      "service.name",
+      "log.level",
+      "event.kind",
+      "http.request.id",
+      "event.ingested"
+    ],
+    "sort": [
+      {
+        "@timestamp": "desc"
+      }
+    ],
+    "aggs": {
+      "latest": {
+        "max": {
+          "field": "@timestamp"
+        }
+      },
+      "first": {
+        "min": {
+          "field": "@timestamp"
+        }
+      },
+      "recent_15m": {
+        "filter": {
+          "range": {
+            "@timestamp": {
+              "gte": "2026-11-16T05:25:56.592561+00:00",
+              "lte": "2026-11-16T05:40:56.592561+00:00"
+            }
+          }
+        }
+      },
+      "missing_required": {
+        "filter": {
+          "bool": {
+            "should": [
+              {
+                "bool": {
+                  "must_not": {
+                    "exists": {
+                      "field": "@timestamp"
+                    }
+                  }
+                }
+              },
+              {
+                "bool": {
+                  "must_not": {
+                    "exists": {
+                      "field": "http.request.method"
+                    }
+                  }
+                }
+              },
+              {
+                "bool": {
+                  "must_not": {
+                    "exists": {
+                      "field": "http.response.status_code"
+                    }
+                  }
+                }
+              },
+              {
+                "bool": {
+                  "must_not": {
+                    "exists": {
+                      "field": "event.duration"
+                    }
+                  }
+                }
+              },
+              {
+                "bool": {
+                  "must_not": {
+                    "exists": {
+                      "field": "url.path"
+                    }
+                  }
+                }
+              },
+              {
+                "bool": {
+                  "must_not": {
+                    "exists": {
+                      "field": "service.name"
+                    }
+                  }
+                }
+              },
+              {
+                "bool": {
+                  "must_not": {
+                    "exists": {
+                      "field": "log.level"
+                    }
+                  }
+                }
+              }
+            ],
+            "minimum_should_match": 1
+          }
+        }
+      },
+      "decode_errors": {
+        "filter": {
+          "exists": {
+            "field": "error.message"
+          }
+        }
+      }
+    }
+  },
+  "access_response": {
+    "took": 6,
+    "timed_out": false,
+    "_shards": {
+      "total": 1,
+      "successful": 1,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": {
+        "value": 8702,
+        "relation": "eq"
+      },
+      "max_score": null,
+      "hits": [
+        {
+          "_index": ".ds-filebeat-9.5.5-2026.11.16-000001",
+          "_id": "40025546197027208990931799418772968196809842763816697857",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:39:25.429Z",
+            "log": {
+              "level": "info"
+            },
+            "event": {
+              "ingested": "2026-11-16T05:40:26.390Z",
+              "kind": "event",
+              "duration": 331828054
+            },
+            "service": {
+              "name": "cuponmania-api"
+            },
+            "http": {
+              "request": {
+                "id": "109b7f20-b6d0-45e9-9426-1fcd25b2199f",
+                "method": "GET"
+              },
+              "response": {
+                "status_code": 200
+              }
+            },
+            "url": {
+              "path": "/api/v1/coupons"
+            }
+          },
+          "sort": [
+            1794807565429
+          ]
+        },
+        {
+          "_index": ".ds-filebeat-9.5.5-2026.11.16-000001",
+          "_id": "40025546190180880214982898108452174010454750288794943497",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:39:25.122Z",
+            "log": {
+              "level": "info"
+            },
+            "event": {
+              "kind": "event",
+              "duration": 25968964,
+              "ingested": "2026-11-16T05:40:26.390Z"
+            },
+            "service": {
+              "name": "cuponmania-api"
+            },
+            "http": {
+              "request": {
+                "id": "c17e49c1-b1ca-4802-90e7-f440377bd287",
+                "method": "GET"
+              },
+              "response": {
+                "status_code": 200
+              }
+            },
+            "url": {
+              "path": "/api/v1/coupon-categories"
+            }
+          },
+          "sort": [
+            1794807565122
+          ]
+        }
+      ]
+    },
+    "aggregations": {
+      "latest": {
+        "value": 1794807565429.0,
+        "value_as_string": "2026-11-16T05:39:25.429Z"
+      },
+      "first": {
+        "value": 1794274310319.0,
+        "value_as_string": "2026-11-10T01:31:50.319Z"
+      },
+      "recent_15m": {
+        "doc_count": 283
+      },
+      "missing_required": {
+        "doc_count": 0
+      },
+      "decode_errors": {
+        "doc_count": 0
+      }
+    }
+  },
+  "field_caps": {
+    "indices": [
+      ".ds-filebeat-9.5.5-2026.11.16-000001"
+    ],
+    "fields": {
+      "http.request": {
+        "object": {
+          "type": "object",
+          "metadata_field": false,
+          "searchable": false,
+          "aggregatable": false,
+          "inference": false
+        }
+      },
+      "service.name": {
+        "keyword": {
+          "type": "keyword",
+          "metadata_field": false,
+          "searchable": true,
+          "aggregatable": true,
+          "inference": false
+        }
+      },
+      "log": {
+        "object": {
+          "type": "object",
+          "metadata_field": false,
+          "searchable": false,
+          "aggregatable": false,
+          "inference": false
+        }
+      },
+      "url": {
+        "object": {
+          "type": "object",
+          "metadata_field": false,
+          "searchable": false,
+          "aggregatable": false,
+          "inference": false
+        }
+      },
+      "event.duration": {
+        "long": {
+          "type": "long",
+          "metadata_field": false,
+          "searchable": true,
+          "aggregatable": true,
+          "inference": false
+        }
+      },
+      "url.path": {
+        "keyword": {
+          "type": "keyword",
+          "metadata_field": false,
+          "searchable": true,
+          "aggregatable": true,
+          "inference": false
+        }
+      },
+      "@timestamp": {
+        "date": {
+          "type": "date",
+          "metadata_field": false,
+          "searchable": true,
+          "aggregatable": true,
+          "inference": false
+        }
+      },
+      "http.request.method": {
+        "keyword": {
+          "type": "keyword",
+          "metadata_field": false,
+          "searchable": true,
+          "aggregatable": true,
+          "inference": false
+        }
+      },
+      "service": {
+        "object": {
+          "type": "object",
+          "metadata_field": false,
+          "searchable": false,
+          "aggregatable": false,
+          "inference": false
+        }
+      },
+      "http.response": {
+        "object": {
+          "type": "object",
+          "metadata_field": false,
+          "searchable": false,
+          "aggregatable": false,
+          "inference": false
+        }
+      },
+      "log.level": {
+        "keyword": {
+          "type": "keyword",
+          "metadata_field": false,
+          "searchable": true,
+          "aggregatable": true,
+          "inference": false
+        }
+      },
+      "http": {
+        "object": {
+          "type": "object",
+          "metadata_field": false,
+          "searchable": false,
+          "aggregatable": false,
+          "inference": false
+        }
+      },
+      "event": {
+        "object": {
+          "type": "object",
+          "metadata_field": false,
+          "searchable": false,
+          "aggregatable": false,
+          "inference": false
+        }
+      },
+      "http.response.status_code": {
+        "long": {
+          "type": "long",
+          "metadata_field": false,
+          "searchable": true,
+          "aggregatable": true,
+          "inference": false
+        }
+      }
+    }
+  },
+  "browser_check": "Dashboard abierto y recargado: ocho paneles con datos y sin avisos de campos faltantes. Cuatro monitores up. Ventana del navegador: ultimas 24 horas.",
+  "scope": "Incluye historico y eventos recientes de otras peticiones a preproduccion. No se ejecuto una nueva sesion del generador. Los logs de diagnostico sin event.kind:event no son eventos de acceso ni forman parte de los paneles de API. Reinicio sin duplicados aun no verificado."
+}

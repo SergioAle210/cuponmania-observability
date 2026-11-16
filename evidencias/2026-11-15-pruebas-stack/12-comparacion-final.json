@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-16T05:55:43.365+00:00",
+  "before": "01-antes.json",
+  "after": "11-despues-de-reanudar-ingesta.json",
+  "documents": 8755,
+  "passed": true,
+  "sha256": "93cd47507f0cbd4126dd2a8351cfd967f1bb7b4e1481dfaa6f49e3fc9ad98be8",
+  "version_sum": 8755
+}

@@ -1,0 +1,336 @@
+{
+  "checked_at_utc": "2026-11-16T01:22:31+00:00",
+  "checked_at_guatemala": "2026-11-15T19:22:32-06:00",
+  "docker_compose_ps": [
+    {
+      "Command": "\"python -m uvicorn a…\"",
+      "CreatedAt": "2026-11-15 19:16:50 -0600 CST",
+      "Engine": "",
+      "ExitCode": 0,
+      "Health": "",
+      "ID": "963dded73858",
+      "Image": "cuponmania-observability-api-simulada",
+      "Labels": "com.docker.compose.image=sha256:81079c1c8e1d039bf1eb89ed3538e47d95791e4d5fe40209a48c99a50455d696,com.docker.compose.oneoff=False,com.docker.compose.project.config_files=C:\\UVG\\cuponmania-observability\\docker-compose.yml,com.docker.compose.config-hash=91ca8fc59c9674cd0bfa864b5bac3cc6bda01e60f2e1e65b6c9ceb04c865779e,com.docker.compose.container-number=1,com.docker.compose.depends_on=,com.docker.compose.project=cuponmania-observability,com.docker.compose.project.working_dir=C:\\UVG\\cuponmania-observability,com.docker.compose.service=api-simulada,com.docker.compose.version=5.7.0,desktop.docker.io/ports.scheme=v2",
+      "LocalVolumes": "0",
+      "Mounts": "",
+      "Name": "cuponmania-observability-api-simulada-1",
+      "Names": "cuponmania-observability-api-simulada-1",
+      "Networks": "cuponmania-observability_default",
+      "Ports": "8000/tcp",
+      "Project": "cuponmania-observability",
+      "Publishers": [
+        {
+          "URL": "",
+          "TargetPort": 8000,
+          "PublishedPort": 0,
+          "Protocol": "tcp"
+        }
+      ],
+      "RunningFor": "5 minutes ago",
+      "Service": "api-simulada",
+      "Size": "0B",
+      "State": "running",
+      "Status": "Up 5 minutes"
+    },
+    {
+      "Command": "\"/bin/tini -- /usr/l…\"",
+      "CreatedAt": "2026-11-15 19:16:50 -0600 CST",
+      "Engine": "",
+      "ExitCode": 0,
+      "Health": "healthy",
+      "ID": "591124e30abe",
+      "Image": "docker.elastic.co/elasticsearch/elasticsearch:9.5.5",
+      "Labels": "com.docker.compose.service=elasticsearch,com.redhat.component=ubi9-minimal-container,io.buildah.version=1.44.0,io.k8s.description=The Universal Base Image Minimal is a stripped down image that uses microdnf as a package manager. This base image is freely redistributable, but Red Hat only supports Red Hat technologies through subscriptions for Red Hat products. This image is maintained by Red Hat and updated regularly.,io.openshift.expose-services=,org.opencontainers.image.version=9.5.5,build-date=2026-09-30T07:43:22Z,com.docker.compose.config-hash=a20facd477b1e05edb9a07d8d8fa0051c1c3a29a0e29b8153d40362d63052419,vendor=Elastic,com.docker.compose.depends_on=,com.docker.compose.project.working_dir=C:\\UVG\\cuponmania-observability,io.k8s.display-name=Red Hat Universal Base Image 9 Minimal,org.label-schema.build-date=2026-09-30T22:12:03.984586187Z,org.opencontainers.image.source=https://github.com/elastic/elasticsearch,summary=Elasticsearch,cpe=cpe:/a:redhat:enterprise_linux:9::appstream,distribution-scope=public,name=Elasticsearch,org.label-schema.schema-version=1.0,vcs-ref=f354e3d450169972cb1f8df64acae506d96d4c49,vcs-type=git,architecture=x86_64,com.docker.compose.version=5.7.0,description=You know, for search.,maintainer=infra@elastic.co,org.label-schema.usage=https://www.elastic.co/guide/en/elasticsearch/reference/index.html,org.label-schema.vcs-url=https://github.com/elastic/elasticsearch,version=9.5.5,com.redhat.license_terms=https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI,desktop.docker.io/ports/9200/tcp=127.0.0.1:9200,io.openshift.tags=minimal rhel9,org.label-schema.vendor=Elastic,org.opencontainers.image.documentation=https://www.elastic.co/guide/en/elasticsearch/reference/index.html,org.opencontainers.image.url=https://www.elastic.co/products/elasticsearch,org.opencontainers.image.vendor=Elastic,com.docker.compose.container-number=1,com.docker.compose.image=sha256:c40a1fb2bc6976821e5625d2329992a1e9c29df576e5955fdcba02421abf0d3c,com.docker.compose.project.config_files=C:\\UVG\\cuponmania-observability\\docker-compose.yml,org.label-schema.license=Elastic-License-2.0,org.label-schema.name=Elasticsearch,org.label-schema.url=https://www.elastic.co/products/elasticsearch,org.opencontainers.image.licenses=Elastic-License-2.0,org.opencontainers.image.revision=48acba663b09e70b115dd879329141506c377890,desktop.docker.io/ports.scheme=v2,org.label-schema.vcs-ref=48acba663b09e70b115dd879329141506c377890,org.label-schema.version=9.5.5,org.opencontainers.image.created=2026-09-30T22:12:03.984586187Z,org.opencontainers.image.title=Elasticsearch,release=1,url=https://catalog.redhat.com/en/search?searchType=containers,com.docker.compose.oneoff=False,com.docker.compose.project=cuponmania-observability",
+      "LocalVolumes": "1",
+      "Mounts": "cuponmania-obs…",
+      "Name": "cuponmania-observability-elasticsearch-1",
+      "Names": "cuponmania-observability-elasticsearch-1",
+      "Networks": "cuponmania-observability_default",
+      "Ports": "127.0.0.1:9200->9200/tcp",
+      "Project": "cuponmania-observability",
+      "Publishers": [
+        {
+          "URL": "127.0.0.1",
+          "TargetPort": 9200,
+          "PublishedPort": 9200,
+          "Protocol": "tcp"
+        }
+      ],
+      "RunningFor": "5 minutes ago",
+      "Service": "elasticsearch",
+      "Size": "0B",
+      "State": "running",
+      "Status": "Up 5 minutes (healthy)"
+    },
+    {
+      "Command": "\"/usr/bin/tini -- /u…\"",
+      "CreatedAt": "2026-11-15 19:16:51 -0600 CST",
+      "Engine": "",
+      "ExitCode": 0,
+      "Health": "",
+      "ID": "c031f62245a8",
+      "Image": "docker.elastic.co/beats/heartbeat:9.5.5",
+      "Labels": "org.label-schema.vendor=Elastic,summary=heartbeat,com.docker.compose.container-number=1,com.docker.compose.project=cuponmania-observability,desktop.docker.io/binds/0/Target=/usr/share/heartbeat/heartbeat.yml,io.openshift.tags=minimal rhel9,org.label-schema.version=9.5.5,vendor=Elastic,com.docker.compose.oneoff=False,cpe=cpe:/a:redhat:enterprise_linux:9::appstream,io.k8s.description=Ping remote services for availability and log results to Elasticsearch or send to Logstash.,org.opencontainers.image.authors=infra@elastic.co,org.opencontainers.image.created=2026-09-30T23:59:56Z,org.opencontainers.image.title=Heartbeat,com.docker.compose.depends_on=elasticsearch:service_healthy:false,com.docker.compose.project.working_dir=C:\\UVG\\cuponmania-observability,desktop.docker.io/binds/0/SourceKind=hostFile,io.k8s.display-name=Heartbeat image,org.label-schema.vcs-ref=b80bf8464fba72f582cefed91dd72909eb7116db,org.opencontainers.image.licenses=Elastic License,url=https://www.elastic.co/beats/heartbeat,version=9.5.5,license=Elastic License,build-date=2026-09-30T07:43:22Z,com.docker.compose.project.config_files=C:\\UVG\\cuponmania-observability\\docker-compose.yml,desktop.docker.io/ports.scheme=v2,io.buildah.version=1.44.0,name=heartbeat,org.label-schema.license=Elastic License,org.label-schema.url=https://www.elastic.co/beats/heartbeat,com.docker.compose.config-hash=1abad79494884d98215e5f0fe449f56473a187026847929defe102938863961f,description=Ping remote services for availability and log results to Elasticsearch or send to Logstash.,desktop.docker.io/binds/0/Source=C:\\UVG\\cuponmania-observability\\elk\\heartbeat\\heartbeat.yml,io.openshift.expose-services=,org.label-schema.schema-version=1.0,vcs-ref=f354e3d450169972cb1f8df64acae506d96d4c49,vcs-type=git,com.redhat.license_terms=https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI,distribution-scope=public,org.opencontainers.image.revision=f354e3d450169972cb1f8df64acae506d96d4c49,org.opencontainers.image.vendor=Elastic,release=1,com.redhat.component=ubi9-minimal-container,org.label-schema.build-date=2026-09-30T23:59:56Z,org.label-schema.name=heartbeat,maintainer=infra@elastic.co,architecture=x86_64,com.docker.compose.image=sha256:3b7c36c6e857971f87447e25283d67881b4b928c84b1defae1c49f4dc2f4af2f,com.docker.compose.service=heartbeat,com.docker.compose.version=5.7.0,org.label-schema.vcs-url=github.com/elastic/beats/v7",
+      "LocalVolumes": "0",
+      "Mounts": "/run/desktop/m…",
+      "Name": "cuponmania-observability-heartbeat-1",
+      "Names": "cuponmania-observability-heartbeat-1",
+      "Networks": "cuponmania-observability_default",
+      "Ports": "",
+      "Project": "cuponmania-observability",
+      "Publishers": [],
+      "RunningFor": "5 minutes ago",
+      "Service": "heartbeat",
+      "Size": "0B",
+      "State": "running",
+      "Status": "Up 5 minutes"
+    },
+    {
+      "Command": "\"/bin/tini -- /usr/l…\"",
+      "CreatedAt": "2026-11-15 19:16:51 -0600 CST",
+      "Engine": "",
+      "ExitCode": 0,
+      "Health": "healthy",
+      "ID": "d2c293cdd262",
+      "Image": "docker.elastic.co/kibana/kibana:9.5.5",
+      "Labels": "org.label-schema.license=Elastic License,org.label-schema.vcs-url=https://github.com/elastic/kibana,release=1,vcs-type=git,vendor=Elastic,version=9.5.5,desktop.docker.io/ports/5601/tcp=127.0.0.1:5601,org.label-schema.url=https://www.elastic.co/products/kibana,org.opencontainers.image.created=2026-09-30T12:22:32.460Z,io.buildah.version=1.44.0,name=Kibana,org.opencontainers.image.vendor=Elastic,com.redhat.component=ubi9-minimal-container,com.redhat.license_terms=https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI,io.k8s.display-name=Red Hat Universal Base Image 9 Minimal,maintainer=infra@elastic.co,org.opencontainers.image.licenses=Elastic License,summary=Kibana,com.docker.compose.depends_on=elasticsearch:service_healthy:false,com.docker.compose.image=sha256:a3b7c419a30b05fa24485403b90608c3907d27a3f33f0bc05d891540b3aebbeb,cpe=cpe:/a:redhat:enterprise_linux:9::appstream,desktop.docker.io/ports.scheme=v2,distribution-scope=public,org.label-schema.usage=https://www.elastic.co/guide/en/kibana/reference/index.html,org.label-schema.vendor=Elastic,org.label-schema.version=9.5.5,architecture=x86_64,com.docker.compose.config-hash=dccdd5f3540507e6fe51436ee4ab72aa62dd6de95f06f3a463bf8a81abb72383,io.openshift.expose-services=,io.openshift.tags=minimal rhel9,org.label-schema.name=Kibana,org.label-schema.vcs-ref=a2890159e2486503b9e3a0c6f422b153a746651a,org.opencontainers.image.title=Kibana,org.opencontainers.image.version=9.5.5,com.docker.compose.version=5.7.0,build-date=2026-09-28T00:37:55Z,com.docker.compose.oneoff=False,com.docker.compose.project=cuponmania-observability,com.docker.compose.service=kibana,org.label-schema.build-date=2026-09-30T12:22:32.460Z,org.opencontainers.image.documentation=https://www.elastic.co/guide/en/kibana/reference/index.html,org.opencontainers.image.revision=a2890159e2486503b9e3a0c6f422b153a746651a,com.docker.compose.container-number=1,description=Your window into the Elastic Stack.,io.k8s.description=The Universal Base Image Minimal is a stripped down image that uses microdnf as a package manager. This base image is freely redistributable, but Red Hat only supports Red Hat technologies through subscriptions for Red Hat products. This image is maintained by Red Hat and updated regularly.,org.label-schema.schema-version=1.0,org.opencontainers.image.source=https://github.com/elastic/kibana,org.opencontainers.image.url=https://www.elastic.co/products/kibana,url=https://catalog.redhat.com/en/search?searchType=containers,vcs-ref=5fed6512327cf4e03d25e424d9f6d5eed9016958,com.docker.compose.project.config_files=C:\\UVG\\cuponmania-observability\\docker-compose.yml,com.docker.compose.project.working_dir=C:\\UVG\\cuponmania-observability",
+      "LocalVolumes": "0",
+      "Mounts": "",
+      "Name": "cuponmania-observability-kibana-1",
+      "Names": "cuponmania-observability-kibana-1",
+      "Networks": "cuponmania-observability_default",
+      "Ports": "127.0.0.1:5601->5601/tcp",
+      "Project": "cuponmania-observability",
+      "Publishers": [
+        {
+          "URL": "127.0.0.1",
+          "TargetPort": 5601,
+          "PublishedPort": 5601,
+          "Protocol": "tcp"
+        }
+      ],
+      "RunningFor": "5 minutes ago",
+      "Service": "kibana",
+      "Size": "0B",
+      "State": "running",
+      "Status": "Up 5 minutes (healthy)"
+    },
+    {
+      "Command": "\"sh /setup/import.sh\"",
+      "CreatedAt": "2026-11-15 19:16:51 -0600 CST",
+      "Engine": "",
+      "ExitCode": 0,
+      "Health": "",
+      "ID": "ed4c2b4bcb2e",
+      "Image": "python:3.13-slim",
+      "Labels": "com.docker.compose.depends_on=kibana:service_healthy:false,com.docker.compose.oneoff=False,com.docker.compose.project=cuponmania-observability,com.docker.compose.project.config_files=C:\\UVG\\cuponmania-observability\\docker-compose.yml,com.docker.compose.service=kibana-setup,desktop.docker.io/binds/0/Source=C:\\UVG\\cuponmania-observability\\elk\\kibana,com.docker.compose.container-number=1,com.docker.compose.image=sha256:48d884813cf44e927cf64c5529dd630dd3b18338c6dc727991eef9b71e934a20,com.docker.compose.project.working_dir=C:\\UVG\\cuponmania-observability,com.docker.compose.version=5.7.0,desktop.docker.io/binds/0/SourceKind=hostFile,desktop.docker.io/binds/0/Target=/setup,desktop.docker.io/ports.scheme=v2,com.docker.compose.config-hash=3fc3e981e89a638ba93980b256c2f6b7e4fba835dd3276434b1b68b2ad705f07",
+      "LocalVolumes": "0",
+      "Mounts": "/run/desktop/m…",
+      "Name": "cuponmania-observability-kibana-setup-1",
+      "Names": "cuponmania-observability-kibana-setup-1",
+      "Networks": "cuponmania-observability_default",
+      "Ports": "",
+      "Project": "cuponmania-observability",
+      "Publishers": [],
+      "RunningFor": "5 minutes ago",
+      "Service": "kibana-setup",
+      "Size": "0B",
+      "State": "exited",
+      "Status": "Exited (0) 5 minutes ago"
+    }
+  ],
+  "elasticsearch_health": {
+    "cluster_name": "docker-cluster",
+    "status": "yellow",
+    "timed_out": false,
+    "number_of_nodes": 1,
+    "number_of_data_nodes": 1,
+    "active_primary_shards": 51,
+    "active_shards": 51,
+    "relocating_shards": 0,
+    "initializing_shards": 0,
+    "unassigned_shards": 1,
+    "unassigned_primary_shards": 0,
+    "delayed_unassigned_shards": 0,
+    "number_of_pending_tasks": 0,
+    "number_of_in_flight_fetch": 0,
+    "task_max_waiting_in_queue_millis": 0,
+    "active_shards_percent_as_number": 98.07692307692307
+  },
+  "kibana_status": {
+    "status": {
+      "overall": {
+        "level": "available"
+      }
+    }
+  },
+  "kibana_import": {
+    "successCount": 11,
+    "success": true,
+    "warnings": [],
+    "successResults": [
+      {
+        "type": "index-pattern",
+        "id": "cuponmania-api-logs",
+        "meta": {
+          "title": "CupónManía · logs de la API (preprod)",
+          "icon": "indexPatternApp"
+        },
+        "managed": false
+      },
+      {
+        "type": "index-pattern",
+        "id": "cuponmania-heartbeat",
+        "meta": {
+          "title": "CupónManía · Heartbeat",
+          "icon": "indexPatternApp"
+        },
+        "managed": false
+      },
+      {
+        "type": "lens",
+        "id": "cm-trafico",
+        "meta": {
+          "title": "Tráfico de peticiones",
+          "icon": "lensApp"
+        },
+        "managed": false
+      },
+      {
+        "type": "lens",
+        "id": "cm-latencia",
+        "meta": {
+          "title": "Tiempo de respuesta promedio",
+          "icon": "lensApp"
+        },
+        "managed": false
+      },
+      {
+        "type": "lens",
+        "id": "cm-estado",
+        "meta": {
+          "title": "Estado del sistema (Heartbeat)",
+          "icon": "lensApp"
+        },
+        "managed": false
+      },
+      {
+        "type": "lens",
+        "id": "cm-estado-historia",
+        "meta": {
+          "title": "Disponibilidad en el tiempo (Heartbeat)",
+          "icon": "lensApp"
+        },
+        "managed": false
+      },
+      {
+        "type": "lens",
+        "id": "cm-codigos",
+        "meta": {
+          "title": "Distribución por códigos HTTP",
+          "icon": "lensApp"
+        },
+        "managed": false
+      },
+      {
+        "type": "lens",
+        "id": "cm-error-rate",
+        "meta": {
+          "title": "Error rate",
+          "icon": "lensApp"
+        },
+        "managed": false
+      },
+      {
+        "type": "lens",
+        "id": "cm-error-rate-total",
+        "meta": {
+          "title": "Error rate 5xx (periodo)",
+          "icon": "lensApp"
+        },
+        "managed": false
+      },
+      {
+        "type": "lens",
+        "id": "cm-top-endpoints",
+        "meta": {
+          "title": "Top endpoints",
+          "icon": "lensApp"
+        },
+        "managed": false
+      },
+      {
+        "type": "dashboard",
+        "id": "cuponmania-salud-api",
+        "meta": {
+          "title": "CupónManía | Salud de la API",
+          "icon": "dashboardApp"
+        },
+        "managed": false
+      }
+    ]
+  },
+  "filebeat_indices": [],
+  "heartbeat_window": {
+    "range": {
+      "gte": "2026-11-16T01:15:00Z",
+      "lt": "2026-11-16T01:22:03+00:00"
+    },
+    "total": {
+      "value": 37,
+      "relation": "eq"
+    },
+    "by_monitor": {
+      "api-simulada-health": {
+        "up": 19
+      },
+      "api-preprod-catalogo": {
+        "up": 5
+      },
+      "api-preprod-health": {
+        "up": 9
+      },
+      "api-preprod-ready": {
+        "up": 4
+      }
+    },
+    "latest": {
+      "api-simulada-health": {
+        "status": "up",
+        "timestamp": "2026-11-16T01:21:44.056Z"
+      },
+      "api-preprod-catalogo": {
+        "status": "up",
+        "timestamp": "2026-11-16T01:21:20.459Z"
+      },
+      "api-preprod-health": {
+        "status": "up",
+        "timestamp": "2026-11-16T01:21:30.345Z"
+      },
+      "api-preprod-ready": {
+        "status": "up",
+        "timestamp": "2026-11-16T01:21:10.289Z"
+      }
+    }
+  },
+  "existing_samples": {
+    "api-local.log": {
+      "records": 64,
+      "sha256": "150cec1f98537db63064872fc398112723a5b0184f1ed2b7a06eb795d516057e",
+      "first_event": "2026-11-04T04:41:14.658780Z",
+      "last_event": "2026-11-04T04:41:33.318013Z"
+    },
+    "api-preprod.log": {
+      "records": 1274,
+      "sha256": "886263ed5fd1dd8e38e2f0becefd5237c2c345594d26540c02ef281132c7c41b",
+      "first_event": "2026-11-10T15:47:53.948Z",
+      "last_event": "2026-11-10T16:07:52.105Z"
+    }
+  },
+  "limitations": [
+    "SSO no completado: el usuario reporta que AWS indica contactar al administrador. Causa exacta sin diagnosticar.",
+    "Sin perfil AWS completado; Filebeat no iniciado; ingesta CloudWatch y lastSync no verificados.",
+    "No se repitieron trafico de cinco minutos, caida controlada ni pruebas de persistencia en esta comprobacion.",
+    "Dashboard abierto: ocho paneles presentes, dos de Heartbeat con datos; paneles de API sin resultados y avisos de campos ausentes al no existir indices Filebeat."
+  ]
+}

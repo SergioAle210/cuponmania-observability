@@ -1,0 +1,3335 @@
+{
+  "checked_at_utc": "2026-11-16T05:54:10.683223+00:00",
+  "checked_at_guatemala": "2026-11-15T23:54:10.683223-06:00",
+  "services": {
+    "elasticsearch": {
+      "id": "e74a04bdea21f3fb5cce06d46dd526498201faa99b2d11a0a1628ec533186647",
+      "started_at": "2026-11-16T05:51:00.313330057Z",
+      "status": "running",
+      "health": "healthy",
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "cuponmania-observability_esdata",
+          "Source": "/var/lib/docker/volumes/cuponmania-observability_esdata/_data",
+          "Destination": "/usr/share/elasticsearch/data",
+          "RW": true
+        }
+      ]
+    },
+    "kibana": {
+      "id": "243becc74345c3660c61c0e6179992ca1b3f351b8754990f2f3e840770d03da6",
+      "started_at": "2026-11-16T05:51:10.963490585Z",
+      "status": "running",
+      "health": "healthy",
+      "mounts": []
+    },
+    "filebeat": {
+      "id": "37b9295b9b0feba3cc28248e04c486a4ae7cf51178bce489fc7d546373e2d57f",
+      "started_at": "2026-11-16T05:51:11.104834933Z",
+      "status": "running",
+      "health": null,
+      "mounts": [
+        {
+          "Type": "bind",
+          "Name": null,
+          "Source": "/run/desktop/mnt/host/c/Users/sergi/.aws",
+          "Destination": "/root/.aws",
+          "RW": false
+        },
+        {
+          "Type": "volume",
+          "Name": "cuponmania-observability_filebeatdata",
+          "Source": "/var/lib/docker/volumes/cuponmania-observability_filebeatdata/_data",
+          "Destination": "/usr/share/filebeat/data",
+          "RW": true
+        },
+        {
+          "Type": "bind",
+          "Name": null,
+          "Source": "/run/desktop/mnt/host/c/UVG/cuponmania-observability/elk/filebeat/filebeat.yml",
+          "Destination": "/usr/share/filebeat/filebeat.yml",
+          "RW": false
+        }
+      ]
+    },
+    "heartbeat": {
+      "id": "3e71f03de5fd80db0eccc8090aa1d07b5a65a43c63d95b84a312a335d318f6c2",
+      "started_at": "2026-11-16T05:51:11.236577434Z",
+      "status": "running",
+      "health": null,
+      "mounts": [
+        {
+          "Type": "bind",
+          "Name": null,
+          "Source": "C:\\UVG\\cuponmania-observability\\elk\\heartbeat\\heartbeat.yml",
+          "Destination": "/usr/share/heartbeat/heartbeat.yml",
+          "RW": false
+        }
+      ]
+    },
+    "api-simulada": {
+      "id": "963dded73858a8b2b1f588ff40e148c8a869aeff3ca3b7813d52a510768210d2",
+      "started_at": "2026-11-16T05:48:56.502233998Z",
+      "status": "running",
+      "health": null,
+      "mounts": []
+    }
+  },
+  "elasticsearch": {
+    "cluster_name": "docker-cluster",
+    "status": "yellow",
+    "timed_out": false,
+    "number_of_nodes": 1,
+    "number_of_data_nodes": 1,
+    "active_primary_shards": 52,
+    "active_shards": 52,
+    "relocating_shards": 0,
+    "initializing_shards": 0,
+    "unassigned_shards": 2,
+    "unassigned_primary_shards": 0,
+    "delayed_unassigned_shards": 0,
+    "number_of_pending_tasks": 0,
+    "number_of_in_flight_fetch": 0,
+    "task_max_waiting_in_queue_millis": 0,
+    "active_shards_percent_as_number": 96.29629629629629
+  },
+  "kibana": {
+    "status": {
+      "overall": {
+        "level": "available"
+      }
+    }
+  },
+  "heartbeat_latest": {
+    "api-simulada-health": {
+      "status": "up",
+      "timestamp": "2026-11-16T05:53:49.364Z"
+    },
+    "api-preprod-catalogo": {
+      "status": "up",
+      "timestamp": "2026-11-16T05:53:20.242Z"
+    },
+    "api-preprod-health": {
+      "status": "up",
+      "timestamp": "2026-11-16T05:53:30.208Z"
+    },
+    "api-preprod-ready": {
+      "status": "up",
+      "timestamp": "2026-11-16T05:53:10.178Z"
+    }
+  },
+  "heartbeat_response": {
+    "took": 2,
+    "timed_out": false,
+    "_shards": {
+      "total": 1,
+      "successful": 1,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": {
+        "value": 21,
+        "relation": "eq"
+      },
+      "max_score": null,
+      "hits": [
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "Umjp4qEBJhWSGMZ_GGee",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:51:19.401Z",
+            "summary": {
+              "down": 0,
+              "status": "up",
+              "retry_group": "bed07935-e181-11f1-a2c8-4aeac3bd8938",
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true,
+              "up": 1
+            },
+            "http": {
+              "response": {
+                "headers": {
+                  "Content-Type": "application/json",
+                  "X-Request-Id": "cbd1c46c-7134-4cac-b8fb-053f9a51929c",
+                  "Date": "Mon, 16 Nov 2026 05:51:18 GMT",
+                  "Server": "uvicorn",
+                  "Content-Length": "32"
+                },
+                "status_code": 200,
+                "body": {
+                  "hash": "ae778bd447745682dd490540e4ee852069173e988838c8717cdd7eea6eae3929",
+                  "bytes": 32
+                },
+                "mime_type": "application/json"
+              },
+              "rtt": {
+                "write_request": {
+                  "us": 44
+                },
+                "response_header": {
+                  "us": 661
+                },
+                "validate": {
+                  "us": 738
+                },
+                "content": {
+                  "us": 77
+                },
+                "total": {
+                  "us": 906
+                }
+              }
+            },
+            "monitor": {
+              "type": "http",
+              "id": "api-simulada-health",
+              "name": "API simulada local · /healthz",
+              "status": "up",
+              "check_group": "bed07935-e181-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 1279
+              },
+              "ip": "172.18.0.2",
+              "timespan": {
+                "gte": "2026-11-16T05:51:19.357Z",
+                "lt": "2026-11-16T05:51:34.357Z"
+              }
+            },
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            },
+            "state": {
+              "status": "up",
+              "checks": 9,
+              "up": 9,
+              "flap_history": [],
+              "id": "default-1a1e2e6f252-2",
+              "started_at": "2026-11-16T05:49:08.562482648Z",
+              "duration_ms": "130838",
+              "down": 0,
+              "ends": null
+            },
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 121
+                }
+              }
+            },
+            "tags": [
+              "local",
+              "simulada"
+            ],
+            "ecs": {
+              "version": "8.0.0"
+            },
+            "agent": {
+              "version": "9.5.5",
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd",
+              "type": "heartbeat"
+            },
+            "resolve": {
+              "ip": "172.18.0.2",
+              "rtt": {
+                "us": 329
+              }
+            },
+            "url": {
+              "domain": "api-simulada",
+              "port": 8000,
+              "path": "/healthz",
+              "full": "http://api-simulada:8000/healthz",
+              "scheme": "http"
+            }
+          },
+          "sort": [
+            1794808279401
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "U2jp4qEBJhWSGMZ_GGee",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:51:20.283Z",
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 31597
+                }
+              }
+            },
+            "tls": {
+              "rtt": {
+                "handshake": {
+                  "us": 54468
+                }
+              },
+              "version_protocol": "tls",
+              "version": "1.3",
+              "cipher": "TLS-AES-128-GCM-SHA256",
+              "server": {
+                "hash": {
+                  "sha1": "35d8c88094ab56855e129ff651d0df6ebff131e4",
+                  "sha256": "d5d55b424bdabe821b27472fab17840fd8e265e1a4586ff442cfd85cecf52fea"
+                },
+                "x509": {
+                  "subject": {
+                    "distinguished_name": "CN=cuponmania.com.gt",
+                    "common_name": "cuponmania.com.gt"
+                  },
+                  "serial_number": "578092457721170088121644429329797672302539",
+                  "signature_algorithm": "ECDSA-SHA384",
+                  "public_key_algorithm": "ECDSA",
+                  "not_before": "2026-11-05T14:13:10.000Z",
+                  "not_after": "2027-02-03T14:13:09.000Z",
+                  "public_key_curve": "P-256",
+                  "issuer": {
+                    "common_name": "YE1",
+                    "distinguished_name": "CN=YE1,O=Let's Encrypt,C=US"
+                  }
+                }
+              },
+              "established": true
+            },
+            "monitor": {
+              "type": "http",
+              "id": "api-preprod-catalogo",
+              "name": "API preprod · catálogo de cupones",
+              "status": "up",
+              "check_group": "bf32c661-e181-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 267547
+              },
+              "ip": "172.67.198.101",
+              "timespan": {
+                "lt": "2026-11-16T05:52:20.000Z",
+                "gte": "2026-11-16T05:51:20.267Z"
+              }
+            },
+            "event": {
+              "dataset": "http",
+              "type": "heartbeat/summary"
+            },
+            "summary": {
+              "up": 1,
+              "down": 0,
+              "status": "up",
+              "retry_group": "bf32c661-e181-11f1-a2c8-4aeac3bd8938",
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true
+            },
+            "tags": [
+              "preprod",
+              "negocio"
+            ],
+            "ecs": {
+              "version": "8.0.0"
+            },
+            "agent": {
+              "version": "9.5.5",
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd",
+              "type": "heartbeat"
+            },
+            "http": {
+              "rtt": {
+                "validate": {
+                  "us": 168040
+                },
+                "content": {
+                  "us": 222
+                },
+                "total": {
+                  "us": 254230
+                },
+                "write_request": {
+                  "us": 122
+                },
+                "response_header": {
+                  "us": 167817
+                }
+              },
+              "response": {
+                "headers": {
+                  "X-Cache": "Miss from cloudfront",
+                  "X-Amz-Cf-Pop": "MIA50-P8",
+                  "Date": "Mon, 16 Nov 2026 05:51:21 GMT",
+                  "X-Robots-Tag": "noindex, nofollow",
+                  "Server": "cloudflare",
+                  "Content-Security-Policy": "default-src 'none'",
+                  "Server-Timing": [
+                    "cfCacheStatus;desc=\"DYNAMIC\"",
+                    "cfEdge;dur=3,cfOrigin;dur=131"
+                  ],
+                  "Content-Type": "application/json;charset=utf-8",
+                  "Vary": [
+                    "Origin",
+                    "Accept-Encoding"
+                  ],
+                  "X-Amzn-Remapped-Content-Length": "2512",
+                  "X-Content-Type-Options": "nosniff",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+                  "X-Amzn-Remapped-Date": "Mon, 16 Nov 2026 05:51:20 GMT",
+                  "Alt-Svc": "h3=\":443\"; ma=86400",
+                  "X-Frame-Options": "DENY",
+                  "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+                  "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=fNTTWflTxg1JwhmsgXBWo5zVFJD4VaxnD3MUuf3ltasb5PbLWHLAIlUQHYpVtzALEqHASyQWpS4rtxqupgRNBRBTc6q5H8Xu1UsEYL9qV2SiFEkpFGOe07fbCvLQL4FlT%2BGFIV4PhfaWvgpf%2FG9x6w%3D%3D\"}]}",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "Via": "1.1 9f5b4670309467f3e671087a0d599884.cloudfront.net (CloudFront)",
+                  "X-Amz-Cf-Id": "hBMo9L2m_XM0R31MC1FFFL8Nw7uhVOzcG8rNnGuqsVtjEmTR3n1Ghw==",
+                  "X-Amzn-Trace-Id": "Root=1-6afa99d8-7f43702d409ff90c47dd5561;Parent=74ca4afd2d282731;Sampled=0;Lineage=1:9218b8f6:0",
+                  "X-Request-Id": "33103de9-0985-4209-99b7-489899a4bf9e",
+                  "Cf-Cache-Status": "DYNAMIC",
+                  "Cf-Ray": "a5b4392ba882142c-MIA",
+                  "X-Amzn-Requestid": "75e6cd1f-b4c9-4d1a-854d-ce6cc66d6ca6"
+                },
+                "status_code": 200,
+                "body": {
+                  "hash": "8ffe5d1ae1b0689d13f890a908c0ff97c64344d3a12548b7e71ca209600d79b2",
+                  "bytes": 2512
+                },
+                "mime_type": "text/plain; charset=utf-8"
+              }
+            },
+            "resolve": {
+              "ip": "172.67.198.101",
+              "rtt": {
+                "us": 13226
+              }
+            },
+            "url": {
+              "full": "https://api-preprod.cuponmania.com.gt/api/v1/coupons?limit=1&offset=0",
+              "scheme": "https",
+              "domain": "api-preprod.cuponmania.com.gt",
+              "port": 443,
+              "path": "/api/v1/coupons",
+              "query": "limit=1&offset=0"
+            },
+            "state": {
+              "id": "default-1a1e204ff18-0",
+              "started_at": "2026-11-16T01:42:20.696516757Z",
+              "duration_ms": "14939586",
+              "flap_history": [],
+              "status": "up",
+              "checks": 250,
+              "up": 250,
+              "down": 0,
+              "ends": null
+            }
+          },
+          "sort": [
+            1794808280283
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "cmjp4qEBJhWSGMZ_Qme6",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:51:30.215Z",
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 31138
+                }
+              }
+            },
+            "state": {
+              "started_at": "2026-11-16T05:09:00.225854082Z",
+              "checks": 85,
+              "up": 85,
+              "id": "default-1a1e2c232c1-2",
+              "duration_ms": "2549989",
+              "status": "up",
+              "down": 0,
+              "flap_history": [],
+              "ends": null
+            },
+            "summary": {
+              "final_attempt": true,
+              "up": 1,
+              "down": 0,
+              "status": "up",
+              "retry_group": "c528ab1d-e181-11f1-a2c8-4aeac3bd8938",
+              "attempt": 1,
+              "max_attempts": 1
+            },
+            "tls": {
+              "cipher": "TLS-AES-128-GCM-SHA256",
+              "server": {
+                "hash": {
+                  "sha1": "35d8c88094ab56855e129ff651d0df6ebff131e4",
+                  "sha256": "d5d55b424bdabe821b27472fab17840fd8e265e1a4586ff442cfd85cecf52fea"
+                },
+                "x509": {
+                  "issuer": {
+                    "common_name": "YE1",
+                    "distinguished_name": "CN=YE1,O=Let's Encrypt,C=US"
+                  },
+                  "subject": {
+                    "distinguished_name": "CN=cuponmania.com.gt",
+                    "common_name": "cuponmania.com.gt"
+                  },
+                  "serial_number": "578092457721170088121644429329797672302539",
+                  "signature_algorithm": "ECDSA-SHA384",
+                  "public_key_algorithm": "ECDSA",
+                  "not_before": "2026-11-05T14:13:10.000Z",
+                  "not_after": "2027-02-03T14:13:09.000Z",
+                  "public_key_curve": "P-256"
+                }
+              },
+              "established": true,
+              "rtt": {
+                "handshake": {
+                  "us": 35256
+                }
+              },
+              "version_protocol": "tls",
+              "version": "1.3"
+            },
+            "monitor": {
+              "ip": "172.67.198.101",
+              "timespan": {
+                "gte": "2026-11-16T05:51:30.206Z",
+                "lt": "2026-11-16T05:52:00.000Z"
+              },
+              "name": "API preprod · /health",
+              "type": "http",
+              "id": "api-preprod-health",
+              "status": "up",
+              "check_group": "c528ab1d-e181-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 206129
+              }
+            },
+            "tags": [
+              "preprod",
+              "plataforma"
+            ],
+            "agent": {
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd",
+              "type": "heartbeat",
+              "version": "9.5.5"
+            },
+            "http": {
+              "response": {
+                "headers": {
+                  "Via": "1.1 50df440d81c5bcc8f7b057d3f7034a72.cloudfront.net (CloudFront)",
+                  "Content-Type": "application/json;charset=utf-8",
+                  "Date": "Mon, 16 Nov 2026 05:51:30 GMT",
+                  "X-Cache": "Miss from cloudfront",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "Server": "cloudflare",
+                  "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=ShtV5kiHWbcqaRFqVaVx1exVA4WCVvi54cViQ9woMgfrgIvDs71hsaWIHi73xkdKg17POGmLa35grdVDqPDiuxD1Ebm8Yl%2BMY9HRc1jPofcqCEBXOCw7c5imyBVTypPWHLxOOde2E%2F1Kr8jC3DLq8Q%3D%3D\"}]}",
+                  "Cf-Ray": "a5b43969ff39b773-MIA",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+                  "X-Amzn-Remapped-Content-Length": "25",
+                  "Cf-Cache-Status": "DYNAMIC",
+                  "Content-Length": "25",
+                  "X-Amz-Cf-Pop": "MIA50-P8",
+                  "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+                  "X-Amzn-Requestid": "4838cb06-9c0a-465d-951f-76b876feea11",
+                  "X-Robots-Tag": "noindex, nofollow",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-Amzn-Trace-Id": "Root=1-6afa99e2-51380c1034d67d1f51b7f176;Parent=578e40442f705a2c;Sampled=0;Lineage=1:9218b8f6:0",
+                  "X-Frame-Options": "DENY",
+                  "Alt-Svc": "h3=\":443\"; ma=86400",
+                  "X-Amzn-Remapped-Date": "Mon, 16 Nov 2026 05:51:30 GMT",
+                  "Content-Security-Policy": "default-src 'none'",
+                  "X-Amz-Cf-Id": "_1_GwH3fRFYchEbqVVQgvruVHxsyVw91L0mx8Douoq2Dpx27_pmM2A==",
+                  "Server-Timing": [
+                    "cfCacheStatus;desc=\"DYNAMIC\"",
+                    "cfEdge;dur=12,cfOrigin;dur=91"
+                  ]
+                },
+                "status_code": 200,
+                "body": {
+                  "hash": "56cfae419491a995b8509a909281a1c76a842f556963712eba5c92c7e48c13cf",
+                  "bytes": 25
+                },
+                "mime_type": "application/json"
+              },
+              "rtt": {
+                "content": {
+                  "us": 168
+                },
+                "total": {
+                  "us": 203647
+                },
+                "write_request": {
+                  "us": 83
+                },
+                "response_header": {
+                  "us": 137001
+                },
+                "validate": {
+                  "us": 137169
+                }
+              }
+            },
+            "resolve": {
+              "rtt": {
+                "us": 2412
+              },
+              "ip": "172.67.198.101"
+            },
+            "url": {
+              "path": "/health",
+              "full": "https://api-preprod.cuponmania.com.gt/health",
+              "scheme": "https",
+              "domain": "api-preprod.cuponmania.com.gt",
+              "port": 443
+            },
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            },
+            "ecs": {
+              "version": "8.0.0"
+            }
+          },
+          "sort": [
+            1794808290215
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "c2jp4qEBJhWSGMZ_Qme6",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:51:34.358Z",
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 160
+                }
+              }
+            },
+            "http": {
+              "response": {
+                "body": {
+                  "hash": "ae778bd447745682dd490540e4ee852069173e988838c8717cdd7eea6eae3929",
+                  "bytes": 32
+                },
+                "mime_type": "application/json",
+                "headers": {
+                  "Date": "Mon, 16 Nov 2026 05:51:33 GMT",
+                  "Server": "uvicorn",
+                  "Content-Length": "32",
+                  "Content-Type": "application/json",
+                  "X-Request-Id": "e21ec6e7-a7f7-409f-bcd6-cd31f4d48682"
+                },
+                "status_code": 200
+              },
+              "rtt": {
+                "write_request": {
+                  "us": 77
+                },
+                "response_header": {
+                  "us": 1291
+                },
+                "validate": {
+                  "us": 1575
+                },
+                "content": {
+                  "us": 283
+                },
+                "total": {
+                  "us": 1852
+                }
+              }
+            },
+            "monitor": {
+              "id": "api-simulada-health",
+              "status": "up",
+              "check_group": "c7c14f97-e181-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 2553
+              },
+              "ip": "172.18.0.2",
+              "timespan": {
+                "lt": "2026-11-16T05:51:49.358Z",
+                "gte": "2026-11-16T05:51:34.358Z"
+              },
+              "name": "API simulada local · /healthz",
+              "type": "http"
+            },
+            "resolve": {
+              "ip": "172.18.0.2",
+              "rtt": {
+                "us": 540
+              }
+            },
+            "url": {
+              "path": "/healthz",
+              "full": "http://api-simulada:8000/healthz",
+              "scheme": "http",
+              "domain": "api-simulada",
+              "port": 8000
+            },
+            "state": {
+              "id": "default-1a1e2e6f252-2",
+              "status": "up",
+              "flap_history": [],
+              "started_at": "2026-11-16T05:49:08.562482648Z",
+              "duration_ms": "145796",
+              "checks": 10,
+              "up": 10,
+              "down": 0,
+              "ends": null
+            },
+            "tags": [
+              "local",
+              "simulada"
+            ],
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            },
+            "summary": {
+              "status": "up",
+              "retry_group": "c7c14f97-e181-11f1-a2c8-4aeac3bd8938",
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true,
+              "up": 1,
+              "down": 0
+            },
+            "ecs": {
+              "version": "8.0.0"
+            },
+            "agent": {
+              "type": "heartbeat",
+              "version": "9.5.5",
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd"
+            }
+          },
+          "sort": [
+            1794808294358
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "fGjp4qEBJhWSGMZ_jWeF",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:51:49.361Z",
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 390
+                }
+              }
+            },
+            "http": {
+              "response": {
+                "status_code": 200,
+                "body": {
+                  "bytes": 32,
+                  "hash": "ae778bd447745682dd490540e4ee852069173e988838c8717cdd7eea6eae3929"
+                },
+                "mime_type": "application/json",
+                "headers": {
+                  "Content-Length": "32",
+                  "Content-Type": "application/json",
+                  "X-Request-Id": "dae40963-351d-42ed-b6c8-d9bec276d114",
+                  "Date": "Mon, 16 Nov 2026 05:51:48 GMT",
+                  "Server": "uvicorn"
+                }
+              },
+              "rtt": {
+                "total": {
+                  "us": 2896
+                },
+                "write_request": {
+                  "us": 106
+                },
+                "response_header": {
+                  "us": 2011
+                },
+                "validate": {
+                  "us": 2352
+                },
+                "content": {
+                  "us": 340
+                }
+              }
+            },
+            "resolve": {
+              "rtt": {
+                "us": 1252
+              },
+              "ip": "172.18.0.2"
+            },
+            "url": {
+              "port": 8000,
+              "path": "/healthz",
+              "full": "http://api-simulada:8000/healthz",
+              "scheme": "http",
+              "domain": "api-simulada"
+            },
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            },
+            "summary": {
+              "down": 0,
+              "status": "up",
+              "retry_group": "d0b22bad-e181-11f1-a2c8-4aeac3bd8938",
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true,
+              "up": 1
+            },
+            "agent": {
+              "name": "3e71f03de5fd",
+              "type": "heartbeat",
+              "version": "9.5.5",
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3"
+            },
+            "state": {
+              "checks": 11,
+              "up": 11,
+              "flap_history": [],
+              "ends": null,
+              "id": "default-1a1e2e6f252-2",
+              "started_at": "2026-11-16T05:49:08.562482648Z",
+              "down": 0,
+              "duration_ms": "160798",
+              "status": "up"
+            },
+            "monitor": {
+              "ip": "172.18.0.2",
+              "timespan": {
+                "gte": "2026-11-16T05:51:49.360Z",
+                "lt": "2026-11-16T05:52:04.360Z"
+              },
+              "type": "http",
+              "id": "api-simulada-health",
+              "name": "API simulada local · /healthz",
+              "status": "up",
+              "check_group": "d0b22bad-e181-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 4477
+              }
+            },
+            "tags": [
+              "local",
+              "simulada"
+            ],
+            "ecs": {
+              "version": "8.0.0"
+            }
+          },
+          "sort": [
+            1794808309361
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "f2jp4qEBJhWSGMZ_t2fr",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:52:00.215Z",
+            "monitor": {
+              "ip": "172.67.198.101",
+              "timespan": {
+                "gte": "2026-11-16T05:52:00.214Z",
+                "lt": "2026-11-16T05:52:30.000Z"
+              },
+              "type": "http",
+              "id": "api-preprod-health",
+              "name": "API preprod · /health",
+              "status": "up",
+              "check_group": "d70a6149-e181-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 214061
+              }
+            },
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 30957
+                }
+              }
+            },
+            "tls": {
+              "cipher": "TLS-AES-128-GCM-SHA256",
+              "server": {
+                "x509": {
+                  "not_before": "2026-11-05T14:13:10.000Z",
+                  "not_after": "2027-02-03T14:13:09.000Z",
+                  "public_key_curve": "P-256",
+                  "issuer": {
+                    "common_name": "YE1",
+                    "distinguished_name": "CN=YE1,O=Let's Encrypt,C=US"
+                  },
+                  "subject": {
+                    "common_name": "cuponmania.com.gt",
+                    "distinguished_name": "CN=cuponmania.com.gt"
+                  },
+                  "serial_number": "578092457721170088121644429329797672302539",
+                  "signature_algorithm": "ECDSA-SHA384",
+                  "public_key_algorithm": "ECDSA"
+                },
+                "hash": {
+                  "sha1": "35d8c88094ab56855e129ff651d0df6ebff131e4",
+                  "sha256": "d5d55b424bdabe821b27472fab17840fd8e265e1a4586ff442cfd85cecf52fea"
+                }
+              },
+              "established": true,
+              "rtt": {
+                "handshake": {
+                  "us": 42754
+                }
+              },
+              "version_protocol": "tls",
+              "version": "1.3"
+            },
+            "resolve": {
+              "rtt": {
+                "us": 2387
+              },
+              "ip": "172.67.198.101"
+            },
+            "state": {
+              "id": "default-1a1e2c232c1-2",
+              "started_at": "2026-11-16T05:09:00.225854082Z",
+              "status": "up",
+              "checks": 86,
+              "up": 86,
+              "flap_history": [],
+              "ends": null,
+              "duration_ms": "2579989",
+              "down": 0
+            },
+            "http": {
+              "response": {
+                "mime_type": "application/json",
+                "headers": {
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "X-Amz-Cf-Id": "416apRMIUJBk4d4X5c11AunJJ2cUCEANFUq-WEXK15f_dJmUNowboQ==",
+                  "Cf-Ray": "a5b43a258cf590bf-MIA",
+                  "Via": "1.1 9f5b4670309467f3e671087a0d599884.cloudfront.net (CloudFront)",
+                  "X-Amzn-Requestid": "9fc08c87-e0fb-43c4-9df6-616f85f23795",
+                  "X-Amzn-Trace-Id": "Root=1-6afa9a00-6ee2ca7e766692fb57d4b471;Parent=4895f824919b6c04;Sampled=0;Lineage=1:9218b8f6:0",
+                  "X-Amzn-Remapped-Content-Length": "25",
+                  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "Content-Type": "application/json;charset=utf-8",
+                  "Content-Length": "25",
+                  "Alt-Svc": "h3=\":443\"; ma=86400",
+                  "Server": "cloudflare",
+                  "X-Frame-Options": "DENY",
+                  "Date": "Mon, 16 Nov 2026 05:52:00 GMT",
+                  "X-Content-Type-Options": "nosniff",
+                  "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=TbYzAuo2YD537k8WCJ8eTVjQM7o6OAAZjErhnC2ryeMHWb8vQy7T1Fw7Kf9Uuqhd%2FKvNnEMdyz11Oqv5HCOFr6i1buPxWq4v38WE4MBAEmm5wGqF6dHGlBbGG0zgXrKUkE9wbz1rEavpKlvEQCtQbQ%3D%3D\"}]}",
+                  "Cf-Cache-Status": "DYNAMIC",
+                  "X-Amz-Cf-Pop": "MIA50-P8",
+                  "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+                  "Content-Security-Policy": "default-src 'none'",
+                  "X-Robots-Tag": "noindex, nofollow",
+                  "Server-Timing": [
+                    "cfCacheStatus;desc=\"DYNAMIC\"",
+                    "cfEdge;dur=14,cfOrigin;dur=89"
+                  ],
+                  "X-Amzn-Remapped-Date": "Mon, 16 Nov 2026 05:52:00 GMT",
+                  "X-Cache": "Miss from cloudfront"
+                },
+                "status_code": 200,
+                "body": {
+                  "hash": "56cfae419491a995b8509a909281a1c76a842f556963712eba5c92c7e48c13cf",
+                  "bytes": 25
+                }
+              },
+              "rtt": {
+                "total": {
+                  "us": 211511
+                },
+                "write_request": {
+                  "us": 28
+                },
+                "response_header": {
+                  "us": 137161
+                },
+                "validate": {
+                  "us": 137667
+                },
+                "content": {
+                  "us": 506
+                }
+              }
+            },
+            "tags": [
+              "preprod",
+              "plataforma"
+            ],
+            "agent": {
+              "version": "9.5.5",
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd",
+              "type": "heartbeat"
+            },
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            },
+            "url": {
+              "port": 443,
+              "path": "/health",
+              "full": "https://api-preprod.cuponmania.com.gt/health",
+              "scheme": "https",
+              "domain": "api-preprod.cuponmania.com.gt"
+            },
+            "summary": {
+              "down": 0,
+              "status": "up",
+              "retry_group": "d70a6149-e181-11f1-a2c8-4aeac3bd8938",
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true,
+              "up": 1
+            },
+            "ecs": {
+              "version": "8.0.0"
+            }
+          },
+          "sort": [
+            1794808320215
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "gGjp4qEBJhWSGMZ_t2fr",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:52:04.358Z",
+            "tags": [
+              "local",
+              "simulada"
+            ],
+            "ecs": {
+              "version": "8.0.0"
+            },
+            "agent": {
+              "name": "3e71f03de5fd",
+              "type": "heartbeat",
+              "version": "9.5.5",
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3"
+            },
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            },
+            "summary": {
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true,
+              "up": 1,
+              "down": 0,
+              "status": "up",
+              "retry_group": "d9a30bfc-e181-11f1-a2c8-4aeac3bd8938"
+            },
+            "state": {
+              "started_at": "2026-11-16T05:49:08.562482648Z",
+              "checks": 12,
+              "down": 0,
+              "flap_history": [],
+              "id": "default-1a1e2e6f252-2",
+              "duration_ms": "175795",
+              "status": "up",
+              "up": 12,
+              "ends": null
+            },
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 119
+                }
+              }
+            },
+            "monitor": {
+              "ip": "172.18.0.2",
+              "timespan": {
+                "gte": "2026-11-16T05:52:04.358Z",
+                "lt": "2026-11-16T05:52:19.358Z"
+              },
+              "name": "API simulada local · /healthz",
+              "type": "http",
+              "id": "api-simulada-health",
+              "status": "up",
+              "check_group": "d9a30bfc-e181-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 1337
+              }
+            },
+            "url": {
+              "full": "http://api-simulada:8000/healthz",
+              "scheme": "http",
+              "domain": "api-simulada",
+              "port": 8000,
+              "path": "/healthz"
+            },
+            "http": {
+              "rtt": {
+                "validate": {
+                  "us": 718
+                },
+                "content": {
+                  "us": 80
+                },
+                "total": {
+                  "us": 890
+                },
+                "response_header": {
+                  "us": 637
+                },
+                "write_request": {
+                  "us": 29
+                }
+              },
+              "response": {
+                "headers": {
+                  "Server": "uvicorn",
+                  "Content-Length": "32",
+                  "Content-Type": "application/json",
+                  "X-Request-Id": "32a3af68-9348-48dd-a42a-7518e8caed7c",
+                  "Date": "Mon, 16 Nov 2026 05:52:03 GMT"
+                },
+                "status_code": 200,
+                "body": {
+                  "hash": "ae778bd447745682dd490540e4ee852069173e988838c8717cdd7eea6eae3929",
+                  "bytes": 32
+                },
+                "mime_type": "application/json"
+              }
+            },
+            "resolve": {
+              "ip": "172.18.0.2",
+              "rtt": {
+                "us": 386
+              }
+            }
+          },
+          "sort": [
+            1794808324358
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "h2jp4qEBJhWSGMZ_32cO",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:52:10.231Z",
+            "tls": {
+              "version_protocol": "tls",
+              "version": "1.3",
+              "cipher": "TLS-AES-128-GCM-SHA256",
+              "server": {
+                "x509": {
+                  "signature_algorithm": "ECDSA-SHA384",
+                  "public_key_algorithm": "ECDSA",
+                  "not_before": "2026-11-05T14:13:10.000Z",
+                  "not_after": "2027-02-03T14:13:09.000Z",
+                  "public_key_curve": "P-256",
+                  "issuer": {
+                    "distinguished_name": "CN=YE1,O=Let's Encrypt,C=US",
+                    "common_name": "YE1"
+                  },
+                  "subject": {
+                    "common_name": "cuponmania.com.gt",
+                    "distinguished_name": "CN=cuponmania.com.gt"
+                  },
+                  "serial_number": "578092457721170088121644429329797672302539"
+                },
+                "hash": {
+                  "sha1": "35d8c88094ab56855e129ff651d0df6ebff131e4",
+                  "sha256": "d5d55b424bdabe821b27472fab17840fd8e265e1a4586ff442cfd85cecf52fea"
+                }
+              },
+              "established": true,
+              "rtt": {
+                "handshake": {
+                  "us": 38211
+                }
+              }
+            },
+            "url": {
+              "path": "/health/ready",
+              "full": "https://api-preprod.cuponmania.com.gt/health/ready",
+              "scheme": "https",
+              "domain": "api-preprod.cuponmania.com.gt",
+              "port": 443
+            },
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 31851
+                }
+              }
+            },
+            "http": {
+              "rtt": {
+                "total": {
+                  "us": 214197
+                },
+                "write_request": {
+                  "us": 43
+                },
+                "response_header": {
+                  "us": 143310
+                },
+                "validate": {
+                  "us": 144014
+                },
+                "content": {
+                  "us": 704
+                }
+              },
+              "response": {
+                "headers": {
+                  "Content-Type": "application/json",
+                  "X-Content-Type-Options": "nosniff",
+                  "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=C2HeVETZfBV16Kij9T5v7q%2FskKsU43bQ2MKPcx6Tnkr91iSGH96h87VzkNOvoTyRXEqE8vGinXapqfbnZUL32QFFl1YCMTfznMbu06RihKi17uVDy%2Fy8Gqb%2FWu8iy235UOOLxgu5SHSB8kvZVtSx3Q%3D%3D\"}]}",
+                  "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+                  "Server": "cloudflare",
+                  "Via": "1.1 50df440d81c5bcc8f7b057d3f7034a72.cloudfront.net (CloudFront)",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "Content-Length": "15",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "X-Amzn-Remapped-Content-Length": "15",
+                  "Content-Security-Policy": "default-src 'none'",
+                  "Alt-Svc": "h3=\":443\"; ma=86400",
+                  "X-Frame-Options": "DENY",
+                  "X-Amzn-Trace-Id": "Root=1-6afa9a0a-27c38c10431f7fd656b2486b;Parent=251e4ab8c64fa869;Sampled=0;Lineage=1:9218b8f6:0",
+                  "Cf-Ray": "a5b43a641ab1e0c1-MIA",
+                  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+                  "X-Amzn-Requestid": "443964a4-15d8-4c8a-b280-72c7af0ab0e5",
+                  "X-Robots-Tag": "noindex, nofollow",
+                  "Cf-Cache-Status": "DYNAMIC",
+                  "Cache-Control": "no-store",
+                  "X-Amzn-Remapped-Date": "Mon, 16 Nov 2026 05:52:10 GMT",
+                  "X-Amz-Cf-Pop": "MIA50-P8",
+                  "Server-Timing": [
+                    "cfCacheStatus;desc=\"DYNAMIC\"",
+                    "cfEdge;dur=13,cfOrigin;dur=98"
+                  ],
+                  "X-Cache": "Miss from cloudfront",
+                  "Date": "Mon, 16 Nov 2026 05:52:11 GMT",
+                  "X-Amz-Cf-Id": "yxkgPDZjUdWGfr4vJUeESb8mOilqM5t-QeTG9dQBIM7mTMd8mQwXQQ=="
+                },
+                "status_code": 200,
+                "body": {
+                  "hash": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+                  "bytes": 15
+                },
+                "mime_type": "application/json"
+              }
+            },
+            "monitor": {
+              "check_group": "dd0026db-e181-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 226035
+              },
+              "ip": "172.67.198.101",
+              "timespan": {
+                "gte": "2026-11-16T05:52:10.226Z",
+                "lt": "2026-11-16T05:53:10.000Z"
+              },
+              "id": "api-preprod-ready",
+              "name": "API preprod · /health/ready",
+              "type": "http",
+              "status": "up"
+            },
+            "tags": [
+              "preprod",
+              "plataforma"
+            ],
+            "ecs": {
+              "version": "8.0.0"
+            },
+            "agent": {
+              "type": "heartbeat",
+              "version": "9.5.5",
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd"
+            },
+            "resolve": {
+              "ip": "172.67.198.101",
+              "rtt": {
+                "us": 11755
+              }
+            },
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            },
+            "summary": {
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true,
+              "up": 1,
+              "down": 0,
+              "status": "up",
+              "retry_group": "dd0026db-e181-11f1-a2c8-4aeac3bd8938"
+            },
+            "state": {
+              "id": "default-1a1e204e9bf-0",
+              "duration_ms": "14995000",
+              "down": 0,
+              "flap_history": [],
+              "ends": null,
+              "started_at": "2026-11-16T01:42:15.231561336Z",
+              "status": "up",
+              "checks": 250,
+              "up": 250
+            }
+          },
+          "sort": [
+            1794808330231
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "iGjp4qEBJhWSGMZ_32cO",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:52:19.359Z",
+            "url": {
+              "path": "/healthz",
+              "full": "http://api-simulada:8000/healthz",
+              "scheme": "http",
+              "domain": "api-simulada",
+              "port": 8000
+            },
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            },
+            "summary": {
+              "retry_group": "e29403b2-e181-11f1-a2c8-4aeac3bd8938",
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true,
+              "up": 1,
+              "down": 0,
+              "status": "up"
+            },
+            "http": {
+              "response": {
+                "headers": {
+                  "Date": "Mon, 16 Nov 2026 05:52:18 GMT",
+                  "Server": "uvicorn",
+                  "Content-Length": "32",
+                  "Content-Type": "application/json",
+                  "X-Request-Id": "8d90a5c8-ff8a-47ef-b7e5-4755034e1693"
+                },
+                "status_code": 200,
+                "body": {
+                  "hash": "ae778bd447745682dd490540e4ee852069173e988838c8717cdd7eea6eae3929",
+                  "bytes": 32
+                },
+                "mime_type": "application/json"
+              },
+              "rtt": {
+                "response_header": {
+                  "us": 567
+                },
+                "validate": {
+                  "us": 631
+                },
+                "content": {
+                  "us": 63
+                },
+                "total": {
+                  "us": 805
+                },
+                "write_request": {
+                  "us": 40
+                }
+              }
+            },
+            "monitor": {
+              "ip": "172.18.0.2",
+              "timespan": {
+                "lt": "2026-11-16T05:52:34.359Z",
+                "gte": "2026-11-16T05:52:19.359Z"
+              },
+              "name": "API simulada local · /healthz",
+              "type": "http",
+              "id": "api-simulada-health",
+              "status": "up",
+              "check_group": "e29403b2-e181-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 1269
+              }
+            },
+            "agent": {
+              "version": "9.5.5",
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd",
+              "type": "heartbeat"
+            },
+            "resolve": {
+              "ip": "172.18.0.2",
+              "rtt": {
+                "us": 396
+              }
+            },
+            "state": {
+              "duration_ms": "190796",
+              "checks": 13,
+              "up": 13,
+              "flap_history": [],
+              "id": "default-1a1e2e6f252-2",
+              "started_at": "2026-11-16T05:49:08.562482648Z",
+              "status": "up",
+              "down": 0,
+              "ends": null
+            },
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 126
+                }
+              }
+            },
+            "tags": [
+              "local",
+              "simulada"
+            ],
+            "ecs": {
+              "version": "8.0.0"
+            }
+          },
+          "sort": [
+            1794808339359
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "jWjq4qEBJhWSGMZ_Bmco",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:52:20.244Z",
+            "monitor": {
+              "status": "up",
+              "check_group": "e2f62a5e-e181-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 243810
+              },
+              "ip": "172.67.198.101",
+              "timespan": {
+                "gte": "2026-11-16T05:52:20.244Z",
+                "lt": "2026-11-16T05:53:20.000Z"
+              },
+              "id": "api-preprod-catalogo",
+              "name": "API preprod · catálogo de cupones",
+              "type": "http"
+            },
+            "resolve": {
+              "ip": "172.67.198.101",
+              "rtt": {
+                "us": 2231
+              }
+            },
+            "url": {
+              "full": "https://api-preprod.cuponmania.com.gt/api/v1/coupons?limit=1&offset=0",
+              "scheme": "https",
+              "domain": "api-preprod.cuponmania.com.gt",
+              "port": 443,
+              "path": "/api/v1/coupons",
+              "query": "limit=1&offset=0"
+            },
+            "tags": [
+              "preprod",
+              "negocio"
+            ],
+            "ecs": {
+              "version": "8.0.0"
+            },
+            "http": {
+              "response": {
+                "body": {
+                  "hash": "8ffe5d1ae1b0689d13f890a908c0ff97c64344d3a12548b7e71ca209600d79b2",
+                  "bytes": 2512
+                },
+                "mime_type": "text/plain; charset=utf-8",
+                "headers": {
+                  "X-Amz-Cf-Id": "VPe_iuwv844uSclENqdV3uWGmnM7roR6SHo6M4ctUcnK34oyK5q8Bg==",
+                  "X-Content-Type-Options": "nosniff",
+                  "Content-Security-Policy": "default-src 'none'",
+                  "X-Request-Id": "dc194899-8fab-41c2-bb53-21dd00ecbe68",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "X-Cache": "Miss from cloudfront",
+                  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+                  "Vary": [
+                    "Origin",
+                    "Accept-Encoding"
+                  ],
+                  "Date": "Mon, 16 Nov 2026 05:52:21 GMT",
+                  "Via": "1.1 50df440d81c5bcc8f7b057d3f7034a72.cloudfront.net (CloudFront)",
+                  "X-Robots-Tag": "noindex, nofollow",
+                  "X-Frame-Options": "DENY",
+                  "X-Amz-Cf-Pop": "MIA50-P8",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "Alt-Svc": "h3=\":443\"; ma=86400",
+                  "Server-Timing": [
+                    "cfCacheStatus;desc=\"DYNAMIC\"",
+                    "cfEdge;dur=13,cfOrigin;dur=124"
+                  ],
+                  "Server": "cloudflare",
+                  "Cf-Cache-Status": "DYNAMIC",
+                  "X-Amzn-Requestid": "f792ecde-d2b0-48fd-b866-d260f1c11a94",
+                  "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+                  "X-Amzn-Remapped-Date": "Mon, 16 Nov 2026 05:52:20 GMT",
+                  "Cf-Ray": "a5b43aa28a4b695e-MIA",
+                  "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=vBSyyI7B8qoG8emuaDkz2S7JhH0vPvesNXsuAsW8LEU23T7IaGRpQD9UbvC8mUkIxXP%2FsBPFSUpgRq5%2FrcI%2FSZbHsZeyjL%2ByyinjwKP3Q%2BxK69TGZ1jfdaCI1myncS7PEr0jVb%2BkKDAOeBNkycafCQ%3D%3D\"}]}",
+                  "X-Amzn-Remapped-Content-Length": "2512",
+                  "X-Amzn-Trace-Id": "Root=1-6afa9a14-02d4b340619a40845809e281;Parent=03e4acbda6db80ea;Sampled=0;Lineage=1:9218b8f6:0",
+                  "Content-Type": "application/json;charset=utf-8"
+                },
+                "status_code": 200
+              },
+              "rtt": {
+                "total": {
+                  "us": 241484
+                },
+                "write_request": {
+                  "us": 55
+                },
+                "response_header": {
+                  "us": 170409
+                },
+                "validate": {
+                  "us": 170593
+                },
+                "content": {
+                  "us": 184
+                }
+              }
+            },
+            "summary": {
+              "final_attempt": true,
+              "up": 1,
+              "down": 0,
+              "status": "up",
+              "retry_group": "e2f62a5e-e181-11f1-a2c8-4aeac3bd8938",
+              "attempt": 1,
+              "max_attempts": 1
+            },
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 32148
+                }
+              }
+            },
+            "agent": {
+              "type": "heartbeat",
+              "version": "9.5.5",
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd"
+            },
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            },
+            "state": {
+              "status": "up",
+              "up": 251,
+              "id": "default-1a1e204ff18-0",
+              "checks": 251,
+              "down": 0,
+              "flap_history": [],
+              "ends": null,
+              "started_at": "2026-11-16T01:42:20.696516757Z",
+              "duration_ms": "14999548"
+            },
+            "tls": {
+              "server": {
+                "hash": {
+                  "sha1": "35d8c88094ab56855e129ff651d0df6ebff131e4",
+                  "sha256": "d5d55b424bdabe821b27472fab17840fd8e265e1a4586ff442cfd85cecf52fea"
+                },
+                "x509": {
+                  "issuer": {
+                    "common_name": "YE1",
+                    "distinguished_name": "CN=YE1,O=Let's Encrypt,C=US"
+                  },
+                  "subject": {
+                    "common_name": "cuponmania.com.gt",
+                    "distinguished_name": "CN=cuponmania.com.gt"
+                  },
+                  "serial_number": "578092457721170088121644429329797672302539",
+                  "signature_algorithm": "ECDSA-SHA384",
+                  "public_key_algorithm": "ECDSA",
+                  "not_before": "2026-11-05T14:13:10.000Z",
+                  "not_after": "2027-02-03T14:13:09.000Z",
+                  "public_key_curve": "P-256"
+                }
+              },
+              "established": true,
+              "rtt": {
+                "handshake": {
+                  "us": 38561
+                }
+              },
+              "version_protocol": "tls",
+              "version": "1.3",
+              "cipher": "TLS-AES-128-GCM-SHA256"
+            }
+          },
+          "sort": [
+            1794808340244
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "jmjq4qEBJhWSGMZ_Bmco",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:52:30.205Z",
+            "tls": {
+              "cipher": "TLS-AES-128-GCM-SHA256",
+              "server": {
+                "x509": {
+                  "not_before": "2026-11-05T14:13:10.000Z",
+                  "not_after": "2027-02-03T14:13:09.000Z",
+                  "public_key_curve": "P-256",
+                  "issuer": {
+                    "common_name": "YE1",
+                    "distinguished_name": "CN=YE1,O=Let's Encrypt,C=US"
+                  },
+                  "subject": {
+                    "distinguished_name": "CN=cuponmania.com.gt",
+                    "common_name": "cuponmania.com.gt"
+                  },
+                  "serial_number": "578092457721170088121644429329797672302539",
+                  "signature_algorithm": "ECDSA-SHA384",
+                  "public_key_algorithm": "ECDSA"
+                },
+                "hash": {
+                  "sha1": "35d8c88094ab56855e129ff651d0df6ebff131e4",
+                  "sha256": "d5d55b424bdabe821b27472fab17840fd8e265e1a4586ff442cfd85cecf52fea"
+                }
+              },
+              "established": true,
+              "rtt": {
+                "handshake": {
+                  "us": 36731
+                }
+              },
+              "version_protocol": "tls",
+              "version": "1.3"
+            },
+            "monitor": {
+              "duration": {
+                "us": 204872
+              },
+              "ip": "172.67.198.101",
+              "timespan": {
+                "gte": "2026-11-16T05:52:30.205Z",
+                "lt": "2026-11-16T05:53:00.000Z"
+              },
+              "type": "http",
+              "id": "api-preprod-health",
+              "name": "API preprod · /health",
+              "status": "up",
+              "check_group": "e8ebfe4c-e181-11f1-a2c8-4aeac3bd8938-1"
+            },
+            "url": {
+              "port": 443,
+              "path": "/health",
+              "full": "https://api-preprod.cuponmania.com.gt/health",
+              "scheme": "https",
+              "domain": "api-preprod.cuponmania.com.gt"
+            },
+            "state": {
+              "id": "default-1a1e2c232c1-2",
+              "started_at": "2026-11-16T05:09:00.225854082Z",
+              "status": "up",
+              "down": 0,
+              "ends": null,
+              "duration_ms": "2609979",
+              "checks": 87,
+              "up": 87,
+              "flap_history": []
+            },
+            "http": {
+              "rtt": {
+                "validate": {
+                  "us": 133931
+                },
+                "content": {
+                  "us": 222
+                },
+                "total": {
+                  "us": 202427
+                },
+                "write_request": {
+                  "us": 30
+                },
+                "response_header": {
+                  "us": 133708
+                }
+              },
+              "response": {
+                "body": {
+                  "hash": "56cfae419491a995b8509a909281a1c76a842f556963712eba5c92c7e48c13cf",
+                  "bytes": 25
+                },
+                "mime_type": "application/json",
+                "headers": {
+                  "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=ZgPLIcdNbsw13C6RwtsuGARu0k3gS03EXaeO%2F1BHtgJNHiqpBXAcTJ4ln4R6XOL5f8aif2HSkmpkfeoJtzHGnlzW2DbWcjwC2fJdCGiUIJ4YWMVh5EvfMr6TTWWAiiMNvECoS1zUnkI6aMluA1kwdQ%3D%3D\"}]}",
+                  "Cf-Ray": "a5b43ae10a849595-MIA",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-Amz-Cf-Pop": "MIA50-P8",
+                  "Content-Security-Policy": "default-src 'none'",
+                  "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+                  "X-Amzn-Requestid": "a7db25d1-7518-4b25-b9bf-2dd777822742",
+                  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+                  "X-Amzn-Remapped-Date": "Mon, 16 Nov 2026 05:52:30 GMT",
+                  "X-Robots-Tag": "noindex, nofollow",
+                  "X-Amzn-Trace-Id": "Root=1-6afa9a1e-01cee99627b3e46b3096fc37;Parent=16d92f50a8d63df3;Sampled=0;Lineage=1:9218b8f6:0",
+                  "Server": "cloudflare",
+                  "Alt-Svc": "h3=\":443\"; ma=86400",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "X-Amz-Cf-Id": "e__tmGgwigPu_KeqZfZ4qe4pQ7DlT9fLl27AZuajgBc0vFOvtXbPSw==",
+                  "Content-Type": "application/json;charset=utf-8",
+                  "Via": "1.1 3677587c2cf61d5f5322ae8244cb2792.cloudfront.net (CloudFront)",
+                  "Date": "Mon, 16 Nov 2026 05:52:30 GMT",
+                  "X-Amzn-Remapped-Content-Length": "25",
+                  "X-Cache": "Miss from cloudfront",
+                  "Content-Length": "25",
+                  "Server-Timing": [
+                    "cfCacheStatus;desc=\"DYNAMIC\"",
+                    "cfEdge;dur=12,cfOrigin;dur=88"
+                  ],
+                  "X-Frame-Options": "DENY",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "Cf-Cache-Status": "DYNAMIC"
+                },
+                "status_code": 200
+              }
+            },
+            "summary": {
+              "up": 1,
+              "down": 0,
+              "status": "up",
+              "retry_group": "e8ebfe4c-e181-11f1-a2c8-4aeac3bd8938",
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true
+            },
+            "agent": {
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd",
+              "type": "heartbeat",
+              "version": "9.5.5"
+            },
+            "ecs": {
+              "version": "8.0.0"
+            },
+            "event": {
+              "dataset": "http",
+              "type": "heartbeat/summary"
+            },
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 31664
+                }
+              }
+            },
+            "resolve": {
+              "ip": "172.67.198.101",
+              "rtt": {
+                "us": 2380
+              }
+            },
+            "tags": [
+              "preprod",
+              "plataforma"
+            ]
+          },
+          "sort": [
+            1794808350205
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "pWjq4qEBJhWSGMZ_PWdU",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:52:34.360Z",
+            "summary": {
+              "retry_group": "eb84ffd8-e181-11f1-a2c8-4aeac3bd8938",
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true,
+              "up": 1,
+              "down": 0,
+              "status": "up"
+            },
+            "state": {
+              "started_at": "2026-11-16T05:49:08.562482648Z",
+              "duration_ms": "205797",
+              "checks": 14,
+              "up": 14,
+              "down": 0,
+              "id": "default-1a1e2e6f252-2",
+              "status": "up",
+              "flap_history": [],
+              "ends": null
+            },
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 117
+                }
+              }
+            },
+            "url": {
+              "scheme": "http",
+              "domain": "api-simulada",
+              "port": 8000,
+              "path": "/healthz",
+              "full": "http://api-simulada:8000/healthz"
+            },
+            "tags": [
+              "local",
+              "simulada"
+            ],
+            "agent": {
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd",
+              "type": "heartbeat",
+              "version": "9.5.5",
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80"
+            },
+            "ecs": {
+              "version": "8.0.0"
+            },
+            "http": {
+              "response": {
+                "status_code": 200,
+                "body": {
+                  "bytes": 32,
+                  "hash": "ae778bd447745682dd490540e4ee852069173e988838c8717cdd7eea6eae3929"
+                },
+                "mime_type": "application/json",
+                "headers": {
+                  "X-Request-Id": "f9e20581-97b8-4d2c-bf42-d50868133155",
+                  "Date": "Mon, 16 Nov 2026 05:52:33 GMT",
+                  "Server": "uvicorn",
+                  "Content-Length": "32",
+                  "Content-Type": "application/json"
+                }
+              },
+              "rtt": {
+                "total": {
+                  "us": 845
+                },
+                "write_request": {
+                  "us": 30
+                },
+                "response_header": {
+                  "us": 577
+                },
+                "validate": {
+                  "us": 674
+                },
+                "content": {
+                  "us": 97
+                }
+              }
+            },
+            "monitor": {
+              "status": "up",
+              "check_group": "eb84ffd8-e181-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 1332
+              },
+              "ip": "172.18.0.2",
+              "timespan": {
+                "lt": "2026-11-16T05:52:49.360Z",
+                "gte": "2026-11-16T05:52:34.360Z"
+              },
+              "name": "API simulada local · /healthz",
+              "type": "http",
+              "id": "api-simulada-health"
+            },
+            "resolve": {
+              "ip": "172.18.0.2",
+              "rtt": {
+                "us": 437
+              }
+            },
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            }
+          },
+          "sort": [
+            1794808354360
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "smjq4qEBJhWSGMZ_d2fm",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:52:49.363Z",
+            "http": {
+              "response": {
+                "mime_type": "application/json",
+                "headers": {
+                  "Content-Type": "application/json",
+                  "X-Request-Id": "144a7969-0f89-4634-b7a0-4c83d5671dee",
+                  "Date": "Mon, 16 Nov 2026 05:52:48 GMT",
+                  "Server": "uvicorn",
+                  "Content-Length": "32"
+                },
+                "status_code": 200,
+                "body": {
+                  "hash": "ae778bd447745682dd490540e4ee852069173e988838c8717cdd7eea6eae3929",
+                  "bytes": 32
+                }
+              },
+              "rtt": {
+                "total": {
+                  "us": 2233
+                },
+                "write_request": {
+                  "us": 117
+                },
+                "response_header": {
+                  "us": 1671
+                },
+                "validate": {
+                  "us": 1807
+                },
+                "content": {
+                  "us": 136
+                }
+              }
+            },
+            "resolve": {
+              "ip": "172.18.0.2",
+              "rtt": {
+                "us": 1217
+              }
+            },
+            "url": {
+              "path": "/healthz",
+              "full": "http://api-simulada:8000/healthz",
+              "scheme": "http",
+              "domain": "api-simulada",
+              "port": 8000
+            },
+            "summary": {
+              "down": 0,
+              "status": "up",
+              "retry_group": "f475ee48-e181-11f1-a2c8-4aeac3bd8938",
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true,
+              "up": 1
+            },
+            "state": {
+              "up": 15,
+              "flap_history": [],
+              "ends": null,
+              "id": "default-1a1e2e6f252-2",
+              "duration_ms": "220800",
+              "checks": 15,
+              "down": 0,
+              "started_at": "2026-11-16T05:49:08.562482648Z",
+              "status": "up"
+            },
+            "tags": [
+              "local",
+              "simulada"
+            ],
+            "ecs": {
+              "version": "8.0.0"
+            },
+            "agent": {
+              "type": "heartbeat",
+              "version": "9.5.5",
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd"
+            },
+            "monitor": {
+              "ip": "172.18.0.2",
+              "timespan": {
+                "lt": "2026-11-16T05:53:04.363Z",
+                "gte": "2026-11-16T05:52:49.363Z"
+              },
+              "type": "http",
+              "id": "api-simulada-health",
+              "name": "API simulada local · /healthz",
+              "status": "up",
+              "check_group": "f475ee48-e181-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 3662
+              }
+            },
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            },
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 296
+                }
+              }
+            }
+          },
+          "sort": [
+            1794808369363
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "xWjq4qEBJhWSGMZ_omdI",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:53:00.213Z",
+            "monitor": {
+              "id": "api-preprod-health",
+              "name": "API preprod · /health",
+              "status": "up",
+              "check_group": "facda9fb-e181-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 212178
+              },
+              "ip": "172.67.198.101",
+              "timespan": {
+                "lt": "2026-11-16T05:53:30.000Z",
+                "gte": "2026-11-16T05:53:00.213Z"
+              },
+              "type": "http"
+            },
+            "summary": {
+              "down": 0,
+              "status": "up",
+              "retry_group": "facda9fb-e181-11f1-a2c8-4aeac3bd8938",
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true,
+              "up": 1
+            },
+            "state": {
+              "down": 0,
+              "flap_history": [],
+              "id": "default-1a1e2c232c1-2",
+              "duration_ms": "2639987",
+              "ends": null,
+              "started_at": "2026-11-16T05:09:00.225854082Z",
+              "status": "up",
+              "checks": 88,
+              "up": 88
+            },
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 33976
+                }
+              }
+            },
+            "tls": {
+              "server": {
+                "x509": {
+                  "not_after": "2027-02-03T14:13:09.000Z",
+                  "public_key_curve": "P-256",
+                  "issuer": {
+                    "common_name": "YE1",
+                    "distinguished_name": "CN=YE1,O=Let's Encrypt,C=US"
+                  },
+                  "subject": {
+                    "distinguished_name": "CN=cuponmania.com.gt",
+                    "common_name": "cuponmania.com.gt"
+                  },
+                  "serial_number": "578092457721170088121644429329797672302539",
+                  "signature_algorithm": "ECDSA-SHA384",
+                  "public_key_algorithm": "ECDSA",
+                  "not_before": "2026-11-05T14:13:10.000Z"
+                },
+                "hash": {
+                  "sha1": "35d8c88094ab56855e129ff651d0df6ebff131e4",
+                  "sha256": "d5d55b424bdabe821b27472fab17840fd8e265e1a4586ff442cfd85cecf52fea"
+                }
+              },
+              "established": true,
+              "rtt": {
+                "handshake": {
+                  "us": 39572
+                }
+              },
+              "version_protocol": "tls",
+              "version": "1.3",
+              "cipher": "TLS-AES-128-GCM-SHA256"
+            },
+            "tags": [
+              "preprod",
+              "plataforma"
+            ],
+            "ecs": {
+              "version": "8.0.0"
+            },
+            "url": {
+              "port": 443,
+              "path": "/health",
+              "full": "https://api-preprod.cuponmania.com.gt/health",
+              "scheme": "https",
+              "domain": "api-preprod.cuponmania.com.gt"
+            },
+            "resolve": {
+              "rtt": {
+                "us": 2263
+              },
+              "ip": "172.67.198.101"
+            },
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            },
+            "agent": {
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd",
+              "type": "heartbeat",
+              "version": "9.5.5"
+            },
+            "http": {
+              "response": {
+                "body": {
+                  "hash": "56cfae419491a995b8509a909281a1c76a842f556963712eba5c92c7e48c13cf",
+                  "bytes": 25
+                },
+                "mime_type": "application/json",
+                "headers": {
+                  "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+                  "X-Amzn-Remapped-Date": "Mon, 16 Nov 2026 05:53:00 GMT",
+                  "Cf-Ray": "a5b43b9c88ff35b7-MIA",
+                  "X-Cache": "Miss from cloudfront",
+                  "X-Amz-Cf-Id": "Z2zQLcK6bf8mST_VfpXA2a3Dew9G39kd9eIT3KXZ06p5Dm9BdCpDGA==",
+                  "Content-Type": "application/json;charset=utf-8",
+                  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+                  "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=Y9MvYZ6A19LrrKZvxETjsMmXPM7%2F2ycGCGw4dCJcdUh61xvm1HqJuMxCPzUT14eIGaxVJzXKU4z%2FijBgP9ORiJ%2FETRKB%2BqBMDq97vC5kFzTxK%2BQSAXiV2p9Ol5TY0cWYkB6ujwNTccleikBH7SQ2wA%3D%3D\"}]}",
+                  "Server": "cloudflare",
+                  "Via": "1.1 e37860fe6bd26b0ebc2d317d518e7120.cloudfront.net (CloudFront)",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "X-Amzn-Trace-Id": "Root=1-6afa9a3c-6839b3894dfed5940dd473f1;Parent=0f1994d63b84cdd5;Sampled=0;Lineage=1:9218b8f6:0",
+                  "Content-Security-Policy": "default-src 'none'",
+                  "Server-Timing": [
+                    "cfCacheStatus;desc=\"DYNAMIC\"",
+                    "cfEdge;dur=13,cfOrigin;dur=90"
+                  ],
+                  "X-Frame-Options": "DENY",
+                  "X-Amzn-Requestid": "5e2435e9-5cb3-4cf8-91e5-f3790d10a1d2",
+                  "Date": "Mon, 16 Nov 2026 05:53:00 GMT",
+                  "X-Content-Type-Options": "nosniff",
+                  "Cf-Cache-Status": "DYNAMIC",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "Content-Length": "25",
+                  "X-Robots-Tag": "noindex, nofollow",
+                  "X-Amzn-Remapped-Content-Length": "25",
+                  "X-Amz-Cf-Pop": "MIA50-P8",
+                  "Alt-Svc": "h3=\":443\"; ma=86400"
+                },
+                "status_code": 200
+              },
+              "rtt": {
+                "total": {
+                  "us": 209854
+                },
+                "write_request": {
+                  "us": 76
+                },
+                "response_header": {
+                  "us": 136006
+                },
+                "validate": {
+                  "us": 136169
+                },
+                "content": {
+                  "us": 162
+                }
+              }
+            }
+          },
+          "sort": [
+            1794808380213
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "xmjq4qEBJhWSGMZ_omdI",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:53:04.363Z",
+            "monitor": {
+              "name": "API simulada local · /healthz",
+              "status": "up",
+              "check_group": "fd66d078-e181-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 3075
+              },
+              "ip": "172.18.0.2",
+              "timespan": {
+                "lt": "2026-11-16T05:53:19.363Z",
+                "gte": "2026-11-16T05:53:04.363Z"
+              },
+              "type": "http",
+              "id": "api-simulada-health"
+            },
+            "summary": {
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true,
+              "up": 1,
+              "down": 0,
+              "status": "up",
+              "retry_group": "fd66d078-e181-11f1-a2c8-4aeac3bd8938"
+            },
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            },
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 350
+                }
+              }
+            },
+            "tags": [
+              "local",
+              "simulada"
+            ],
+            "ecs": {
+              "version": "8.0.0"
+            },
+            "agent": {
+              "version": "9.5.5",
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd",
+              "type": "heartbeat"
+            },
+            "http": {
+              "response": {
+                "status_code": 200,
+                "body": {
+                  "hash": "ae778bd447745682dd490540e4ee852069173e988838c8717cdd7eea6eae3929",
+                  "bytes": 32
+                },
+                "mime_type": "application/json",
+                "headers": {
+                  "Content-Length": "32",
+                  "Content-Type": "application/json",
+                  "X-Request-Id": "c0d73140-defc-4926-8fee-343c68a86f78",
+                  "Date": "Mon, 16 Nov 2026 05:53:04 GMT",
+                  "Server": "uvicorn"
+                }
+              },
+              "rtt": {
+                "total": {
+                  "us": 1871
+                },
+                "write_request": {
+                  "us": 186
+                },
+                "response_header": {
+                  "us": 1241
+                },
+                "validate": {
+                  "us": 1376
+                },
+                "content": {
+                  "us": 135
+                }
+              }
+            },
+            "resolve": {
+              "ip": "172.18.0.2",
+              "rtt": {
+                "us": 1029
+              }
+            },
+            "url": {
+              "path": "/healthz",
+              "full": "http://api-simulada:8000/healthz",
+              "scheme": "http",
+              "domain": "api-simulada",
+              "port": 8000
+            },
+            "state": {
+              "down": 0,
+              "ends": null,
+              "started_at": "2026-11-16T05:49:08.562482648Z",
+              "duration_ms": "235800",
+              "status": "up",
+              "checks": 16,
+              "flap_history": [],
+              "id": "default-1a1e2e6f252-2",
+              "up": 16
+            }
+          },
+          "sort": [
+            1794808384363
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "x2jq4qEBJhWSGMZ_omdI",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:53:10.178Z",
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 32345
+                }
+              }
+            },
+            "summary": {
+              "final_attempt": true,
+              "up": 1,
+              "down": 0,
+              "status": "up",
+              "retry_group": "00c384e8-e182-11f1-a2c8-4aeac3bd8938",
+              "attempt": 1,
+              "max_attempts": 1
+            },
+            "ecs": {
+              "version": "8.0.0"
+            },
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            },
+            "tls": {
+              "cipher": "TLS-AES-128-GCM-SHA256",
+              "server": {
+                "x509": {
+                  "not_before": "2026-11-05T14:13:10.000Z",
+                  "not_after": "2027-02-03T14:13:09.000Z",
+                  "public_key_curve": "P-256",
+                  "issuer": {
+                    "common_name": "YE1",
+                    "distinguished_name": "CN=YE1,O=Let's Encrypt,C=US"
+                  },
+                  "subject": {
+                    "common_name": "cuponmania.com.gt",
+                    "distinguished_name": "CN=cuponmania.com.gt"
+                  },
+                  "serial_number": "578092457721170088121644429329797672302539",
+                  "signature_algorithm": "ECDSA-SHA384",
+                  "public_key_algorithm": "ECDSA"
+                },
+                "hash": {
+                  "sha1": "35d8c88094ab56855e129ff651d0df6ebff131e4",
+                  "sha256": "d5d55b424bdabe821b27472fab17840fd8e265e1a4586ff442cfd85cecf52fea"
+                }
+              },
+              "established": true,
+              "rtt": {
+                "handshake": {
+                  "us": 46412
+                }
+              },
+              "version_protocol": "tls",
+              "version": "1.3"
+            },
+            "http": {
+              "rtt": {
+                "write_request": {
+                  "us": 31
+                },
+                "validate": {
+                  "us": 96869
+                },
+                "content": {
+                  "us": 140
+                },
+                "total": {
+                  "us": 175710
+                },
+                "response_header": {
+                  "us": 96728
+                }
+              },
+              "response": {
+                "status_code": 200,
+                "body": {
+                  "bytes": 15,
+                  "hash": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288"
+                },
+                "mime_type": "application/json",
+                "headers": {
+                  "X-Frame-Options": "DENY",
+                  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+                  "X-Cache": "Miss from cloudfront",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "X-Amz-Cf-Id": "58m6HHAO5ieR5Gx9xdahWxq32enM6qJYZJWElmNVrKYYGG9IZUS8pA==",
+                  "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+                  "Content-Length": "15",
+                  "Content-Security-Policy": "default-src 'none'",
+                  "X-Amzn-Remapped-Content-Length": "15",
+                  "Alt-Svc": "h3=\":443\"; ma=86400",
+                  "X-Amzn-Trace-Id": "Root=1-6afa9a46-5d82f1403351b7e8011c5531;Parent=4175ff4fe761748a;Sampled=0;Lineage=1:9218b8f6:0",
+                  "Via": "1.1 50df440d81c5bcc8f7b057d3f7034a72.cloudfront.net (CloudFront)",
+                  "Cache-Control": "no-store",
+                  "X-Amzn-Remapped-Date": "Mon, 16 Nov 2026 05:53:10 GMT",
+                  "Cf-Cache-Status": "DYNAMIC",
+                  "X-Amz-Cf-Pop": "MIA50-P8",
+                  "Date": "Mon, 16 Nov 2026 05:53:10 GMT",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "X-Amzn-Requestid": "11512315-d13b-4815-94a0-c65fe5c9bb60",
+                  "Server": "cloudflare",
+                  "Content-Type": "application/json",
+                  "X-Robots-Tag": "noindex, nofollow",
+                  "Cf-Ray": "a5b43bdb1811ae0e-MIA",
+                  "X-Content-Type-Options": "nosniff",
+                  "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=RJ%2FoChYsLf7M2JuuFusLAL61OhK%2FEGip2pqWYXeLMZaq9jOYqL4%2BcdD5d3FAbcbGkRME0QH%2FqYjcY2e45Rr0zPK5CRqE5izNlPGwuBtytzimD47%2BTnz3mXDC%2FWnzGBRe69TXxsYG%2BXgqklo7dkIpug%3D%3D\"}]}",
+                  "Server-Timing": [
+                    "cfCacheStatus;desc=\"DYNAMIC\"",
+                    "cfEdge;dur=15,cfOrigin;dur=42"
+                  ]
+                }
+              }
+            },
+            "monitor": {
+              "check_group": "00c384e8-e182-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 178074
+              },
+              "ip": "172.67.198.101",
+              "timespan": {
+                "gte": "2026-11-16T05:53:10.178Z",
+                "lt": "2026-11-16T05:54:10.000Z"
+              },
+              "type": "http",
+              "id": "api-preprod-ready",
+              "name": "API preprod · /health/ready",
+              "status": "up"
+            },
+            "resolve": {
+              "ip": "172.67.198.101",
+              "rtt": {
+                "us": 2283
+              }
+            },
+            "url": {
+              "path": "/health/ready",
+              "full": "https://api-preprod.cuponmania.com.gt/health/ready",
+              "scheme": "https",
+              "domain": "api-preprod.cuponmania.com.gt",
+              "port": 443
+            },
+            "tags": [
+              "preprod",
+              "plataforma"
+            ],
+            "agent": {
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd",
+              "type": "heartbeat",
+              "version": "9.5.5"
+            },
+            "state": {
+              "started_at": "2026-11-16T01:42:15.231561336Z",
+              "duration_ms": "15054947",
+              "status": "up",
+              "checks": 251,
+              "up": 251,
+              "ends": null,
+              "down": 0,
+              "flap_history": [],
+              "id": "default-1a1e204e9bf-0"
+            }
+          },
+          "sort": [
+            1794808390178
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "0mjq4qEBJhWSGMZ_7Wca",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:53:19.364Z",
+            "url": {
+              "scheme": "http",
+              "domain": "api-simulada",
+              "port": 8000,
+              "path": "/healthz",
+              "full": "http://api-simulada:8000/healthz"
+            },
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            },
+            "state": {
+              "id": "default-1a1e2e6f252-2",
+              "checks": 17,
+              "up": 17,
+              "flap_history": [],
+              "started_at": "2026-11-16T05:49:08.562482648Z",
+              "duration_ms": "250802",
+              "status": "up",
+              "down": 0,
+              "ends": null
+            },
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 411
+                }
+              }
+            },
+            "http": {
+              "rtt": {
+                "response_header": {
+                  "us": 1117
+                },
+                "validate": {
+                  "us": 1242
+                },
+                "content": {
+                  "us": 124
+                },
+                "total": {
+                  "us": 1821
+                },
+                "write_request": {
+                  "us": 73
+                }
+              },
+              "response": {
+                "status_code": 200,
+                "body": {
+                  "hash": "ae778bd447745682dd490540e4ee852069173e988838c8717cdd7eea6eae3929",
+                  "bytes": 32
+                },
+                "mime_type": "application/json",
+                "headers": {
+                  "X-Request-Id": "64898aa3-4c5d-4184-8d92-53cc6e7deda1",
+                  "Date": "Mon, 16 Nov 2026 05:53:19 GMT",
+                  "Server": "uvicorn",
+                  "Content-Length": "32",
+                  "Content-Type": "application/json"
+                }
+              }
+            },
+            "resolve": {
+              "ip": "172.18.0.2",
+              "rtt": {
+                "us": 1443
+              }
+            },
+            "tags": [
+              "local",
+              "simulada"
+            ],
+            "agent": {
+              "name": "3e71f03de5fd",
+              "type": "heartbeat",
+              "version": "9.5.5",
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3"
+            },
+            "ecs": {
+              "version": "8.0.0"
+            },
+            "summary": {
+              "status": "up",
+              "retry_group": "0657cd6a-e182-11f1-a2c8-4aeac3bd8938",
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true,
+              "up": 1,
+              "down": 0
+            },
+            "monitor": {
+              "type": "http",
+              "id": "api-simulada-health",
+              "name": "API simulada local · /healthz",
+              "status": "up",
+              "check_group": "0657cd6a-e182-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 3390
+              },
+              "ip": "172.18.0.2",
+              "timespan": {
+                "lt": "2026-11-16T05:53:34.364Z",
+                "gte": "2026-11-16T05:53:19.364Z"
+              }
+            }
+          },
+          "sort": [
+            1794808399364
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "02jq4qEBJhWSGMZ_7Wcb",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:53:20.242Z",
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            },
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 31164
+                }
+              }
+            },
+            "tags": [
+              "preprod",
+              "negocio"
+            ],
+            "ecs": {
+              "version": "8.0.0"
+            },
+            "agent": {
+              "type": "heartbeat",
+              "version": "9.5.5",
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd"
+            },
+            "tls": {
+              "rtt": {
+                "handshake": {
+                  "us": 44114
+                }
+              },
+              "version_protocol": "tls",
+              "version": "1.3",
+              "cipher": "TLS-AES-128-GCM-SHA256",
+              "server": {
+                "x509": {
+                  "public_key_algorithm": "ECDSA",
+                  "not_before": "2026-11-05T14:13:10.000Z",
+                  "not_after": "2027-02-03T14:13:09.000Z",
+                  "public_key_curve": "P-256",
+                  "issuer": {
+                    "common_name": "YE1",
+                    "distinguished_name": "CN=YE1,O=Let's Encrypt,C=US"
+                  },
+                  "subject": {
+                    "common_name": "cuponmania.com.gt",
+                    "distinguished_name": "CN=cuponmania.com.gt"
+                  },
+                  "serial_number": "578092457721170088121644429329797672302539",
+                  "signature_algorithm": "ECDSA-SHA384"
+                },
+                "hash": {
+                  "sha1": "35d8c88094ab56855e129ff651d0df6ebff131e4",
+                  "sha256": "d5d55b424bdabe821b27472fab17840fd8e265e1a4586ff442cfd85cecf52fea"
+                }
+              },
+              "established": true
+            },
+            "url": {
+              "path": "/api/v1/coupons",
+              "query": "limit=1&offset=0",
+              "full": "https://api-preprod.cuponmania.com.gt/api/v1/coupons?limit=1&offset=0",
+              "scheme": "https",
+              "domain": "api-preprod.cuponmania.com.gt",
+              "port": 443
+            },
+            "summary": {
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true,
+              "up": 1,
+              "down": 0,
+              "status": "up",
+              "retry_group": "06b94e24-e182-11f1-a2c8-4aeac3bd8938"
+            },
+            "state": {
+              "checks": 252,
+              "down": 0,
+              "ends": null,
+              "started_at": "2026-11-16T01:42:20.696516757Z",
+              "up": 252,
+              "flap_history": [],
+              "id": "default-1a1e204ff18-0",
+              "duration_ms": "15059546",
+              "status": "up"
+            },
+            "resolve": {
+              "ip": "172.67.198.101",
+              "rtt": {
+                "us": 2528
+              }
+            },
+            "http": {
+              "response": {
+                "headers": {
+                  "Content-Security-Policy": "default-src 'none'",
+                  "X-Robots-Tag": "noindex, nofollow",
+                  "X-Amzn-Requestid": "729b92ea-e881-4e82-93b5-d773254bee65",
+                  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+                  "Content-Type": "application/json;charset=utf-8",
+                  "X-Amzn-Remapped-Content-Length": "2512",
+                  "X-Amzn-Remapped-Date": "Mon, 16 Nov 2026 05:53:20 GMT",
+                  "X-Amz-Cf-Pop": "MIA50-P8",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "X-Amz-Cf-Id": "c2go_MSBau1z17P76hrBGVGvTyXcqShPYJ7KM-cH-GugoPiPttj2lg==",
+                  "X-Amzn-Trace-Id": "Root=1-6afa9a50-333acbcb2540c78a79b7c49e;Parent=0530e316d77d6951;Sampled=0;Lineage=1:9218b8f6:0",
+                  "X-Frame-Options": "DENY",
+                  "Server": "cloudflare",
+                  "Cf-Ray": "a5b43c198fc36380-MIA",
+                  "Alt-Svc": "h3=\":443\"; ma=86400",
+                  "Vary": [
+                    "Origin",
+                    "Accept-Encoding"
+                  ],
+                  "Via": "1.1 9f5b4670309467f3e671087a0d599884.cloudfront.net (CloudFront)",
+                  "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=fB8NoeLjl%2FdwLbav0WborAkbwy4Cj64Y7V18snmT8MkQazXIuei7bpTswSC5%2Fijt6mGRgqfgjvb2B1aIi%2BMIzvXEci0t7JrtFTBPYOlVgZUGn7Y8SPFF5vvxd2%2B%2FicuZroycsRTi5eTtz8SKaF8ALg%3D%3D\"}]}",
+                  "Date": "Mon, 16 Nov 2026 05:53:21 GMT",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-Request-Id": "3bb5bfaa-a87c-4060-91b0-dcd741dfb62a",
+                  "Cf-Cache-Status": "DYNAMIC",
+                  "Server-Timing": [
+                    "cfCacheStatus;desc=\"DYNAMIC\"",
+                    "cfEdge;dur=10,cfOrigin;dur=121"
+                  ],
+                  "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+                  "X-Cache": "Miss from cloudfront"
+                },
+                "status_code": 200,
+                "body": {
+                  "hash": "8ffe5d1ae1b0689d13f890a908c0ff97c64344d3a12548b7e71ca209600d79b2",
+                  "bytes": 2512
+                },
+                "mime_type": "text/plain; charset=utf-8"
+              },
+              "rtt": {
+                "content": {
+                  "us": 186
+                },
+                "total": {
+                  "us": 239987
+                },
+                "write_request": {
+                  "us": 65
+                },
+                "response_header": {
+                  "us": 164425
+                },
+                "validate": {
+                  "us": 164612
+                }
+              }
+            },
+            "monitor": {
+              "check_group": "06b94e24-e182-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 242591
+              },
+              "ip": "172.67.198.101",
+              "timespan": {
+                "gte": "2026-11-16T05:53:20.242Z",
+                "lt": "2026-11-16T05:54:20.000Z"
+              },
+              "type": "http",
+              "id": "api-preprod-catalogo",
+              "name": "API preprod · catálogo de cupones",
+              "status": "up"
+            }
+          },
+          "sort": [
+            1794808400242
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "5mjr4qEBJhWSGMZ_F2dz",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:53:30.208Z",
+            "ecs": {
+              "version": "8.0.0"
+            },
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 31253
+                }
+              }
+            },
+            "url": {
+              "scheme": "https",
+              "domain": "api-preprod.cuponmania.com.gt",
+              "port": 443,
+              "path": "/health",
+              "full": "https://api-preprod.cuponmania.com.gt/health"
+            },
+            "state": {
+              "up": 89,
+              "flap_history": [],
+              "ends": null,
+              "down": 0,
+              "id": "default-1a1e2c232c1-2",
+              "started_at": "2026-11-16T05:09:00.225854082Z",
+              "duration_ms": "2669982",
+              "status": "up",
+              "checks": 89
+            },
+            "tls": {
+              "server": {
+                "hash": {
+                  "sha256": "d5d55b424bdabe821b27472fab17840fd8e265e1a4586ff442cfd85cecf52fea",
+                  "sha1": "35d8c88094ab56855e129ff651d0df6ebff131e4"
+                },
+                "x509": {
+                  "serial_number": "578092457721170088121644429329797672302539",
+                  "signature_algorithm": "ECDSA-SHA384",
+                  "public_key_algorithm": "ECDSA",
+                  "not_before": "2026-11-05T14:13:10.000Z",
+                  "not_after": "2027-02-03T14:13:09.000Z",
+                  "public_key_curve": "P-256",
+                  "issuer": {
+                    "distinguished_name": "CN=YE1,O=Let's Encrypt,C=US",
+                    "common_name": "YE1"
+                  },
+                  "subject": {
+                    "common_name": "cuponmania.com.gt",
+                    "distinguished_name": "CN=cuponmania.com.gt"
+                  }
+                }
+              },
+              "established": true,
+              "rtt": {
+                "handshake": {
+                  "us": 38091
+                }
+              },
+              "version_protocol": "tls",
+              "version": "1.3",
+              "cipher": "TLS-AES-128-GCM-SHA256"
+            },
+            "http": {
+              "response": {
+                "headers": {
+                  "Via": "1.1 9f5b4670309467f3e671087a0d599884.cloudfront.net (CloudFront)",
+                  "Alt-Svc": "h3=\":443\"; ma=86400",
+                  "X-Robots-Tag": "noindex, nofollow",
+                  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+                  "X-Amz-Cf-Pop": "MIA50-P8",
+                  "Cf-Ray": "a5b43c580804b112-MIA",
+                  "Server-Timing": [
+                    "cfCacheStatus;desc=\"DYNAMIC\"",
+                    "cfEdge;dur=12,cfOrigin;dur=87"
+                  ],
+                  "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=1Z98qxwlKu8kOLy27h4ldwwX%2BOdzW6zM02uQ2HdbEFe4lnNqsskPuiV%2Fe%2BzPGykNQXRtsFuNEBbqCGfY5ZqdE3ZjRoYhAXBtovK1U63UIGgphSScmgg7Xzf0S6ctMdJdf5M9LV3RAnzxUWVUbFplFw%3D%3D\"}]}",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "X-Cache": "Miss from cloudfront",
+                  "Content-Security-Policy": "default-src 'none'",
+                  "X-Amz-Cf-Id": "H-BWSjz5J_Ii2XqzltklwcVgbXIZ3VjoirnNHlXjFJPskBMRlfgw6w==",
+                  "Server": "cloudflare",
+                  "X-Amzn-Remapped-Content-Length": "25",
+                  "Date": "Mon, 16 Nov 2026 05:53:30 GMT",
+                  "Content-Length": "25",
+                  "Content-Type": "application/json;charset=utf-8",
+                  "X-Amzn-Requestid": "75d5d0bd-3aca-41e1-9553-783f74863d74",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "Cf-Cache-Status": "DYNAMIC",
+                  "X-Frame-Options": "DENY",
+                  "X-Amzn-Remapped-Date": "Mon, 16 Nov 2026 05:53:30 GMT",
+                  "X-Amzn-Trace-Id": "Root=1-6afa9a5a-43ca1da32b6c2a8a382f7524;Parent=6d0c2860180ba460;Sampled=0;Lineage=1:9218b8f6:0",
+                  "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+                  "X-Content-Type-Options": "nosniff"
+                },
+                "status_code": 200,
+                "body": {
+                  "hash": "56cfae419491a995b8509a909281a1c76a842f556963712eba5c92c7e48c13cf",
+                  "bytes": 25
+                },
+                "mime_type": "application/json"
+              },
+              "rtt": {
+                "response_header": {
+                  "us": 134801
+                },
+                "validate": {
+                  "us": 135115
+                },
+                "content": {
+                  "us": 313
+                },
+                "total": {
+                  "us": 204562
+                },
+                "write_request": {
+                  "us": 36
+                }
+              }
+            },
+            "summary": {
+              "down": 0,
+              "status": "up",
+              "retry_group": "0caf55c7-e182-11f1-a2c8-4aeac3bd8938",
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true,
+              "up": 1
+            },
+            "agent": {
+              "type": "heartbeat",
+              "version": "9.5.5",
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd"
+            },
+            "monitor": {
+              "name": "API preprod · /health",
+              "status": "up",
+              "check_group": "0caf55c7-e182-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 206762
+              },
+              "ip": "172.67.198.101",
+              "timespan": {
+                "gte": "2026-11-16T05:53:30.207Z",
+                "lt": "2026-11-16T05:54:00.000Z"
+              },
+              "type": "http",
+              "id": "api-preprod-health"
+            },
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            },
+            "resolve": {
+              "rtt": {
+                "us": 2098
+              },
+              "ip": "172.67.198.101"
+            },
+            "tags": [
+              "preprod",
+              "plataforma"
+            ]
+          },
+          "sort": [
+            1794808410208
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "52jr4qEBJhWSGMZ_F2dz",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:53:34.363Z",
+            "url": {
+              "full": "http://api-simulada:8000/healthz",
+              "scheme": "http",
+              "domain": "api-simulada",
+              "port": 8000,
+              "path": "/healthz"
+            },
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            },
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 121
+                }
+              }
+            },
+            "http": {
+              "response": {
+                "mime_type": "application/json",
+                "headers": {
+                  "Date": "Mon, 16 Nov 2026 05:53:34 GMT",
+                  "Server": "uvicorn",
+                  "Content-Length": "32",
+                  "Content-Type": "application/json",
+                  "X-Request-Id": "5c5620af-a84e-43ac-9d21-2bd220435bc3"
+                },
+                "status_code": 200,
+                "body": {
+                  "hash": "ae778bd447745682dd490540e4ee852069173e988838c8717cdd7eea6eae3929",
+                  "bytes": 32
+                }
+              },
+              "rtt": {
+                "write_request": {
+                  "us": 28
+                },
+                "response_header": {
+                  "us": 683
+                },
+                "validate": {
+                  "us": 802
+                },
+                "content": {
+                  "us": 118
+                },
+                "total": {
+                  "us": 977
+                }
+              }
+            },
+            "agent": {
+              "version": "9.5.5",
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80",
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd",
+              "type": "heartbeat"
+            },
+            "summary": {
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true,
+              "up": 1,
+              "down": 0,
+              "status": "up",
+              "retry_group": "0f48c784-e182-11f1-a2c8-4aeac3bd8938"
+            },
+            "state": {
+              "started_at": "2026-11-16T05:49:08.562482648Z",
+              "status": "up",
+              "up": 18,
+              "down": 0,
+              "flap_history": [],
+              "id": "default-1a1e2e6f252-2",
+              "duration_ms": "265801",
+              "checks": 18,
+              "ends": null
+            },
+            "monitor": {
+              "timespan": {
+                "gte": "2026-11-16T05:53:34.363Z",
+                "lt": "2026-11-16T05:53:49.363Z"
+              },
+              "name": "API simulada local · /healthz",
+              "type": "http",
+              "id": "api-simulada-health",
+              "status": "up",
+              "check_group": "0f48c784-e182-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 1460
+              },
+              "ip": "172.18.0.2"
+            },
+            "tags": [
+              "local",
+              "simulada"
+            ],
+            "ecs": {
+              "version": "8.0.0"
+            },
+            "resolve": {
+              "ip": "172.18.0.2",
+              "rtt": {
+                "us": 432
+              }
+            }
+          },
+          "sort": [
+            1794808414363
+          ]
+        },
+        {
+          "_index": ".ds-heartbeat-9.5.5-2026.11.16-000001",
+          "_id": "8mjr4qEBJhWSGMZ_YmdH",
+          "_score": null,
+          "_source": {
+            "@timestamp": "2026-11-16T05:53:49.364Z",
+            "summary": {
+              "attempt": 1,
+              "max_attempts": 1,
+              "final_attempt": true,
+              "up": 1,
+              "down": 0,
+              "status": "up",
+              "retry_group": "1839ad7c-e182-11f1-a2c8-4aeac3bd8938"
+            },
+            "agent": {
+              "id": "c7bd36f9-3cf1-4002-bc0f-9fd8a245c1d3",
+              "name": "3e71f03de5fd",
+              "type": "heartbeat",
+              "version": "9.5.5",
+              "ephemeral_id": "4053b22d-ef7c-43d4-8a95-cca7b4166d80"
+            },
+            "state": {
+              "status": "up",
+              "up": 19,
+              "id": "default-1a1e2e6f252-2",
+              "started_at": "2026-11-16T05:49:08.562482648Z",
+              "duration_ms": "280802",
+              "checks": 19,
+              "down": 0,
+              "flap_history": [],
+              "ends": null
+            },
+            "tcp": {
+              "rtt": {
+                "connect": {
+                  "us": 114
+                }
+              }
+            },
+            "tags": [
+              "local",
+              "simulada"
+            ],
+            "ecs": {
+              "version": "8.0.0"
+            },
+            "http": {
+              "response": {
+                "headers": {
+                  "X-Request-Id": "0cbec556-b8f9-44b0-92e0-2dc48124aee9",
+                  "Date": "Mon, 16 Nov 2026 05:53:49 GMT",
+                  "Server": "uvicorn",
+                  "Content-Length": "32",
+                  "Content-Type": "application/json"
+                },
+                "status_code": 200,
+                "body": {
+                  "bytes": 32,
+                  "hash": "ae778bd447745682dd490540e4ee852069173e988838c8717cdd7eea6eae3929"
+                },
+                "mime_type": "application/json"
+              },
+              "rtt": {
+                "write_request": {
+                  "us": 40
+                },
+                "response_header": {
+                  "us": 863
+                },
+                "validate": {
+                  "us": 1006
+                },
+                "content": {
+                  "us": 142
+                },
+                "total": {
+                  "us": 1171
+                }
+              }
+            },
+            "monitor": {
+              "timespan": {
+                "gte": "2026-11-16T05:53:49.364Z",
+                "lt": "2026-11-16T05:54:04.364Z"
+              },
+              "type": "http",
+              "id": "api-simulada-health",
+              "name": "API simulada local · /healthz",
+              "status": "up",
+              "check_group": "1839ad7c-e182-11f1-a2c8-4aeac3bd8938-1",
+              "duration": {
+                "us": 1776
+              },
+              "ip": "172.18.0.2"
+            },
+            "resolve": {
+              "rtt": {
+                "us": 527
+              },
+              "ip": "172.18.0.2"
+            },
+            "url": {
+              "port": 8000,
+              "path": "/healthz",
+              "full": "http://api-simulada:8000/healthz",
+              "scheme": "http",
+              "domain": "api-simulada"
+            },
+            "event": {
+              "type": "heartbeat/summary",
+              "dataset": "http"
+            }
+          },
+          "sort": [
+            1794808429364
+          ]
+        }
+      ]
+    }
+  },
+  "api_request": {
+    "size": 0,
+    "track_total_hits": true,
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "term": {
+              "event.kind": "event"
+            }
+          },
+          {
+            "term": {
+              "service.name": "cuponmania-api"
+            }
+          }
+        ]
+      }
+    },
+    "aggs": {
+      "latest": {
+        "max": {
+          "field": "@timestamp"
+        }
+      },
+      "recent": {
+        "filter": {
+          "range": {
+            "@timestamp": {
+              "gte": "2026-11-16T05:49:10.683223+00:00"
+            }
+          }
+        }
+      },
+      "missing": {
+        "filter": {
+          "bool": {
+            "should": [
+              {
+                "bool": {
+                  "must_not": {
+                    "exists": {
+                      "field": "@timestamp"
+                    }
+                  }
+                }
+              },
+              {
+                "bool": {
+                  "must_not": {
+                    "exists": {
+                      "field": "http.request.method"
+                    }
+                  }
+                }
+              },
+              {
+                "bool": {
+                  "must_not": {
+                    "exists": {
+                      "field": "http.response.status_code"
+                    }
+                  }
+                }
+              },
+              {
+                "bool": {
+                  "must_not": {
+                    "exists": {
+                      "field": "event.duration"
+                    }
+                  }
+                }
+              },
+              {
+                "bool": {
+                  "must_not": {
+                    "exists": {
+                      "field": "url.path"
+                    }
+                  }
+                }
+              },
+              {
+                "bool": {
+                  "must_not": {
+                    "exists": {
+                      "field": "service.name"
+                    }
+                  }
+                }
+              },
+              {
+                "bool": {
+                  "must_not": {
+                    "exists": {
+                      "field": "log.level"
+                    }
+                  }
+                }
+              }
+            ],
+            "minimum_should_match": 1
+          }
+        }
+      }
+    }
+  },
+  "api_response": {
+    "took": 8,
+    "timed_out": false,
+    "_shards": {
+      "total": 1,
+      "successful": 1,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": {
+        "value": 8864,
+        "relation": "eq"
+      },
+      "max_score": null,
+      "hits": []
+    },
+    "aggregations": {
+      "latest": {
+        "value": 1794808350968.0,
+        "value_as_string": "2026-11-16T05:52:30.968Z"
+      },
+      "recent": {
+        "doc_count": 53
+      },
+      "missing": {
+        "doc_count": 0
+      }
+    }
+  },
+  "browser": "8 paneles con datos; 4 monitores up; sin avisos de error. Latencia en milliseconds. Dos capturas de viewport guardadas, ventana Last24hours; se conserva captura historica completa por separado."
+}

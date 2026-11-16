@@ -1,0 +1,89 @@
+{
+  "checked_at_utc": "2026-11-16T05:50:12.988356+00:00",
+  "request_id": "ce48ecb1-3c8d-40dd-9238-a8fd2c920e54",
+  "aws_response": {
+    "events": [
+      {
+        "logStreamName": "2026/11/11/[$LATEST]de89d00d7ac34f89b205eb5fad67fb38",
+        "timestamp": 1794431710254,
+        "message": "{\"@timestamp\":\"2026-11-11T21:15:10.254Z\",\"log.level\":\"info\",\"message\":\"GET /health/ready 200\",\"ecs\":{\"version\":\"8.11.0\"},\"service\":{\"name\":\"cuponmania-api\"},\"http\":{\"request\":{\"id\":\"ce48ecb1-3c8d-40dd-9238-a8fd2c920e54\",\"method\":\"GET\"},\"response\":{\"status_code\":200},\"route\":\"/health/ready\"},\"event\":{\"kind\":\"event\",\"category\":[\"web\"],\"duration\":3192140},\"url\":{\"path\":\"/health/ready\"},\"cuponmania\":{\"catalog_id\":\"INC-04\",\"component\":\"Plataforma\"}}\n",
+        "ingestionTime": 1794431719312,
+        "eventId": "40017164346537984853827624081028953563731105142597025793"
+      },
+      {
+        "logStreamName": "2026/11/11/[$LATEST]de89d00d7ac34f89b205eb5fad67fb38",
+        "timestamp": 1794431710254,
+        "message": "{\"@timestamp\":\"2026-11-11T21:15:10.254Z\",\"log.level\":\"info\",\"message\":\"GET /health/ready 200\",\"ecs\":{\"version\":\"8.11.0\"},\"service\":{\"name\":\"cuponmania-api\"},\"http\":{\"request\":{\"id\":\"ce48ecb1-3c8d-40dd-9238-a8fd2c920e54\",\"method\":\"GET\"},\"response\":{\"status_code\":200},\"route\":\"/health/ready\"},\"event\":{\"kind\":\"event\",\"category\":[\"web\"],\"duration\":3192140},\"url\":{\"path\":\"/health/ready\"},\"cuponmania\":{\"catalog_id\":\"INC-04\",\"component\":\"Plataforma\"}}\n",
+        "ingestionTime": 1794431724766,
+        "eventId": "40017164346537984853827624087622141362820161388666421249"
+      }
+    ],
+    "searchedLogStreams": []
+  },
+  "elasticsearch_before": [
+    {
+      "_id": "40017164346537984853827624081028953563731105142597025793",
+      "_index": ".ds-filebeat-9.5.5-2026.11.16-000001",
+      "_source": {
+        "@timestamp": "2026-11-11T21:15:10.254Z",
+        "event": {
+          "duration": 3192140,
+          "ingested": "2026-11-16T05:38:54.006Z",
+          "kind": "event"
+        },
+        "http": {
+          "request": {
+            "id": "ce48ecb1-3c8d-40dd-9238-a8fd2c920e54",
+            "method": "GET"
+          },
+          "response": {
+            "status_code": 200
+          }
+        },
+        "log": {
+          "level": "info"
+        },
+        "service": {
+          "name": "cuponmania-api"
+        },
+        "url": {
+          "path": "/health/ready"
+        }
+      },
+      "_version": 1
+    },
+    {
+      "_id": "40017164346537984853827624087622141362820161388666421249",
+      "_index": ".ds-filebeat-9.5.5-2026.11.16-000001",
+      "_source": {
+        "@timestamp": "2026-11-11T21:15:10.254Z",
+        "event": {
+          "duration": 3192140,
+          "ingested": "2026-11-16T05:38:54.006Z",
+          "kind": "event"
+        },
+        "http": {
+          "request": {
+            "id": "ce48ecb1-3c8d-40dd-9238-a8fd2c920e54",
+            "method": "GET"
+          },
+          "response": {
+            "status_code": 200
+          }
+        },
+        "log": {
+          "level": "info"
+        },
+        "service": {
+          "name": "cuponmania-api"
+        },
+        "url": {
+          "path": "/health/ready"
+        }
+      },
+      "_version": 1
+    }
+  ],
+  "source_event_ids_match": true,
+  "source_messages_identical": true
+}

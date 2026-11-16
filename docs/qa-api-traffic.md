@@ -1,6 +1,68 @@
-# Verificación local de API y tráfico
+# Verificación de API, tráfico y stack de observabilidad
 
-> Este documento registra la **primera iteración local del 2026-11-03**. Las frases sobre Docker y ELK pendientes describen ese momento, anterior a la ejecución del stack del 2026-11-10. Para el estado actual, ver `docs/elk.md`, `docs/informe-fase-3.md` y `docs/uso-de-ia.md`.
+## Caída, persistencia e ingesta — 2026-11-15
+
+El coordinador ejecutó el ensayo entre **23:47 y 23:55 del 15 de noviembre de 2026, Guatemala** (16 de noviembre, 05:47–05:55 UTC). `api_qa` revisó los JSON, comparó independientemente las exportaciones comprimidas y examinó ambas capturas. No se modificó código de aplicación ni se borraron volúmenes o registros para obtener estos resultados.
+
+La evidencia está en [`evidencias/2026-11-15-pruebas-stack/`](../evidencias/2026-11-15-pruebas-stack/). El protocolo congeló la ventana de eventos `2026-11-10T00:00:00Z ≤ @timestamp < 2026-11-16T05:42:44.477401Z`, con filtros `event.kind=event` y `service.name=cuponmania-api`. La exportación paginada incluye `(_index, _id)`, `_version` y los campos proyectados de timestamp, petición, respuesta, duración, ingesta, ruta, servicio y nivel. Se compararon multiconjuntos completos, no solo conteos.
+
+| Comprobación ejecutada | Resultado verificado | Evidencia |
+| --- | --- | --- |
+| `docker compose stop api-simulada`, espera monotónica después de la parada y `docker compose start api-simulada` | **45.0003812 s** de espera; el mismo monitor registró `up → down → up`, con **3 chequeos down** y recuperación a `05:49:08.562Z`. Los tres monitores de preproducción aportaron **6 chequeos up** en la ventana del ensayo. | `02-caida.json` |
+| `docker compose restart filebeat` | Mismo contenedor con nueva hora de arranque y mismo volumen; **8755 documentos**, **8735 request IDs**, versiones y proyección idénticos antes/después. Un evento HTTP posterior al arranque (`05:49:10.987Z`) llegó a Elasticsearch a `05:50:19.155Z`. | `03-antes-reinicio-filebeat.json.gz`, `04-despues-reinicio-filebeat.json.gz`, `05-reinicio-filebeat.json` |
+| Parada de Filebeat, Heartbeat, Kibana y Elasticsearch; `docker compose up -d --force-recreate elasticsearch kibana filebeat heartbeat` | Los cuatro contenedores cambiaron de ID; se conservaron `cuponmania-observability_esdata` y `cuponmania-observability_filebeatdata`. Los **8755 documentos** conservaron IDs, contenido proyectado y `_version=1`; los **11 objetos de Kibana** conservaron contenido y SHA-256, **sin ejecutar kibana-setup ni reimportarlos**. | `06-antes-persistencia.json.gz`, `07-despues-persistencia.json.gz`, `08-persistencia.json` |
+| Comprobación posterior a reanudar la ingesta | Un evento de `05:52:10.988Z`, posterior a la reanudación, se ingirió a `05:53:19.726Z`. A `05:55:43.350Z` se volvió a exportar la ventana de control: seguían los mismos **8755 documentos**, todos en versión 1 y con el mismo multiconjunto y SHA-256 que al comienzo. | `08-persistencia.json`, `11-despues-de-reanudar-ingesta.json.gz`, `12-comparacion-final.json` |
+
+SHA-256 de la proyección canónica conservada en todas las comparaciones:
+
+```text
+93cd47507f0cbd4126dd2a8351cfd967f1bb7b4e1481dfaa6f49e3fc9ad98be8
+```
+
+**Alcance de “sin duplicados nuevos”:** no aparecieron documentos adicionales, cambios de versión ni alteraciones de los campos exportados en la ventana de control, incluso después del avance de la ingesta. No es una garantía de ausencia de duplicados en todo el histórico o en futuras ejecuciones. Los 20 request IDs repetidos ya existían en la línea base: 19 pares tienen timestamps y duraciones diferentes (16 pares 401→200 y 3 pares 200→200); no son duplicados exactos. El par restante contiene mensajes idénticos ya presentes como **dos eventos distintos en CloudWatch**, cuyos `eventId` coinciden con los dos `_id` de Elasticsearch, según `09-id-repetido-origen.json`. No se atribuye su causa al reinicio ni se hizo una deduplicación automática.
+
+La espera de 45 s es la medida del control de parada; no equivale exactamente al tiempo mostrado entre muestras de Heartbeat. La persistencia comprobada corresponde a Elasticsearch, el volumen de Filebeat y los objetos de Kibana: **no** al archivo local de la API simulada tras recrear su contenedor, que no tiene volumen de logs montado y no se recreó en este ensayo.
+
+### Estado para presentación
+
+[`10-estado-final.json`](../evidencias/2026-11-15-pruebas-stack/10-estado-final.json) registra a las **23:54:10 de Guatemala** los cinco servicios activos; Elasticsearch y Kibana con healthcheck `healthy`, Kibana `available` y los **cuatro monitores en up** con chequeos recientes. Elasticsearch reportó `yellow`, dos shards sin asignar y **cero primarios sin asignar** en el nodo único. La consulta de accesos encontró **8864 documentos**, **53 en los últimos cinco minutos** y **cero con alguno de los siete campos obligatorios ausente**. El avance real de Filebeat en este ensayo actualiza la limitación de ingesta anotada en la revisión anterior.
+
+Se observaron los **ocho paneles con datos**, sin avisos de error, y el eje de latencia en milisegundos. [`dashboard-superior.jpg`](../evidencias/2026-11-15-pruebas-stack/dashboard-superior.jpg) y [`dashboard-inferior.jpg`](../evidencias/2026-11-15-pruebas-stack/dashboard-inferior.jpg) son **dos capturas complementarias de viewport**, con rango Last 24 hours; no se presentan como una nueva captura única de página completa.
+
+El entorno quedó **técnicamente preparado para la demostración** en el estado comprobado. Antes de presentar, el equipo debe mantener vigente la sesión SSO, comprobar que siguen llegando datos y revisar el informe y la declaración de IA. Estos resultados no sustituyen esa revisión ni garantizan disponibilidad futura.
+
+El primer intento de preparación devolvió HTTP 400 al enviar un cuerpo al endpoint de refresh. Se conserva en `error-prepare.json`; el coordinador corrigió el helper para enviar POST sin cuerpo y repitió la preparación con éxito antes de las pruebas. No se contabiliza como una caída de los servicios ni como una prueba aprobada.
+
+## Regresión del importador de Kibana — 2026-11-15
+
+`api_qa` añadió `tests/integration/test_kibana_import.py` para comprobar `elk/kibana/import_objects.py`. Se ejecutó:
+
+```powershell
+.venv/Scripts/python.exe -m pytest tests/integration/test_kibana_import.py -q --basetemp=.pytest-tmp-kibana-import
+```
+
+Resultado real: **8 passed in 2.25s**, salida **0**. La ejecución autorizada fuera del aislamiento usó solo un servidor HTTP controlado en `127.0.0.1` y un puerto local reservado sin escucha para el error de conexión. No se conectó a Kibana, Docker, AWS ni servicios externos.
+
+Cobertura de regresión:
+
+- Importación confirmada de los **11 objetos** actuales: cuerpo multipart íntegro, archivo NDJSON sin cambios, ruta con `overwrite=true`, cabecera `kbn-xsrf`, salida JSON y código 0.
+- Una respuesta **HTTP 200** con `success=false` o con errores parciales devuelve código 1 y no imprime una salida de éxito.
+- `successCount=11` no basta: confirmaciones faltantes, identificadores duplicados o un objeto ajeno se rechazan.
+- Una conexión rechazada devuelve código 1 con diagnóstico; un archivo de origen con duplicados se rechaza antes de enviar HTTP.
+
+No se detectaron defectos en estos casos. Estas pruebas comprueban el cliente y su validación de respuestas; por sí solas no demuestran la importación ni la renderización en un Kibana real.
+
+### Suite completa y comprobaciones del coordinador
+
+El coordinador ejecutó la suite completa: **149 passed, 1 warning in 32.03s**. La salida real está en [`evidencias/2026-11-15-validacion-local/pruebas.txt`](../evidencias/2026-11-15-validacion-local/pruebas.txt), revisada por `api_qa`. La única advertencia es `StarletteDeprecationWarning` por el uso de httpx en `TestClient`; no hubo pruebas fallidas.
+
+En su ejecución local con Docker, el coordinador confirmó **Elasticsearch y Kibana 9.5.5 saludables**, y los servicios Heartbeat y API simulada activos. La importación contra Kibana real terminó con código **0**, `success=true`, `successCount=11`, los **11 identificadores esperados** y sin errores de importación. Este resultado confirma la importación; no sustituye la revisión visual del dashboard ni prueba la llegada de datos nuevos.
+
+**Limitación de esta ejecución:** el usuario informó que SSO solicita contactar con el administrador; no se completó la configuración de un perfil AWS y Filebeat no estaba activo. Por ello **no se verificaron la ingesta reciente desde CloudWatch ni `lastSync`**. Las evidencias históricas se conservan como tales y no se presentan como una comprobación actual de esa conexión. No se añadieron alternativas de ingesta ni nuevas funciones para eludir esta limitación.
+
+## Primera iteración local — 2026-11-03
+
+> Las secciones siguientes conservan la **primera iteración local del 2026-11-03**. Las frases sobre Docker y ELK pendientes describen ese momento, anterior a la ejecución del stack del 2026-11-10. Para el estado actual, ver `docs/elk.md`, `docs/informe-fase-3.md` y `docs/uso-de-ia.md`.
 
 Realizada el **3 de noviembre de 2026, Guatemala**, con Python **3.13.5** del entorno `.venv`, pytest **9.2.0**, FastAPI **0.162.0**, Uvicorn **0.54.0** y httpx **0.28.1**. API y generador fueron implementados en paralelo después de fijar `docs/contracts.md`; `api_qa` trabajó cuando ambos módulos quedaron listos. No se utilizó Docker.
 

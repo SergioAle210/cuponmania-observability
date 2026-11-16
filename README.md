@@ -5,6 +5,8 @@ Fase 3 del proyecto de Administración y Mantenimiento de Sistemas: monitoreo de
 - [Estado y mapa del repositorio](docs/fase-3/GUIA_FASE3.md)
 - [Requisitos y decisión vigente](docs/fase-3/instructions.md)
 - [Ejecución del stack ELK y Heartbeat](docs/elk.md)
+- [Ingesta local verificada el 15 de noviembre de 2026](evidencias/2026-11-15-validacion-local/ingesta-sso.json) — SSO configurado, Filebeat leyendo CloudWatch y los ocho paneles de Kibana con datos.
+- [Pruebas finales del stack](evidencias/2026-11-15-pruebas-stack/README.md) — caída/recuperación, persistencia y reinicio sin nuevos duplicados comprobados en esta computadora.
 - [Generador de tráfico y destino real](docs/traffic.md)
 - [Pruebas y ejecución local](docs/fase-3/SETUP.md)
 - [Informe técnico en borrador](docs/informe-fase-3.md)

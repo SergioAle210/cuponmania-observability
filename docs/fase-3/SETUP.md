@@ -8,7 +8,15 @@ La raíz contiene `api/`, `traffic/`, `tests/integration/`, `docker-compose.yml`
 
 ## 2. Python y entorno local (sin Docker)
 
-Desde una terminal en la raíz del repositorio, usa Python 3.13.5 (disponible con pyenv en este entorno). En Linux/macOS:
+Desde una terminal en la raíz del repositorio, usa Python 3.13. En esta computadora Windows está disponible Python 3.13.5 y el entorno `.venv`. Para crearlo de nuevo sin alterar Python 3.7 de otro proyecto:
+
+```powershell
+& "$env:LOCALAPPDATA/Programs/Python/Python313/python.exe" -m venv .venv
+.venv/Scripts/python.exe -m pip install -r requirements-dev.txt
+.venv/Scripts/python.exe -m pytest -q --basetemp=.pytest-tmp-full-local --tb=short
+```
+
+En Linux/macOS, si se usa pyenv:
 
 ```bash
 pyenv shell 3.13.5
@@ -52,7 +60,7 @@ Perfil normal: probabilidades 90% 2xx, 5% 4xx y 5% 5xx; espera simulada uniforme
 
 ## 5. Interfaz de la API simulada
 
-Ambos Dockerfiles se prepararon siguiendo el patrón de imagen oficial y dependencias de la [documentación de FastAPI](https://fastapi.tiangolo.com/deployment/docker/). Su contexto de construcción es la raíz del repositorio; sus ubicaciones son `api/Dockerfile` y `traffic/Dockerfile`. No se ejecutaron.
+Ambos Dockerfiles se prepararon siguiendo el patrón de imagen oficial y dependencias de la [documentación de FastAPI](https://fastapi.tiangolo.com/deployment/docker/). Su contexto de construcción es la raíz del repositorio; sus ubicaciones son `api/Dockerfile` y `traffic/Dockerfile`. Compose usa el de API para el servicio auxiliar de Heartbeat; el generador principal se ejecuta con Python fuera de los contenedores.
 
 | Programa | Interfaz que conectará el equipo |
 | --- | --- |

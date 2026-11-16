@@ -1,0 +1,75 @@
+{
+  "elasticsearch": {
+    "id": "591124e30abe5ff9e621736199b4091978898c12ee8100fea815f75873f53bb5",
+    "started_at": "2026-11-16T01:42:26.242344312Z",
+    "status": "running",
+    "health": "healthy",
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "cuponmania-observability_esdata",
+        "Source": "/var/lib/docker/volumes/cuponmania-observability_esdata/_data",
+        "Destination": "/usr/share/elasticsearch/data",
+        "RW": true
+      }
+    ]
+  },
+  "kibana": {
+    "id": "d2c293cdd26288e69905612477d976e550c3176f7801701ec553fbfccca22b7e",
+    "started_at": "2026-11-16T01:42:36.901613519Z",
+    "status": "running",
+    "health": "healthy",
+    "mounts": []
+  },
+  "filebeat": {
+    "id": "762b3f4d016d4c41faa2f59e78e19debb7fcfe0eb5e2ae56e5324a6f1a9900cb",
+    "started_at": "2026-11-16T05:38:26.548811978Z",
+    "status": "running",
+    "health": null,
+    "mounts": [
+      {
+        "Type": "bind",
+        "Name": null,
+        "Source": "C:\\Users\\sergi\\.aws",
+        "Destination": "/root/.aws",
+        "RW": false
+      },
+      {
+        "Type": "volume",
+        "Name": "cuponmania-observability_filebeatdata",
+        "Source": "/var/lib/docker/volumes/cuponmania-observability_filebeatdata/_data",
+        "Destination": "/usr/share/filebeat/data",
+        "RW": true
+      },
+      {
+        "Type": "bind",
+        "Name": null,
+        "Source": "C:\\UVG\\cuponmania-observability\\elk\\filebeat\\filebeat.yml",
+        "Destination": "/usr/share/filebeat/filebeat.yml",
+        "RW": false
+      }
+    ]
+  },
+  "heartbeat": {
+    "id": "c031f62245a88d6018494efc0aac5e4db77a6662373f6a607ff7cddc703f4340",
+    "started_at": "2026-11-16T01:41:33.892335805Z",
+    "status": "running",
+    "health": null,
+    "mounts": [
+      {
+        "Type": "bind",
+        "Name": null,
+        "Source": "C:\\UVG\\cuponmania-observability\\elk\\heartbeat\\heartbeat.yml",
+        "Destination": "/usr/share/heartbeat/heartbeat.yml",
+        "RW": false
+      }
+    ]
+  },
+  "api-simulada": {
+    "id": "963dded73858a8b2b1f588ff40e148c8a869aeff3ca3b7813d52a510768210d2",
+    "started_at": "2026-11-16T01:41:33.866415829Z",
+    "status": "running",
+    "health": null,
+    "mounts": []
+  }
+}
