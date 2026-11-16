@@ -48,7 +48,7 @@ services:
       retries: 60
 
   kibana-setup:
-    image: curlimages/curl:8.11.1
+    image: python:3.13-slim
     depends_on:
       kibana:
         condition: service_healthy

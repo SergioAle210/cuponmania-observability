@@ -1,2 +1,3 @@
 # Preserve authentic log bytes and their recorded SHA-256 across checkouts.
 evidencias/*.log -text
+*.sh text eol=lf
