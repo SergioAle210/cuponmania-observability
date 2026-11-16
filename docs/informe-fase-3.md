@@ -49,6 +49,16 @@ Generador (traffic/) ──HTTPS──► Cloudflare ─► CloudFront ─► AW
 - `evidencias/capturas/dashboard-kibana.png`: el dashboard completo. El selector de tiempo visible abarca aproximadamente **09:40–10:15, hora de Guatemala** (15:40–16:15 UTC), unos 35 minutos. Incluye la ejecución de 20 minutos y eventos anteriores y posteriores; sus conteos no tienen por qué coincidir con los de la exportación de 20 minutos.
 - Objetos de Kibana reproducibles: `elk/kibana/saved-objects.ndjson`, que se importan solos al levantar el compose.
 
+### Capturas complementarias de Kibana — 15 de noviembre
+
+El equipo añadió estas capturas de la validación local. Sus ventanas y filtros son distintos de los de la captura histórica y de los resultados de 20 minutos presentados arriba.
+
+![Disponibilidad de la API simulada en Heartbeat: monitor `api-simulada-health`, ventana 23:47–23:50 hora de Guatemala, con la caída controlada y la recuperación](../evidencias/capturas/db1.jpeg){ width=85% }
+
+![Dashboard de Kibana en la ventana Last 24 hours (15–16 de noviembre): estado, tráfico, latencia promedio y p95, códigos HTTP, endpoints y latencia de Heartbeat. Esta ventana amplia no corresponde a los conteos de la ejecución de 20 minutos](../evidencias/capturas/db2.jpeg){ width=65% }
+
+![Evento de preproducción en Discover: `GET /health`, respuesta `200`, duración `3.1 ms`, registrado el 15 de noviembre a las 23:59:30.986](../evidencias/capturas/db3.jpeg){ width=85% }
+
 ## 4. Resultados observados
 
 Fuente para los conteos y la latencia siguientes: `evidencias/api-preprod.log`, exportación de eventos de acceso de `cuponmania-api` entre 15:47:53 y 16:07:53 UTC. El archivo contiene 1274 eventos: 1014 de negocio y 260 de `/health` o `/health/ready`. La captura de Kibana y las cifras de Heartbeat tienen ventanas distintas, indicadas por separado.
@@ -153,4 +163,5 @@ Ver `docs/uso-de-ia.md`.
 - La API simulada, el generador, la instrumentación de la API real y el stack ELK se construyeron con asistencia de IA. Lo mismo vale para el compose, Filebeat, Heartbeat, Kibana y el dashboard, bajo la ampliación aprobada en persona por el catedrático, registrada en `docs/sources/aclaraciones-fase-3.md`.
 - Este borrador de análisis también se redactó con IA, a partir de las cifras observadas que se citan.
 - En la revisión local del 15 de noviembre, Codex corrigió los finales LF y la validación de importación, configuró `lastSync`, preparó la guía Windows, ejecutó Docker y pruebas, abrió Kibana y exportó evidencia. El intento inicial de SSO falló; posteriormente el usuario autorizó el acceso y se verificó ingesta real. Codex ejecutó las pruebas finales de caída, reinicio y persistencia; `api_qa` añadió las pruebas del importador, auditó las evidencias de los ensayos y documentó los resultados. Se conserva el registro de ambos momentos y de sus límites.
+- Codex incorporó al apartado de evidencias tres capturas de Kibana aportadas por el equipo y añadió sus pies de figura; no cambió las cifras ni el análisis.
 - El equipo revisa, ejecuta y debe poder explicar cada parte.
