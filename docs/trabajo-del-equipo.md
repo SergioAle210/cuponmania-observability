@@ -7,7 +7,7 @@ La configuración de ELK, Heartbeat, Kibana y el análisis ya se preparó con as
 | Elasticsearch, Kibana, Filebeat y Heartbeat | Configurados en `docker-compose.yml`, con versión 9.5.5 por defecto; ejecución local documentada el 2026-11-10. |
 | Ingesta de logs reales | `elk/filebeat/filebeat.yml` lee CloudWatch de preproducción; se documentó llegada a Elasticsearch con campos tipados. |
 | Heartbeat | `elk/heartbeat/heartbeat.yml` contiene cuatro monitores; se documentó una caída y recuperación controladas de la API simulada. |
-| Dashboard | `elk/kibana/saved-objects.ndjson` contiene dos vistas de datos, ocho visualizaciones y un dashboard; hay captura en `evidencias/capturas/dashboard-kibana.png`. |
+| Dashboard | `elk/kibana/saved-objects.ndjson` contiene dos vistas de datos, nueve visualizaciones y un dashboard; hay captura en `evidencias/capturas/dashboard-kibana.png`. |
 | Logs auténticos | `evidencias/api-local.log` tiene 64 líneas y `evidencias/api-preprod.log` 1274; sus hashes coinciden con los metadatos de ejecución. |
 | Informe | `docs/informe-fase-3.md` es un borrador basado en la ejecución del 2026-11-10. |
 

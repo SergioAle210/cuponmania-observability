@@ -209,7 +209,7 @@ Este reparto documenta la primera iteración; la ampliación de autorización po
 - [x] `docker-compose.yml` con Elasticsearch, Kibana, Filebeat y Heartbeat.
 - [x] Recolección desde CloudWatch hasta Elasticsearch documentada el 2026-11-10.
 - [x] Heartbeat con cuatro monitores y evidencia de caída y recuperación local.
-- [x] Dashboard de Kibana con ocho visualizaciones y captura completa.
+- [x] Dashboard de Kibana con nueve visualizaciones y captura completa.
 - [ ] Revisión final del equipo del informe, las ventanas de evidencia y la configuración en el entorno de entrega.
 - [ ] Completar la declaración final de IA en la entrega; el registro detallado ya está en `docs/uso-de-ia.md`.
 
