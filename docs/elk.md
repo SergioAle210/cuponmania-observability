@@ -43,7 +43,8 @@ docker compose ps                  # kibana-setup termina con código 0 tras imp
 docker compose logs --tail=50 filebeat
 ```
 
-- Kibana: http://localhost:5601 → Dashboards → **CupónManía | Salud de la API**.
+- Kibana: http://localhost:5601 abre directamente el dashboard **CupónManía | Salud de la API** (`kibana-setup` lo deja como página de inicio con el ajuste `defaultRoute`). También está en Dashboards.
+- La página «Elasticsearch» del menú de Kibana (inicio de búsqueda) muestra un error: consulta la API de seguridad para ofrecer API keys, y la seguridad de Elastic está desactivada en este laboratorio. No afecta al dashboard ni a la ingesta; el log de Kibana lo registra como `no handler found for uri [/_security/user/_has_privileges]`.
 - Tráfico hacia la API real: `.venv/bin/python -m traffic.main --target real --rate 1 --concurrency 1 --duration 300` (ver `docs/traffic.md`).
 - Prueba controlada de caída y recuperación de Heartbeat: `docker compose stop api-simulada`, esperar al menos 30 s, `docker compose start api-simulada`. El monitor «API simulada local · /healthz» pasa a down y vuelve a up. La API real no se apaga para esta prueba.
 - Detener sin borrar datos: `docker compose stop`. `docker compose down -v` **borra** los datos de Elasticsearch.
@@ -78,6 +79,19 @@ Observado de verdad sobre CloudWatch y el stack local (hora UTC), después de lo
 - **Heartbeat:** `/health` (`{"status":"ok","db":"ok"}`), `/health/ready` y el catálogo responden 200 por `api-preprod.cuponmania.com.gt` (Cloudflare). La concurrencia reservada de la Lambda sigue en 1, así que los monitores siguen escalonados. Las llamadas directas a la URL de Lambda reciben 403 (bloqueo de origen); en CloudWatch aparecen como `GET /health 403` con duración 0 y no vienen de Heartbeat.
 - **Falla encontrada y corregida:** Elasticsearch y Kibana llevaban unas 37 h detenidos tras un reinicio, mientras Filebeat y Heartbeat seguían corriendo sin destino. Faltaban en el índice los eventos del 2026-11-11 y del 2026-11-12. Tras agregar la política de reinicio y hacer la relectura: 1694 eventos de acceso del 2026-11-11 y 296 del 2026-11-12, la misma cifra que da CloudWatch para esos días. La ventana del informe (2026-11-10 15:47:53–16:07:52) sigue dando 1274 eventos.
 - **Extremo a extremo:** Filebeat indexó eventos de hasta 05:04 UTC sin errores de mapeo, los cuatro monitores quedaron *up* y los ocho paneles del dashboard mostraron datos. Entre 00:00 y 05:05 UTC del 2026-11-13 hubo 299 peticiones de negocio (sin las de salud): 274 2xx, 12 4xx y 13 5xx (error rate 5xx 4.3 %). Los 13 5xx (11 de 503 y 2 de 500) están todos en rutas del backoffice (`/api/v1/businesses`, `/users`, `/roles` y cuentas bancarias), no en las que usa el generador. Estas cifras son una observación nueva y **no** sustituyen a las del informe.
+
+## Verificación del 2026-11-16
+
+Stack levantado desde cero en un proyecto de compose aparte (volúmenes nuevos, sin puertos publicados), con el perfil de AWS de solo lectura (`LecturaLogsPreprod`), y luego borrado:
+
+- `kibana-setup` importó los 11 objetos y dejó el dashboard como página de inicio; `GET /` redirige a la entrada de espacios, que abre el dashboard.
+- Filebeat indexó más de 4700 eventos de CloudWatch sin líneas de error.
+- Heartbeat: los cuatro monitores *up*. Prueba de caída controlada: con `api-simulada` detenida el monitor «API simulada local · /healthz» pasó a *down* en 30 s y volvió a *up* 15 s después de arrancarla.
+- Generador contra la API real (`--target real --rate 1 --concurrency 1 --duration 30`): 22 peticiones; las líneas de esa ventana en CloudWatch y en `filebeat-*` coinciden (mismas rutas y códigos).
+- `pytest`: 141 aprobadas.
+- En el stack de trabajo, la relectura de 14 días no agregó eventos: no había hueco.
+
+Cambio en la API desde la verificación anterior: desde el 2026-11-15 la Lambda de la API tiene concurrencia reservada de 5 (antes 1) y los límites de tasa se guardan en PostgreSQL. Las cifras y conclusiones del informe corresponden a la configuración anterior y no se modificaron.
 
 ## Definiciones del dashboard
 
